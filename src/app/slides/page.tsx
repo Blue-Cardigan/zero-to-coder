@@ -546,7 +546,7 @@ export default function Slides() {
               <div className="fragment fade-up bg-indigo-900/40 p-6 rounded-lg">
                 <div className="flex items-center">
                   <span className="text-3xl mr-4">💡</span>
-                  <p className="text-xl">You're developing the <span className="text-blue-300 font-bold">mindset</span> of a programmer</p>
+                  <p className="text-xl">You&apos;re developing the <span className="text-blue-300 font-bold">mindset</span> of a programmer</p>
                 </div>
               </div>
             </div>
