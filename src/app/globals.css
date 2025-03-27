@@ -1,0 +1,351 @@
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Custom styles for reveal.js */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #0f172a;
+}
+
+.reveal {
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background: #0f172a;
+}
+
+.reveal .slides {
+  height: 100%;
+  width: 100%;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: 'Inter', sans-serif;
+  text-transform: none;
+  text-shadow: none;
+  letter-spacing: -0.02em;
+}
+
+.reveal .slides section {
+  padding: 20px;
+}
+
+.reveal .slides section > * {
+  margin-top: 20px;
+}
+
+.reveal .slides section > *:first-child {
+  margin-top: 0;
+}
+
+.reveal .slides section ul {
+  list-style-type: none;
+}
+
+.reveal .slides section ul li {
+  margin: 12px 0;
+  padding-left: 1.5em;
+  position: relative;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.reveal .slides section ul li:hover {
+  transform: translateX(5px);
+}
+
+.reveal .slides section ul li:before {
+  content: "•";
+  color: #3b82f6;
+  position: absolute;
+  left: 0;
+}
+
+.reveal .text-xs,
+.reveal .slides .text-xs {
+  font-size: 0.75rem !important;
+}
+
+.reveal .text-sm,
+.reveal .slides .text-sm {
+  font-size: 0.875rem !important;
+}
+
+.reveal .text-base,
+.reveal .slides .text-base {
+  font-size: 1rem !important;
+}
+
+.reveal .text-lg,
+.reveal .slides .text-lg {
+  font-size: 1.125rem !important;
+}
+
+.reveal .text-xl,
+.reveal .slides .text-xl {
+  font-size: 1.25rem !important;
+}
+
+.reveal .text-2xl,
+.reveal .slides .text-2xl {
+  font-size: 1.5rem !important;
+}
+
+.reveal .text-3xl,
+.reveal .slides .text-3xl {
+  font-size: 1.75rem !important;
+}
+
+.reveal .text-4xl,
+.reveal .slides .text-4xl {
+  font-size: 2.25rem !important;
+}
+
+.reveal .text-5xl,
+.reveal .slides .text-5xl {
+  font-size: 3rem !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Reveal.js customizations */
+.reveal .controls {
+  color: #3b82f6;
+}
+
+.reveal .progress {
+  color: #3b82f6;
+  height: 5px;
+}
+
+.reveal .slide-number {
+  color: #3b82f6;
+  background-color: rgba(15, 23, 42, 0.6);
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+/* Fragment animations */
+.reveal .slides section .fragment {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+.reveal .slides section .fragment.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add fade-right and fade-left specific animations */
+.reveal .slides section .fragment.fade-right {
+  transform: translateX(-40px);
+}
+
+.reveal .slides section .fragment.fade-right.visible {
+  transform: translateX(0);
+}
+
+.reveal .slides section .fragment.fade-left {
+  transform: translateX(40px);
+}
+
+.reveal .slides section .fragment.fade-left.visible {
+  transform: translateX(0);
+}
+
+/* Code block styling */
+.reveal code {
+  font-family: 'Fira Code', monospace;
+  background: #1e1b4b;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  border: 1px solid rgba(79, 70, 229, 0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.reveal code:hover {
+  border-color: rgba(79, 70, 229, 0.8);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Card styling */
+.bg-indigo-900\/60 {
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(79, 70, 229, 0.2);
+  transition: all 0.3s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+.bg-indigo-900\/60:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 70, 229, 0.3);
+  border: 1px solid rgba(79, 70, 229, 0.5);
+}
+
+/* Gradient text animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+/* Drop shadow animation */
+@keyframes pulse-shadow {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(96, 165, 250, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.8));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(96, 165, 250, 0.6));
+  }
+}
+
+.drop-shadow-lg {
+  animation: pulse-shadow 4s ease-in-out infinite;
+}
+
+/* Soft pulse animation for highlights */
+@keyframes soft-pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.text-blue-300, .text-blue-400 {
+  animation: soft-pulse 3s ease-in-out infinite;
+}
+
+/* Spacing and icon effects */
+.text-blue-400.mr-4 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+}
+
+/* Enhanced slide transitions */
+.reveal.overview .slides section {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+.reveal.overview .slides section:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(79, 70, 229, 0.5);
+}
+
+/* Animation for the pulse animation */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Specific data-background-gradient styling */
+section[data-background-gradient] {
+  background-size: 200% 200% !important;
+  animation: gradient-movement 15s ease infinite !important;
+}
+
+@keyframes gradient-movement {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reveal .slides section {
+    padding: 10px;
+  }
+  
+  .reveal code {
+    font-size: 0.8em;
+    padding: 0.1em 0.3em;
+  }
+}
+
+/* Highlight on list items */
+.fragment.visible li {
+  position: relative;
+  overflow: hidden;
+}
+
+.fragment.visible li::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.5), transparent);
+  animation: shine 2s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+} 
