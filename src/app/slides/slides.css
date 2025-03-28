@@ -40,7 +40,7 @@
 }
 
 .reveal .slides section ul li {
-  margin: 12px 0;
+  margin: 8px 0;
   padding-left: 1.5em;
   position: relative;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -239,4 +239,77 @@ section[data-background-gradient] {
   100% {
     background-position: 200% 0;
   }
+}
+
+/* Fix for slide 4 excess space below list items */
+.reveal .slides section:nth-child(4) ul.space-y-6 {
+  margin-bottom: 0;
+}
+
+.reveal .slides section:nth-child(4) li {
+  margin-bottom: 0;
+}
+
+/* Fix for slide 6 excess padding for list items */
+.reveal .slides section:nth-child(6) .bg-indigo-800\/40 {
+  padding: 0.75rem !important;
+}
+
+.reveal .slides section:nth-child(6) [style*="padding: 1rem"],
+.reveal .slides section:nth-child(6) [style*="padding: 0.5rem"] {
+  padding: 0.5rem !important;
+}
+
+.reveal .slides section:nth-child(6) .fragment.fade-right {
+  margin-top: 0;
+}
+
+/* Fix for slide 7 left column content extends offscreen and right empty space */
+.reveal .slides section:nth-child(7) .grid-cols-2 {
+  grid-template-columns: 60% 40%;
+}
+
+.reveal .slides section:nth-child(7) .text-2xl {
+  font-size: 1.25rem !important;
+}
+
+.reveal .slides section:nth-child(7) img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for slide 8 images too small */
+.reveal .slides section:nth-child(8) img {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 250px;
+}
+
+.reveal .slides section:nth-child(8) .w-10 {
+  width: auto !important;
+  max-width: 80%;
+}
+
+/* Fix for slide 11 right-lower content extends offscreen */
+.reveal .slides section:nth-child(11) .text-xl {
+  font-size: 1rem !important;
+}
+
+.reveal .slides section:nth-child(11) .p-8 {
+  padding: 1rem !important;
+}
+
+.reveal .slides section:nth-child(11) .p-4 {
+  padding: 0.75rem !important;
+}
+
+/* General fixes for layout issues */
+.reveal .slides section {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.reveal .slides section .grid {
+  max-width: 100%;
+  width: 100%;
 } 

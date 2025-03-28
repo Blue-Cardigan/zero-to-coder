@@ -265,7 +265,7 @@ export default function Slides() {
                 <h3 className="text-2xl font-bold text-blue-300 mb-6">If the agent starts looping:</h3>
                 <ul className="text-xl space-y-7 p-2">
                   <li className="flex items-center bg-indigo-800/40 p-4 rounded-lg">
-                    <span>Make it a regular chat with a specific instruction <code className="bg-indigo-950 px-2 py-1 rounded text-sm">⌘/Ctrl + I</code></span>
+                    <span>Make it a regular chat with a specific instruction <code className="bg-indigo-950 px-2 py-1 rounded text-sm">⌘/Ctrl + L</code></span>
                   </li>
                   <li className="flex items-center bg-indigo-800/40 p-4 rounded-lg">
                     <span>Use the latest model (not Auto)</span>
@@ -332,7 +332,7 @@ export default function Slides() {
           <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             More Cursor Tips
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 relative">
             <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
               <div className="mb-4 flex justify-between">
                 <div className="flex flex-col-2">
@@ -350,12 +350,9 @@ export default function Slides() {
                   <p>&quot;I&apos;m a designer; make sure the code is beautiful&quot;</p>
                 </div>
               </div>
-              <div className="fragment fade-up mt-4 bg-indigo-800/40 p-4 rounded-lg">
-                <p className="text-xl">Click <span className="text-blue-300 font-bold">@</span> in the Chat input</p>
-              </div>
-              <div>
+              <div className="mt-auto">
                 <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <img src="/images/cursor_at.png" alt="Custom Rules Screenshot" className="w-10 object-contain" />
+                  <img src="/images/cursor_at.png" alt="Custom Rules Screenshot" className="w-full object-contain max-h-32" />
                 </div>
               </div>
             </div>
@@ -370,16 +367,28 @@ export default function Slides() {
                     <p className="text-xl md:text-2xl">Access documentation within Cursor</p>
                   </div>
                 </div>
-                <div className="fragment fade-up text-lg bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
+                <div className="fragment fade-up text-lg p-3 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
                   <p>@OpenAI</p>
-                  <p>@Django</p>
                   <p>@NextJS</p>
                   <p>@React</p>
                 </div>
               </div>
               <div className="mt-auto">
                 <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <img src="/images/cursor_at_docs.png" alt="Docs Integration Screenshot" className="w-10 object-contain" />
+                  <img src="/images/cursor_at_docs.png" alt="Docs Integration Screenshot" className="w-full object-contain max-h-32" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Overlay instruction box */}
+            <div className="fragment fade-up absolute inset-0 flex items-center justify-center z-10" data-fragment-index="5">
+              <div className="relative">
+                <div className="absolute inset-0 bg-indigo-900/90 blur-md rounded-lg"></div>
+                <div className="relative bg-gradient-to-r from-indigo-900/90 to-blue-900/90 backdrop-blur-md px-8 py-6 rounded-lg border-2 border-blue-400/70 shadow-2xl flex items-center">
+                  <div className="bg-blue-600/40 p-4 rounded-full mr-5 flex-shrink-0">
+                    <span className="text-4xl">🔍</span>
+                  </div>
+                  <p className="text-2xl font-bold">Type or Click <span className="text-blue-300 font-bold text-4xl mx-2">@</span> in the Chat input</p>
                 </div>
               </div>
             </div>
