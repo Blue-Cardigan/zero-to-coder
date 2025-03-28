@@ -24,6 +24,40 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      backgroundColor: {
+        'black/30': 'rgba(0, 0, 0, 0.3)',
+      },
+      borderColor: {
+        'pink-500/50': 'rgba(236, 72, 153, 0.5)',
+        'pink-400/80': 'rgba(244, 114, 182, 0.8)',
+        'blue-500/50': 'rgba(59, 130, 246, 0.5)',
+        'white/20': 'rgba(255, 255, 255, 0.2)',
+        'white/30': 'rgba(255, 255, 255, 0.3)',
+        'fuchsia-500/50': 'rgba(217, 70, 239, 0.5)',
+        'emerald-500/50': 'rgba(16, 185, 129, 0.5)',
+      },
+      backdropBlur: {
+        'lg': '16px',
+      },
+      animation: {
+        'blob': 'blob 7s infinite',
+      },
+      keyframes: {
+        blob: {
+          '0%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+          '33%': {
+            transform: 'translate(30px, -50px) scale(1.1)',
+          },
+          '66%': {
+            transform: 'translate(-20px, 20px) scale(0.9)',
+          },
+          '100%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+        },
+      },
     },
   },
   plugins: [],
