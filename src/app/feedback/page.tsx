@@ -357,7 +357,7 @@ export default function FeedbackPage() {
                 >
                   <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
                     <FiLink className={`mr-2 ${activeField === 'projectUrl' ? 'text-blue-400' : ''}`} />
-                    Link to your project
+                    Link to your project (If you want it featured on my website)
                   </label>
                   <input
                     type="url"
@@ -396,7 +396,7 @@ export default function FeedbackPage() {
                 <div className="relative">
                   <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
                     <FiTag className={`mr-2 text-teal-400 ${activeField === 'tags' ? 'drop-shadow-glow' : ''}`} />
-                    Tag your experience (optional, see text appear in the slides)
+                    Tag your experience (Then look up at the slides)
                   </label>
                   
                   <div className="flex flex-wrap gap-2 mb-2">
@@ -428,7 +428,7 @@ export default function FeedbackPage() {
                       onFocus={() => handleFocus('tags')}
                       onBlur={handleBlur}
                       className={`flex-grow bg-blue-950/40 border ${tagError ? 'border-red-500' : activeField === 'tags' ? 'border-teal-400' : 'border-blue-700/50'} focus:border-teal-500 rounded-lg rounded-r-none px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
-                      placeholder="Add tags like 'helpful', 'inspiring', 'practical'..."
+                      placeholder="'awe-inspiring', 'breathtaking', 'captivating'..."
                       maxLength={MAX_TAG_LENGTH}
                     />
                     <button
@@ -539,7 +539,7 @@ export default function FeedbackPage() {
                   <FiArrowRight className="text-yellow-400 text-xl mr-3 drop-shadow-glow" />
                 </div>
                 <p className="text-sm text-blue-100">
-                  Your feedback helps me improve our workshops for future coders. Thank you for taking the time to share your thoughts!
+                  Your feedback helps me improve my workshops for future coders. Thank you for taking the time to share your thoughts!
                 </p>
               </div>
             </div>
