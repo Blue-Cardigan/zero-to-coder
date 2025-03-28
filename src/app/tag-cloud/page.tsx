@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { supabase } from '../../lib/supabase';
 import * as d3 from 'd3';
 import cloud from 'd3-cloud';
@@ -13,6 +13,25 @@ type WordCloudWord = {
 
 type TagResponse = {
   tag: string;
+};
+
+// Define proper types for d3-cloud words and events
+type CloudWord = WordCloudWord & {
+  x?: number;
+  y?: number;
+  rotate?: number;
+  startX?: number;
+  startY?: number;
+  startRotate?: number;
+  text: string;
+  size: number;
+};
+
+type WordData = {
+  x: number;
+  y: number;
+  rotate: number;
+  transform?: string;
 };
 
 // Move colorScale outside component to prevent re-renders
@@ -34,165 +53,6 @@ export default function TagCloudPage() {
   const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const previousTagsSignatureRef = useRef<string>('');
   
-  // Process data from stored procedure
-  const processStoredProcedureData = useCallback((data: TagResponse[]) => {
-    try {
-      // The stored procedure returns [{tag: "tagname"}, {tag: "tagname2"}, ...]
-      if (!Array.isArray(data) || data.length === 0) {
-        console.log('No tags returned from procedure, using mock data');
-        setUseMockData(true);
-        setTags(mockTags);
-        return;
-      }
-      
-      console.log(`Received ${data.length} tags from stored procedure`);
-      
-      // Count tag occurrences
-      const tagFrequency: Record<string, number> = {};
-      data.forEach(tagObj => {
-        if (tagObj && tagObj.tag) {
-          // Normalize tag consistently with how they're saved in the feedback form
-          const tag = tagObj.tag.trim().toLowerCase();
-          if (tag) {
-            tagFrequency[tag] = (tagFrequency[tag] || 0) + 1;
-          }
-        }
-      });
-      
-      // Find the minimum and maximum frequencies for better scaling
-      const frequencies = Object.values(tagFrequency);
-      const minFreq = Math.min(...frequencies);
-      const maxFreq = Math.max(...frequencies);
-      
-      // Create a logarithmic scale for tag sizes
-      // This ensures better visual distribution when there are outlier frequencies
-      const sizeScale = d3.scaleLog()
-        .domain([Math.max(1, minFreq), Math.max(2, maxFreq)])
-        .range([30, 80])
-        .clamp(true);
-        
-      // Convert to format needed for d3-cloud
-      const words: WordCloudWord[] = Object.keys(tagFrequency)
-        .filter(tag => tag.length > 0) // Exclude empty tags
-        .map(tag => {
-          const frequency = tagFrequency[tag];
-          // Use logarithmic scale for more balanced sizing with small and large values
-          const size = Math.round(sizeScale(frequency));
-          
-          // Use deterministic color assignment based on tag text
-          // This prevents random colors causing unnecessary re-renders
-          const colorIndex = Math.abs(tag.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 8;
-          
-          return {
-            text: tag,
-            size,
-            color: colorScale(colorIndex.toString())
-          };
-        })
-        .sort((a, b) => b.size - a.size); // Sort by size descending
-      
-      console.log(`Created word cloud with ${words.length} unique tags`);
-      
-      if (words.length === 0) {
-        console.log('No valid tags found, using mock data');
-        setUseMockData(true);
-        setTags(mockTags);
-      } else {
-        setTags(words);
-      }
-    } catch (err: any) {
-      console.error('Error processing stored procedure data:', err);
-      setUseMockData(true);
-      setTags(mockTags);
-    }
-  }, []);
-
-  // Process data from direct table access
-  const processData = useCallback((data: any[]) => {
-    try {
-      // Process the tags
-      const allTags: string[] = [];
-      let tagCount = 0;
-      
-      data.forEach(item => {
-        if (item.tags && Array.isArray(item.tags)) {
-          allTags.push(...item.tags);
-          tagCount += item.tags.length;
-        }
-      });
-      
-      if (allTags.length === 0) {
-        console.log('No tags found in the data, using mock data');
-        setUseMockData(true);
-        setTags(mockTags);
-        return;
-      }
-      
-      console.log(`Processed ${tagCount} tags from ${data.length} records`);
-
-      // Count tag occurrences
-      const tagFrequency: Record<string, number> = {};
-      allTags.forEach(tag => {
-        tagFrequency[tag] = (tagFrequency[tag] || 0) + 1;
-      });
-      
-      // Convert to format needed for d3-cloud
-      const words: WordCloudWord[] = Object.keys(tagFrequency).map(tag => {
-        // Use deterministic color assignment based on tag text
-        const colorIndex = Math.abs(tag.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 8;
-        return {
-          text: tag,
-          size: 20 + (tagFrequency[tag] * 15), // Base size + multiplier based on count
-          color: colorScale(colorIndex.toString())
-        };
-      });
-
-      console.log(`Created word cloud with ${words.length} unique tags`);
-      setTags(words);
-    } catch (err: any) {
-      console.error('Error processing tag data:', err);
-      setUseMockData(true);
-      setTags(mockTags);
-    }
-  }, []);
-
-  // Function to fetch data from the API
-  const fetchData = useCallback(async (isInitialLoad = false) => {
-    try {
-      if (isInitialLoad) {
-        setLoading(true);
-      }
-      
-      // Try to use stored procedure first - RLS is now disabled
-      console.log("Fetching tags using stored procedure...");
-      const { data: procData, error: procError } = await supabase.rpc('get_all_tags');
-      
-      if (procError) {
-        console.log("Stored procedure failed:", procError.message);
-        // Fall back to mock data
-        setUseMockData(true);
-        setTags(mockTags);
-      } else if (!procData || procData.length === 0) {
-        // If procedure returned empty data
-        console.log('Procedure returned no data');
-        setUseMockData(true);
-        setTags(mockTags);
-      } else {
-        // Process data from procedure
-        console.log(`Successfully retrieved ${procData.length} tags from procedure at ${new Date().toISOString()}`);
-        processNewData(procData);
-      }
-    } catch (err: any) {
-      console.error('Error processing tags:', err);
-      setUseMockData(true);
-      setTags(mockTags);
-    } finally {
-      if (isInitialLoad) {
-        setLoading(false);
-      }
-    }
-  }, []);
-
   // Generate a complete signature of the tags (including text and size) for change detection
   const generateTagSignature = useCallback((wordList: WordCloudWord[]) => {
     return JSON.stringify(
@@ -201,7 +61,7 @@ export default function TagCloudPage() {
         .sort((a, b) => a.text.localeCompare(b.text))
     );
   }, []);
-
+  
   // Compare and process new data only if changes detected
   const processNewData = useCallback((data: TagResponse[]) => {
     try {
@@ -282,7 +142,7 @@ export default function TagCloudPage() {
       } else {
         console.log('No changes in tags, maintaining current visualization');
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error comparing tag data:', err);
       // Only update if error and currently not using mock data
       if (!useMockData) {
@@ -293,6 +153,43 @@ export default function TagCloudPage() {
       }
     }
   }, [generateTagSignature, useMockData]);
+
+  // Function to fetch data from the API
+  const fetchData = useCallback(async (isInitialLoad = false) => {
+    try {
+      if (isInitialLoad) {
+        setLoading(true);
+      }
+      
+      // Try to use stored procedure first - RLS is now disabled
+      console.log("Fetching tags using stored procedure...");
+      const { data: procData, error: procError } = await supabase.rpc('get_all_tags');
+      
+      if (procError) {
+        console.log("Stored procedure failed:", procError.message);
+        // Fall back to mock data
+        setUseMockData(true);
+        setTags(mockTags);
+      } else if (!procData || procData.length === 0) {
+        // If procedure returned empty data
+        console.log('Procedure returned no data');
+        setUseMockData(true);
+        setTags(mockTags);
+      } else {
+        // Process data from procedure
+        console.log(`Successfully retrieved ${procData.length} tags from procedure at ${new Date().toISOString()}`);
+        processNewData(procData);
+      }
+    } catch (err: unknown) {
+      console.error('Error processing tags:', err);
+      setUseMockData(true);
+      setTags(mockTags);
+    } finally {
+      if (isInitialLoad) {
+        setLoading(false);
+      }
+    }
+  }, [processNewData]);
 
   useEffect(() => {
     // Initialize the previous tags signature
@@ -312,7 +209,7 @@ export default function TagCloudPage() {
         clearInterval(pollingIntervalRef.current);
       }
     };
-  }, [fetchData, generateTagSignature]);
+  }, [fetchData, generateTagSignature, tags]);
 
   // Memoize the renderCloud function to prevent unnecessary recreations
   const renderCloud = useCallback(() => {
@@ -328,8 +225,8 @@ export default function TagCloudPage() {
       const height = viewportHeight * 0.92;
 
       // Store previous word positions if available for smoother transitions
-      const prevWords = new Map();
-      svg.selectAll(".word").each(function(d: any) {
+      const prevWords = new Map<string, WordData>();
+      svg.selectAll<SVGTextElement, CloudWord>(".word").each(function(d) {
         if (d && d.text) {
           const transform = d3.select(this).attr("transform");
           prevWords.set(d.text, {
@@ -345,9 +242,9 @@ export default function TagCloudPage() {
       svg.selectAll("*").remove();
 
       // Create word cloud layout with more padding for sparse and readable cloud
-      const layout = cloud()
+      const layout = cloud<CloudWord>()
         .size([width, height])
-        .words(tags)
+        .words(tags as CloudWord[])
         .padding(() => {
           // Dynamic padding based on tag count
           // Fewer tags = more space between them
@@ -368,7 +265,7 @@ export default function TagCloudPage() {
         .fontSize(d => {
           // Dynamically scale font sizes based on available space
           // This helps ensure tags don't crowd each other
-          const baseSize = (d as WordCloudWord).size;
+          const baseSize = d.size;
           const scaleFactor = Math.min(
             width / 1000, // Scale by width ratio
             height / 800  // Scale by height ratio
@@ -383,7 +280,7 @@ export default function TagCloudPage() {
       layout.start();
 
       // Draw the word cloud with animations
-      function draw(words: any[]) {
+      function draw(words: CloudWord[]) {
         const g = svg
           .attr("width", width)
           .attr("height", height)
@@ -391,18 +288,18 @@ export default function TagCloudPage() {
           .attr("transform", `translate(${width / 2},${height / 2})`);
 
         // Add a background glow effect for better visibility
-        g.selectAll(".word-bg")
+        g.selectAll<SVGTextElement, CloudWord>(".word-bg")
           .data(words)
           .enter()
           .append("text")
           .attr("class", "word-bg")
-          .style("font-size", (d: any) => `${d.size}px`)
+          .style("font-size", (d: CloudWord) => `${d.size}px`)
           .style("font-family", "'Inter', sans-serif")
           .style("font-weight", "bold")
           .style("fill", "#193166") // Dark background color
           .style("opacity", 0.3)
           .attr("text-anchor", "middle")
-          .attr("transform", (d: any) => {
+          .attr("transform", (d: CloudWord) => {
             // For smooth transitions, check if this word existed before
             const prev = prevWords.get(d.text);
             
@@ -419,14 +316,15 @@ export default function TagCloudPage() {
             return `translate(${x},${y}) rotate(${rotate})`;
           })
           .attr("dy", "0.35em") // Vertically center text
-          .text((d: any) => d.text)
+          .text((d: CloudWord) => d.text)
           .style("opacity", 0)
           .transition()
-          .delay((d: any, i: number) => i * 30)
+          .delay((_, i) => i * 30)
           .duration(700)
           .style("opacity", 0.3)
           // Animate to the new position
-          .attr("transform", (d: any) => {
+          .attr("transform", function(this: SVGTextElement) {
+            const d = d3.select(this).datum() as CloudWord;
             const x = d.x || 0;
             const y = d.y || 0;
             const rotate = d.rotate || 0;
@@ -434,18 +332,18 @@ export default function TagCloudPage() {
           });
 
         // Add words with animations
-        g.selectAll(".word")
+        g.selectAll<SVGTextElement, CloudWord>(".word")
           .data(words)
           .enter()
           .append("text")
           .attr("class", "word")
-          .style("font-size", (d: any) => `${d.size}px`)
+          .style("font-size", (d: CloudWord) => `${d.size}px`)
           .style("font-family", "'Inter', sans-serif")
           .style("font-weight", "bold")
-          .style("fill", (d: any) => (d as WordCloudWord).color)
-          .style("text-shadow", (d: any) => `0 0 8px ${(d as WordCloudWord).color}30`)
+          .style("fill", (d: CloudWord) => d.color)
+          .style("text-shadow", (d: CloudWord) => `0 0 8px ${d.color}30`)
           .attr("text-anchor", "middle")
-          .attr("transform", (d: any) => {
+          .attr("transform", (d: CloudWord) => {
             // Start from previous position for smoother transitions
             const x = d.startX !== undefined ? d.startX : d.x || 0;
             const y = d.startY !== undefined ? d.startY : d.y || 0;
@@ -453,16 +351,17 @@ export default function TagCloudPage() {
             return `translate(${x},${y}) rotate(${rotate})`;
           })
           .attr("dy", "0.35em") // Vertically center text
-          .text((d: any) => d.text)
+          .text((d: CloudWord) => d.text)
           .style("opacity", 0.3) // Start slightly visible for smoother appearance
           .transition()
-          .delay((d: any, i: number) => i * 30)
+          .delay((_, i) => i * 30)
           .duration(300)
           .style("opacity", 0.7)
           .transition()
           .duration(700)
           // Animate to the new position
-          .attr("transform", (d: any) => {
+          .attr("transform", function(this: SVGTextElement) {
+            const d = d3.select(this).datum() as CloudWord;
             const x = d.x || 0;
             const y = d.y || 0;
             const rotate = d.rotate || 0;
@@ -471,13 +370,13 @@ export default function TagCloudPage() {
           .style("opacity", 1);
 
         // Add hover effects for interactivity
-        g.selectAll(".word")
-          .on("mouseover", function() {
+        g.selectAll<SVGTextElement, CloudWord>(".word")
+          .on("mouseover", function(_, d: CloudWord) {
             d3.select(this)
               .transition()
               .duration(200)
               .style("filter", "brightness(1.2)")
-              .attr("transform", function(d: any) {
+              .attr("transform", () => {
                 // Get the current transform values
                 const x = d.x || 0;
                 const y = d.y || 0;
@@ -486,12 +385,12 @@ export default function TagCloudPage() {
                 return `translate(${x},${y}) rotate(${rotate}) scale(1.1)`;
               });
           })
-          .on("mouseout", function() {
+          .on("mouseout", function(_, d: CloudWord) {
             d3.select(this)
               .transition()
               .duration(200)
               .style("filter", "brightness(1)")
-              .attr("transform", function(d: any) {
+              .attr("transform", () => {
                 // Reset to original transform
                 const x = d.x || 0;
                 const y = d.y || 0;
