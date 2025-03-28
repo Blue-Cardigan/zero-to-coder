@@ -607,49 +607,27 @@ export default function Slides() {
 
         {/* Slide 14 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Feedback Responses
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Workshop Tag Cloud
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="md:col-span-1 text-2xl md:text-3xl bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-              <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-6 text-center">Responses from:</h3>
-            <div className="fragment fade-up">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 to-purple-600/20 rounded-lg blur-md"></div>
-                  <code className="block bg-indigo-950 p-6 rounded-lg text-center text-2xl border border-indigo-700 shadow-inner font-bold">
-                Supabase
-              </code>
-                </div>
-                <div className="mt-6 flex flex-col items-center">
-                  <div className="w-16 h-16 bg-indigo-800/50 rounded-full mb-2 flex items-center justify-center">
-                    <span className="text-4xl">📊</span>
-                  </div>
-                  <p className="text-center text-lg">Real-time database</p>
-                </div>
-              </div>
+          
+          <div className="fragment fade-up relative w-full h-[calc(100vh-180px)] rounded-lg overflow-hidden">
+            {/* Glowing border effect */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/30 to-purple-500/30 p-0.5 z-0">
+              <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-blue-500/60 to-purple-500/60"></div>
             </div>
-            <div className="md:col-span-2">
-              <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full">
-                <div className="aspect-video bg-indigo-800/50 rounded-lg flex items-center justify-center">
-                  <p className="text-2xl text-center text-indigo-300">Feedback Dashboard Screenshot</p>
-                </div>
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg">
-                    <h4 className="text-xl font-bold text-blue-300 mb-2">Key metrics</h4>
-                    <div className="flex justify-between">
-                      <span>Satisfaction</span>
-                      <span className="text-green-400">92%</span>
-                    </div>
-                  </div>
-                  <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg">
-                    <h4 className="text-xl font-bold text-blue-300 mb-2">Topics of interest</h4>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      <span className="px-2 py-1 bg-blue-900/50 rounded text-sm">Authentication</span>
-                      <span className="px-2 py-1 bg-blue-900/50 rounded text-sm">APIs</span>
-                      <span className="px-2 py-1 bg-blue-900/50 rounded text-sm">Databases</span>
-                    </div>
-                  </div>
-                </div>
+            
+            {/* Tag cloud iframe with loading state */}
+            <div className="relative w-full h-full z-10">
+              <iframe
+                src="/tag-cloud"
+                className="w-full h-full rounded-lg"
+                frameBorder="0"
+              ></iframe>
+              
+              {/* Optional attribution */}
+              <div className="absolute bottom-4 right-4 bg-indigo-900/80 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm shadow-lg border border-indigo-700/50">
+                Live Workshop Tags from Supabase
               </div>
             </div>
           </div>

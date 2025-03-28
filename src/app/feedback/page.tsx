@@ -16,6 +16,9 @@ export default function FeedbackPage() {
   const [activeField, setActiveField] = useState<string | null>(null);
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState('');
+  const [tagError, setTagError] = useState<string | null>(null);
+  const MAX_TAGS = 50;
+  const MAX_TAG_LENGTH = 50;
   const [formData, setFormData] = useState<FeedbackFormData>({
     name: '',
     email: '',
@@ -24,6 +27,15 @@ export default function FeedbackPage() {
     projectUrl: '',
     testimonial: ''
   });
+  
+  // Format tag to ensure consistency
+  const formatTag = (tag: string): string => {
+    // Trim, lowercase, and only allow alphanumeric characters, spaces and hyphens
+    return tag.trim()
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')  // Remove special characters except spaces and hyphens
+      .replace(/\s+/g, ' ');     // Replace multiple spaces with a single space
+  };
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -55,6 +67,7 @@ export default function FeedbackPage() {
   
   const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
+    setTagError(null); // Clear error when user types
   };
   
   const handleTagInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -65,14 +78,41 @@ export default function FeedbackPage() {
   };
   
   const addTag = () => {
-    if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-      setTags(prev => [...prev, tagInput.trim()]);
-      setTagInput('');
+    // Reset error
+    setTagError(null);
+    
+    // Format the tag
+    const formattedTag = formatTag(tagInput);
+    
+    // Validate tag
+    if (!formattedTag) {
+      setTagError("Tag cannot be empty");
+      return;
     }
+    
+    if (formattedTag.length > MAX_TAG_LENGTH) {
+      setTagError(`Tag is too long (max ${MAX_TAG_LENGTH} characters)`);
+      return;
+    }
+    
+    if (tags.length >= MAX_TAGS) {
+      setTagError(`Maximum ${MAX_TAGS} tags allowed`);
+      return;
+    }
+    
+    if (tags.includes(formattedTag)) {
+      setTagError("This tag already exists");
+      return;
+    }
+    
+    // Add the formatted tag
+    setTags(prev => [...prev, formattedTag]);
+    setTagInput('');
   };
   
   const removeTag = (tagToRemove: string) => {
     setTags(prev => prev.filter(tag => tag !== tagToRemove));
+    setTagError(null); // Clear any error when removing a tag
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
@@ -85,6 +125,9 @@ export default function FeedbackPage() {
     setIsSubmitting(true);
     
     try {
+      // Format all tags one last time before submission to ensure consistency
+      const formattedTags = tags.map(formatTag).filter(tag => tag.length > 0);
+      
       const { error } = await supabase
         .from('workshop_feedback')
         .insert([
@@ -95,7 +138,7 @@ export default function FeedbackPage() {
             could_improve: formData.couldImprove,
             project_url: formData.projectUrl,
             testimonial: formData.testimonial,
-            tags: tags.length > 0 ? tags : null
+            tags: formattedTags.length > 0 ? formattedTags : null
           }
         ]);
         
@@ -384,20 +427,26 @@ export default function FeedbackPage() {
                       onKeyDown={handleTagInputKeyDown}
                       onFocus={() => handleFocus('tags')}
                       onBlur={handleBlur}
-                      className={`flex-grow bg-blue-950/40 border ${activeField === 'tags' ? 'border-teal-400' : 'border-blue-700/50'} focus:border-teal-500 rounded-lg rounded-r-none px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                      className={`flex-grow bg-blue-950/40 border ${tagError ? 'border-red-500' : activeField === 'tags' ? 'border-teal-400' : 'border-blue-700/50'} focus:border-teal-500 rounded-lg rounded-r-none px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
                       placeholder="Add tags like 'helpful', 'inspiring', 'practical'..."
+                      maxLength={MAX_TAG_LENGTH}
                     />
                     <button
                       type="button"
                       onClick={addTag}
-                      className="bg-teal-600/60 hover:bg-teal-600/80 text-white px-4 rounded-r-lg border border-teal-500/50 transition-colors duration-200 flex items-center justify-center"
+                      disabled={tags.length >= MAX_TAGS}
+                      className={`${tags.length >= MAX_TAGS ? 'bg-gray-600/60' : 'bg-teal-600/60 hover:bg-teal-600/80'} text-white px-4 rounded-r-lg border border-teal-500/50 transition-colors duration-200 flex items-center justify-center`}
                     >
                       <FiPlus />
                     </button>
                   </div>
                   
+                  {tagError && (
+                    <p className="text-red-400 text-xs mt-1 ml-1">{tagError}</p>
+                  )}
+                  
                   <p className="text-xs text-blue-300 mt-1 ml-1">
-                    Press Enter or click the + button to add a tag
+                    {tags.length}/{MAX_TAGS} tags • Press Enter or click + to add • Max {MAX_TAG_LENGTH} chars per tag
                   </p>
                 </div>
               </div>

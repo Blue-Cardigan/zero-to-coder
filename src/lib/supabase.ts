@@ -10,6 +10,7 @@ export type FeedbackRecord = {
   could_improve: string;
   project_url: string;
   testimonial: string;
+  tags?: string[];
 };
 
 export type Database = {
