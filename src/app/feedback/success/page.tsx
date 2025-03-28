@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FiCheckCircle, FiArrowRight, FiHome, FiShare2, FiTwitter, FiLinkedin, FiGithub, FiAward, FiStar } from 'react-icons/fi';
+import { FiCheckCircle, FiArrowRight, FiShare2, FiTwitter, FiLinkedin, FiGithub, FiAward, FiStar } from 'react-icons/fi';
 import '../../globals.css';
 
 export default function FeedbackSuccessPage() {
@@ -117,7 +117,7 @@ export default function FeedbackSuccessPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">You're a Star!</h2>
+                <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">You&apos;re a Star!</h2>
                 <p className="text-blue-200 mb-6">
                   Your feedback has been submitted successfully!
                 </p>
