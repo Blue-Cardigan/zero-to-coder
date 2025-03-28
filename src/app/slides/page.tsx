@@ -6,6 +6,7 @@ import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/black.css';
 import './slides.css';
 import { QRCodeSVG } from 'qrcode.react';
+import Image from 'next/image';
 
 const ColorPresets = [
   { bg: '#ffffff', fg: '#000000', name: 'Classic' },
@@ -126,14 +127,14 @@ export default function Slides() {
             <div className="fragment fade-up flex justify-center">
               <div className="w-[370px] bg-indigo-900/40 p-2 rounded-lg hover:scale-105 transition-transform duration-300">
                 <a href="https://recipe-routine-saver.vercel.app/" target="_blank" rel="noopener noreferrer">
-                  <img src="/images/website_image_1.png" alt="Website example 1" className="w-full rounded-lg shadow-lg" />
+                  <Image src="/images/website_image_1.png" alt="Website example 1" width={370} height={208} className="w-full rounded-lg shadow-lg" />
                 </a>
               </div>
             </div>
             <div className="fragment fade-up flex justify-center">
               <div className="w-[370px] bg-indigo-900/40 p-2 rounded-lg hover:scale-105 transition-transform duration-300">
                 <a href="https://greater-manchester-assembly-helper.vercel.app/#" target="_blank" rel="noopener noreferrer">
-                  <img src="/images/website_image_2.png" alt="Website example 2" className="w-full rounded-lg shadow-lg" />
+                  <Image src="/images/website_image_2.png" alt="Website example 2" width={370} height={208} className="w-full rounded-lg shadow-lg" />
                 </a>
               </div>
             </div>
@@ -151,21 +152,21 @@ export default function Slides() {
                 <div className="text-4xl text-blue-300 mb-4">1</div>
                 <p className="text-center">Prompt Bolt.new</p>
                 <div className="mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
-                  <img src="/images/bolt-screenshot.png" alt="Bolt.new screenshot" className="w-full h-full object-contain" />
+                  <Image src="/images/bolt-screenshot.png" alt="Bolt.new screenshot" width={400} height={225} className="w-full h-full object-contain" />
                 </div>
               </div>
               <div className="fragment fade-up flex-1 bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
                 <div className="text-4xl text-blue-300 mb-4">2</div>
                 <p className="text-center">Develop in Cursor</p>
                 <div className="mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
-                  <img src="/images/cursor_homepage_screenshot.png" alt="Cursor screenshot" className="w-full h-full object-contain" />
+                  <Image src="/images/cursor_homepage_screenshot.png" alt="Cursor screenshot" width={400} height={225} className="w-full h-full object-contain" />
                 </div>
               </div>
               <div className="fragment fade-up flex-1 bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
                 <div className="text-4xl text-blue-300 mb-4">3</div>
                 <p className="text-center">Host on Vercel</p>
                 <div className="mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
-                  <img src="/images/vercel_homepage_screenshot.png" alt="Vercel screenshot" className="w-full h-full object-contain" />
+                  <Image src="/images/vercel_homepage_screenshot.png" alt="Vercel screenshot" width={400} height={225} className="w-full h-full object-contain" />
                 </div>
               </div>
             </div>
@@ -237,7 +238,7 @@ export default function Slides() {
             </div>
             <div className="flex justify-center order-2 md:order-2">
               <div className="w-full max-w-[450px] fragment fade-left bg-indigo-800/40 p-4 rounded-lg flex shadow-lg">
-                <img src="/images/cursor_localhost.png" alt="Cursor screenshot" className="w-full h-full object-contain" />
+                <Image src="/images/cursor_localhost.png" alt="Cursor screenshot" width={450} height={253} className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
@@ -337,9 +338,11 @@ export default function Slides() {
             </div>
             
             <div className="flex items-center justify-center">
-              <img 
+              <Image 
                 src="/images/spanner.png" 
                 alt="Spanner tool" 
+                width={400}
+                height={400}
                 className="object-contain drop-shadow-lg"
               />
             </div>
@@ -371,7 +374,7 @@ export default function Slides() {
               </div>
               <div className="mt-auto">
                 <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <img src="/images/cursor_at.png" alt="Custom Rules Screenshot" className="w-full object-contain max-h-32" />
+                  <Image src="/images/cursor_at.png" alt="Custom Rules Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
                 </div>
               </div>
             </div>
@@ -394,7 +397,7 @@ export default function Slides() {
               </div>
               <div className="mt-auto">
                 <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <img src="/images/cursor_at_docs.png" alt="Docs Integration Screenshot" className="w-full object-contain max-h-32" />
+                  <Image src="/images/cursor_at_docs.png" alt="Docs Integration Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
                 </div>
               </div>
             </div>
