@@ -1,12 +1,24 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/black.css';
 import './slides.css';
+import { QRCodeSVG } from 'qrcode.react';
+
+const ColorPresets = [
+  { bg: '#ffffff', fg: '#000000', name: 'Classic' },
+  { bg: '#0f172a', fg: '#60a5fa', name: 'Night Blue' },
+  { bg: '#064e3b', fg: '#6ee7b7', name: 'Forest' },
+  { bg: '#7c2d12', fg: '#fb923c', name: 'Autumn' },
+  { bg: '#581c87', fg: '#e879f9', name: 'Royal' },
+];
 
 export default function Slides() {
+  const [qrColors, setQrColors] = useState(ColorPresets[0]);
+  const [pulseSize, setPulseSize] = useState(250);
+
   useEffect(() => {
     const deck = new Reveal({
       hash: true,
@@ -35,6 +47,13 @@ export default function Slides() {
     );
 
     deck.initialize();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPulseSize((size) => (size === 220 ? 230 : 220));
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -572,62 +591,78 @@ export default function Slides() {
 
         {/* Slide 13 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Feedback
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center h-[calc(100%-8rem)]">
-            <div className="text-xl md:text-2xl space-y-4 bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-              <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-2">Make me better!</h3>
-              <p className="text-lg md:text-xl">Share your thoughts and experiences with the workshop</p>
-              <ul className="space-y-3 mt-4">
-                <li className="flex items-center">
-                  <span>What worked well?</span>
-                </li>
-                <li className="flex items-center">
-                  <span>What could be improved?</span>
-                </li>
-                <li className="flex items-center">
-                  <span>What would you like to learn next?</span>
-                </li>
-              </ul>
-            </div>
-            <div className="flex items-center justify-center border border-indigo-700/50 rounded-b-full">
-              <div className="bg-white p-5 hover:scale-105 transition-all duration-300 shadow-xl">
-                <a href="https://zero-to-coder.vercel.app/feedback">
-                  <img 
-                    src="/images/feedback-qr-code.png" 
-                    alt="QR Code" 
-                    className="w-[220px] h-[220px] object-contain" 
-                  />
-                </a>
-              </div>
-            </div>
+          {/* Tag cloud background */}
+          <div className="absolute top-0 left-0 w-[120%] h-[120%] -translate-x-[10vw] -translate-y-[10vh]">
+            <iframe
+              src="/tag-cloud"
+              className="w-full h-full"
+              frameBorder="0"
+            />
           </div>
-        </section>
 
-        {/* Slide 14 */}
-        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Workshop Tag Cloud
-          </h2>
-          
-          <div className="fragment fade-up relative w-full h-[calc(100vh-180px)] rounded-lg overflow-hidden">
-            {/* Glowing border effect */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/30 to-purple-500/30 p-0.5 z-0">
-              <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-blue-500/60 to-purple-500/60"></div>
-            </div>
-            
-            {/* Tag cloud iframe with loading state */}
-            <div className="relative w-full h-full z-10">
-              <iframe
-                src="/tag-cloud"
-                className="w-full h-full rounded-lg"
-                frameBorder="0"
-              ></iframe>
-              
-              {/* Optional attribution */}
-              <div className="absolute bottom-4 right-4 bg-indigo-900/80 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm shadow-lg border border-indigo-700/50">
-                Live Workshop Tags from Supabase
+          <div className="relative z-20 -translate-y-7">
+            <div className="max-w-sm">
+              <div className="text-lg bg-indigo-900/30 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-3">Make me better!</h3>
+                <p className="text-lg md:text-xl mb-2">Share your thoughts and experiences with the workshop</p>
+                
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-1 rounded-lg">
+                    <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
+                    <span>What worked well?</span>
+                  </li>
+                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-1 rounded-lg">
+                    <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
+                    <span>What could be improved?</span>
+                  </li>
+                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-1 rounded-lg">
+                    <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
+                    <span>What would you like to learn next?</span>
+                  </li>
+                </ul>
+
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                  <div className="relative bg-indigo-900/30 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col items-center">
+                    <div 
+                      className="relative transition-transform duration-700 ease-in-out"
+                      style={{ transform: `scale(${pulseSize/220})` }}
+                    >
+                      <a href={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/feedback`}>
+                        <QRCodeSVG 
+                          value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/feedback`}
+                          size={220}
+                          bgColor={qrColors.bg}
+                          fgColor={qrColors.fg}
+                        level="L"
+                        className={`bg-${qrColors.bg} p-2 rounded-lg transition-all duration-300 hover:shadow-2xl`}
+                      />
+                      </a>
+                    </div>
+
+                    <div className="relative left-0 right-0 text-center mt-2">
+                      <p className="text-sm text-blue-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        It takes 3 minutes!
+                      </p>
+                    </div>
+
+                    <div className="mt-4 flex justify-center gap-2">
+                      {ColorPresets.map((preset) => (
+                        <button
+                          key={preset.name}
+                          onClick={() => setQrColors(preset)}
+                          className={`w-8 h-8 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg ${
+                            qrColors === preset ? 'ring-2 ring-blue-400 scale-110' : ''
+                          }`}
+                          style={{ 
+                            background: `linear-gradient(45deg, ${preset.bg}, ${preset.fg})`,
+                          }}
+                          title={preset.name}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

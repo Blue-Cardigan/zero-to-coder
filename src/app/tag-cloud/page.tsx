@@ -41,7 +41,7 @@ const colorScale = d3.scaleOrdinal<string>()
 
 // Enhanced mock data for workshop-related tags
 const mockTags: WordCloudWord[] = [
-  { text: 'Add tags in your feedback form to see them here', size: 35, color: '#60A5FA' }
+  { text: 'Feedback', size: 80, color: '#60A5FA' }
 ];
 
 export default function TagCloudPage() {
@@ -96,7 +96,7 @@ export default function TagCloudPage() {
       // Create a logarithmic scale for tag sizes that maximizes space usage
       const sizeScale = d3.scaleLog()
         .domain([Math.max(1, minFreq), Math.max(2, maxFreq)])
-        .range([35, 100]) // Larger size range to maximize space when fewer tags
+        .range([45, 90]) // Reduced base range to allow for more dynamic scaling
         .clamp(true);
         
       // Convert to format needed for d3-cloud
@@ -216,13 +216,13 @@ export default function TagCloudPage() {
     if (tags.length > 0 && svgRef.current) {
       const svg = d3.select(svgRef.current);
       
-      // Get viewport dimensions for full-page cloud
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
+      // Get container dimensions instead of window
+      const container = svg.node()?.parentElement;
+      if (!container) return;
       
-      // Set SVG dimensions to fill the viewport with some padding
-      const width = viewportWidth * 0.95;
-      const height = viewportHeight * 0.92;
+      const containerRect = container.getBoundingClientRect();
+      const width = containerRect.width * 0.95;
+      const height = containerRect.height * 0.92;
 
       // Store previous word positions if available for smoother transitions
       const prevWords = new Map<string, WordData>();
@@ -267,21 +267,33 @@ export default function TagCloudPage() {
           // Dynamically scale font sizes based on tag count and available space
           const baseSize = d.size;
           
+          // Calculate available area per tag
+          const totalArea = width * height;
+          const areaPerTag = totalArea / tags.length;
+          
+          // Calculate ideal size based on area (square root for 2D scaling)
+          const idealSize = Math.sqrt(areaPerTag) * 0.8; // 0.8 factor to account for padding
+          
           // Apply scaling based on tag count for better distribution 
-          // of sizes as more tags arrive
           let countScale = 1;
           if (tags.length > 50) countScale = 0.7;
           else if (tags.length > 30) countScale = 0.8;
           else if (tags.length > 15) countScale = 0.9;
           
           // Scale based on viewport size
-          const scaleFactor = Math.min(
+          const viewportScale = Math.min(
             width / 800, // Scale by width ratio
             height / 600  // Scale by height ratio
-          ) * countScale;
+          );
+          
+          // Combine all scaling factors
+          const finalScale = Math.min(
+            idealSize / baseSize, // Scale to fit available space
+            viewportScale * countScale // Scale based on viewport and count
+          );
           
           // Scale the size but maintain a minimum readable size
-          return Math.max(baseSize * scaleFactor, 14);
+          return Math.max(baseSize * finalScale, 14);
         })
         .spiral("rectangular") // Use rectangular spiral for better space utilization
         .random(() => 0.5) // Deterministic layout
@@ -298,7 +310,7 @@ export default function TagCloudPage() {
           .append("g")
           .attr("transform", `translate(${width / 2},${height / 2})`);
 
-        // Add a background glow effect for better visibility
+        // Update background glow for better visibility
         g.selectAll<SVGTextElement, CloudWord>(".word-bg")
           .data(words)
           .enter()
@@ -307,8 +319,8 @@ export default function TagCloudPage() {
           .style("font-size", (d: CloudWord) => `${d.size}px`)
           .style("font-family", "'Inter', sans-serif")
           .style("font-weight", "bold")
-          .style("fill", "#193166") // Dark background color
-          .style("opacity", 0.3)
+          .style("fill", "#193166")
+          .style("opacity", 0.4) // Increased from 0.3 for better contrast
           .attr("text-anchor", "middle")
           .attr("transform", (d: CloudWord) => {
             // For smooth transitions, check if this word existed before
@@ -342,7 +354,7 @@ export default function TagCloudPage() {
             return `translate(${x},${y}) rotate(${rotate})`;
           });
 
-        // Add words with animations
+        // Update main words with stronger glow and opacity
         g.selectAll<SVGTextElement, CloudWord>(".word")
           .data(words)
           .enter()
@@ -352,7 +364,11 @@ export default function TagCloudPage() {
           .style("font-family", "'Inter', sans-serif")
           .style("font-weight", "bold")
           .style("fill", (d: CloudWord) => d.color)
-          .style("text-shadow", (d: CloudWord) => `0 0 8px ${d.color}30`)
+          .style("text-shadow", (d: CloudWord) => `
+            0 0 10px ${d.color}50,
+            0 0 15px ${d.color}30,
+            0 0 20px ${d.color}20
+          `) // Enhanced glow effect
           .attr("text-anchor", "middle")
           .attr("transform", (d: CloudWord) => {
             // Start from previous position for smoother transitions
@@ -363,14 +379,13 @@ export default function TagCloudPage() {
           })
           .attr("dy", "0.35em") // Vertically center text
           .text((d: CloudWord) => d.text)
-          .style("opacity", 0.3) // Start slightly visible for smoother appearance
+          .style("opacity", 0.4) // Start slightly visible
           .transition()
           .delay((_, i) => i * 30)
           .duration(300)
-          .style("opacity", 0.7)
+          .style("opacity", 0.85) // Increased from 0.7
           .transition()
           .duration(700)
-          // Animate to the new position
           .attr("transform", function(this: SVGTextElement) {
             const d = d3.select(this).datum() as CloudWord;
             const x = d.x || 0;
@@ -380,20 +395,26 @@ export default function TagCloudPage() {
           })
           .style("opacity", 1);
 
-        // Add hover effects for interactivity
+        // Update hover effects for more dramatic interaction
         g.selectAll<SVGTextElement, CloudWord>(".word")
           .on("mouseover", function(_, d: CloudWord) {
             d3.select(this)
               .transition()
               .duration(200)
-              .style("filter", "brightness(1.2)")
+              .style("filter", "brightness(1.3)") // Increased from 1.2
+              .style("text-shadow", function(this: SVGTextElement) {
+                const d = d3.select(this).datum() as CloudWord;
+                return `
+                  0 0 15px ${d.color}70,
+                  0 0 20px ${d.color}50,
+                  0 0 25px ${d.color}30
+                `;
+              })
               .attr("transform", () => {
-                // Get the current transform values
                 const x = d.x || 0;
                 const y = d.y || 0;
                 const rotate = d.rotate || 0;
-                // Apply scale without breaking the transform
-                return `translate(${x},${y}) rotate(${rotate}) scale(1.1)`;
+                return `translate(${x},${y}) rotate(${rotate}) scale(1.15)`;
               });
           })
           .on("mouseout", function(_, d: CloudWord) {
@@ -414,8 +435,10 @@ export default function TagCloudPage() {
   }, [tags]);
 
   useEffect(() => {
-    // Initial render
-    renderCloud();
+    // Initial render with a small delay to ensure container is ready
+    const initialRender = setTimeout(() => {
+      renderCloud();
+    }, 100);
 
     // Add window resize event listener
     const handleResize = () => {
@@ -427,12 +450,13 @@ export default function TagCloudPage() {
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      clearTimeout(initialRender);
     };
   }, [renderCloud]);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center text-white">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-400 mb-6"></div>
           <p className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -445,7 +469,7 @@ export default function TagCloudPage() {
 
   if (tags.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center text-white bg-indigo-900/50 p-8 rounded-lg backdrop-blur-md max-w-lg">
           <p className="text-xl">No tags have been submitted yet</p>
           <p className="mt-4 text-blue-300">Add tags in your feedback to see them appear here!</p>
@@ -455,7 +479,7 @@ export default function TagCloudPage() {
   }
 
   return (
-    <div className="min-h-screen h-screen w-screen bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 flex items-center justify-center overflow-hidden relative">
+    <div className="min-h-screen h-screen w-screen flex items-center justify-center overflow-hidden relative">
       {/* Enhanced animated background */}
       <div className="absolute opacity-60 pointer-events-none overflow-hidden w-full h-full top-0 left-0">
         <div className="animate-blob animation-delay-2000 absolute top-20 -left-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl"></div>

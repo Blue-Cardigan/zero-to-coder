@@ -171,7 +171,7 @@ export default function FeedbackPage() {
               <FiCheckCircle className="text-green-400 text-4xl drop-shadow-glow" />
             </motion.div>
             <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Thank You!</h1>
-            <p className="text-blue-200 mb-4">Your feedback has been submitted successfully. We appreciate your time!</p>
+            <p className="text-blue-200 mb-4">Your feedback has been submitted successfully. I appreciate your time!</p>
             <p className="text-sm text-blue-300">Redirecting you to thank you page...</p>
           </div>
         </motion.div>
@@ -388,7 +388,7 @@ export default function FeedbackPage() {
                     onBlur={handleBlur}
                     rows={3}
                     className={`w-full bg-blue-950/40 border ${activeField === 'testimonial' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
-                    placeholder="Share your experience that we can feature on our website..."
+                    placeholder="Share your experience that I can feature on my website..."
                   />
                 </div>
                 
@@ -539,7 +539,7 @@ export default function FeedbackPage() {
                   <FiArrowRight className="text-yellow-400 text-xl mr-3 drop-shadow-glow" />
                 </div>
                 <p className="text-sm text-blue-100">
-                  Your feedback helps us improve our workshops for future coders. Thank you for taking the time to share your thoughts!
+                  Your feedback helps me improve our workshops for future coders. Thank you for taking the time to share your thoughts!
                 </p>
               </div>
             </div>
