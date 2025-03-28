@@ -93,10 +93,10 @@ export default function TagCloudPage() {
       const minFreq = Math.min(...frequencies);
       const maxFreq = Math.max(...frequencies);
       
-      // Create a logarithmic scale for tag sizes
+      // Create a logarithmic scale for tag sizes that maximizes space usage
       const sizeScale = d3.scaleLog()
         .domain([Math.max(1, minFreq), Math.max(2, maxFreq)])
-        .range([30, 80])
+        .range([35, 100]) // Larger size range to maximize space when fewer tags
         .clamp(true);
         
       // Convert to format needed for d3-cloud
@@ -247,11 +247,12 @@ export default function TagCloudPage() {
         .words(tags as CloudWord[])
         .padding(() => {
           // Dynamic padding based on tag count
-          // Fewer tags = more space between them
-          if (tags.length <= 5) return 30;
-          if (tags.length <= 10) return 25;
-          if (tags.length <= 20) return 20;
-          return 15;
+          // Fewer tags = less padding to maximize space
+          if (tags.length <= 5) return 12;
+          if (tags.length <= 10) return 10;
+          if (tags.length <= 20) return 8;
+          if (tags.length <= 50) return 6;
+          return 4; // Minimum padding for large tag sets
         })
         .rotate(() => {
           // Allow full rotation for actual tags, but keep the placeholder text straight
@@ -263,17 +264,27 @@ export default function TagCloudPage() {
           return ~~(Math.random() * 3) * 30 - 30;
         })
         .fontSize(d => {
-          // Dynamically scale font sizes based on available space
-          // This helps ensure tags don't crowd each other
+          // Dynamically scale font sizes based on tag count and available space
           const baseSize = d.size;
+          
+          // Apply scaling based on tag count for better distribution 
+          // of sizes as more tags arrive
+          let countScale = 1;
+          if (tags.length > 50) countScale = 0.7;
+          else if (tags.length > 30) countScale = 0.8;
+          else if (tags.length > 15) countScale = 0.9;
+          
+          // Scale based on viewport size
           const scaleFactor = Math.min(
-            width / 1000, // Scale by width ratio
-            height / 800  // Scale by height ratio
-          );
-          // Scale the size but maintain a minimum
-          return Math.max(baseSize * scaleFactor, 20);
+            width / 800, // Scale by width ratio
+            height / 600  // Scale by height ratio
+          ) * countScale;
+          
+          // Scale the size but maintain a minimum readable size
+          return Math.max(baseSize * scaleFactor, 14);
         })
-        .spiral("archimedean") // Use archimedean spiral for more even spacing
+        .spiral("rectangular") // Use rectangular spiral for better space utilization
+        .random(() => 0.5) // Deterministic layout
         .on("end", draw);
 
       // Start generating layout
