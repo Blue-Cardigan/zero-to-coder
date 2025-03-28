@@ -504,7 +504,7 @@ export default function Slides() {
                   <ul className="space-y-3 pl-12 list-disc">
                     <li className="text-xl fragment fade-in-then-semi-out">Research the stack your project needs then specify it in your prompt</li>
                     <li className="text-xl fragment fade-in-then-semi-out">Be ready to iterate on your prompt, and add more features later</li>
-                    <li className="text-xl fragment fade-in-then-semi-out">Try to understand as much of the code as you can as you go (you'll thank yourself later)</li>
+                    <li className="text-xl fragment fade-in-then-semi-out">Try to understand as much of the code as you can as you go (you&apos;ll thank yourself later)</li>
                   </ul>
                 </div>
               </div>
@@ -551,7 +551,7 @@ export default function Slides() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4">Learn to do, not just know</h3>
-                    <p>Chat with another LLM to understand concepts when you're curious</p>
+                    <p>Chat with another LLM to understand concepts when you&apos;re curious</p>
                   </div>
                 </div>
               </div>
@@ -562,7 +562,7 @@ export default function Slides() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4">Exactly what AI is good at</h3>
-                    <p>It's, like, *pretty* good at some things</p>
+                    <p>It&apos;s, like, *pretty* good at some things</p>
                   </div>
                 </div>
               </div>
