@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Zero to Coder - Learn to Code',
-  description: 'Your journey from zero to becoming a confident coder starts here.',
+  title: 'Zero to Coder - Learn to (Vibe) Code',
+  description: 'Your journey from zero to building starts here.',
 };
 
 export default function RootLayout({
