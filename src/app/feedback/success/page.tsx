@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FiCheckCircle, FiArrowRight, FiHome, FiShare2, FiTwitter, FiLinkedin, FiGithub, FiAward } from 'react-icons/fi';
+import { FiCheckCircle, FiArrowRight, FiHome, FiShare2, FiTwitter, FiLinkedin, FiGithub, FiAward, FiStar } from 'react-icons/fi';
 import '../../globals.css';
 
 export default function FeedbackSuccessPage() {
@@ -72,12 +72,12 @@ export default function FeedbackSuccessPage() {
         </motion.div>
         
         {/* Main content area */}
-        <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-8 items-center">
+        <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-8 items-stretch">
           {/* Success message card */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="lg:w-1/2 bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl"
+            className="lg:w-1/2 bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl flex flex-col"
           >
             <div className="text-center">
               <motion.div 
@@ -93,7 +93,7 @@ export default function FeedbackSuccessPage() {
                     transition={{ delay: 0.3, type: "spring" }}
                     className="w-20 h-20 bg-green-500/30 rounded-full flex items-center justify-center"
                   >
-                    <FiCheckCircle className="text-green-400 text-5xl drop-shadow-glow" />
+                    <FiStar className="text-green-400 text-5xl drop-shadow-glow" />
                   </motion.div>
                 </div>
                 
@@ -117,9 +117,9 @@ export default function FeedbackSuccessPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Thank You!</h2>
+                <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">You're a Star!</h2>
                 <p className="text-blue-200 mb-6">
-                  Your feedback has been submitted successfully. We truly appreciate you taking the time to share your thoughts with us!
+                  Your feedback has been submitted successfully!
                 </p>
               </motion.div>
               
@@ -127,18 +127,8 @@ export default function FeedbackSuccessPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                className=""
               >
-                <Link href="/">
-                  <motion.div
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center gap-2 py-3 px-4 bg-blue-600/30 hover:bg-blue-600/50 rounded-lg border border-blue-500/50 transition-all duration-200"
-                  >
-                    <FiHome className="text-blue-300" />
-                    <span>Back to Home</span>
-                  </motion.div>
-                </Link>
                 
                 <Link href="/slides">
                   <motion.div
@@ -146,7 +136,7 @@ export default function FeedbackSuccessPage() {
                     whileTap={{ scale: 0.98 }}
                     className="flex items-center justify-center gap-2 py-3 px-4 bg-indigo-600/30 hover:bg-indigo-600/50 rounded-lg border border-indigo-500/50 transition-all duration-200"
                   >
-                    <span>View Slides</span>
+                    <span>Back to slides</span>
                     <FiArrowRight className="text-blue-300" />
                   </motion.div>
                 </Link>
@@ -219,28 +209,11 @@ export default function FeedbackSuccessPage() {
               <ul className="space-y-3 text-blue-200">
                 <li className="flex items-start">
                   <FiCheckCircle className="text-green-400 mt-1 mr-2" />
-                  <span>Join our community on <a href="https://chat.whatsapp.com/BiVjVigdkJkGC24LUrYUTO" className="text-blue-300">WhatsApp</a> for continued support</span>
-                </li>
-                <li className="flex items-start">
-                  <FiCheckCircle className="text-green-400 mt-1 mr-2" />
-                  <span>Explore <span className="text-purple-300">advanced workshops</span> to keep growing</span>
+                  <span>Join the community on <a href="https://chat.whatsapp.com/BiVjVigdkJkGC24LUrYUTO" className="text-blue-300">WhatsApp</a> to meet other learners</span>
                 </li>
               </ul>
             </div>
             
-            {/* Hashtag reminder */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="bg-blue-900/40 rounded-lg p-4 border border-blue-700/30 text-center"
-            >
-              <p className="text-sm text-blue-200">
-                Tag us with 
-                <span className="text-yellow-400 mx-1 font-medium premium-glow">#ZeroToCoder</span>
-                for a chance to be featured!
-              </p>
-            </motion.div>
           </motion.div>
         </div>
         
@@ -249,7 +222,7 @@ export default function FeedbackSuccessPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="w-full max-w-6xl mt-8 pt-4 border-t border-blue-800/30 text-center"
+          className="w-full max-w-6xl mt-14 pt-4 border-t border-blue-800/30 text-center"
         >
           <p className="text-xs text-blue-300/70">
             © {new Date().getFullYear()} Zero to Coder Workshop • All Rights Reserved

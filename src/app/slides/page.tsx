@@ -80,6 +80,21 @@ export default function Slides() {
               </div>
             </div>
           </div>
+          <div className="absolute top-0 right-8">
+            <div className="bg-indigo-900/30 p-4 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+              <div className="text-center mb-2">
+                <p className="text-sm text-blue-300">Scan for slides</p>
+              </div>
+              <QRCodeSVG 
+                value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
+                size={120}
+                bgColor={qrColors.bg}
+                fgColor={qrColors.fg}
+                level="L"
+                className="rounded-lg transition-all duration-300 hover:shadow-lg"
+              />
+            </div>
+          </div>
         </section>
 
         {/* Slide 2 */}
