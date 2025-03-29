@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiCode, FiCoffee, FiAward, FiMapPin, FiCalendar, FiStar, FiArrowRight, FiUser, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Carousel } from 'react-responsive-carousel';
+import { FiCode, FiCoffee, FiAward, FiMapPin, FiCalendar, FiStar, FiArrowRight } from 'react-icons/fi';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { supabase } from '../lib/supabase';
 import { useEffect, useState } from 'react';
@@ -30,7 +29,6 @@ interface Event {
 export default function HomePage() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [nextEvent, setNextEvent] = useState<Event | null>(null);
   const [pastEvents, setPastEvents] = useState<Event[]>([]);
 
@@ -112,20 +110,6 @@ export default function HomePage() {
     processEvents();
   }, []); // Empty dependency array since events is imported statically
 
-  const isFutureEvent = (date: Date) => {
-    return date > new Date();
-  };
-
-  const scrollEvents = (direction: 'left' | 'right') => {
-    const scrollAmount = 400; // Adjust this value based on your needs
-    setScrollPosition(prev => {
-      const newPosition = direction === 'left' 
-        ? Math.max(prev - scrollAmount, 0)
-        : Math.min(prev + scrollAmount, 1000); // Adjust max scroll based on your needs
-      return newPosition;
-    });
-  };
-
   const getFirstName = (fullName: string) => {
     return fullName.split(' ')[0];
   };
@@ -179,7 +163,7 @@ export default function HomePage() {
               Zero to Coder
             </h1>
             <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-              Transform from beginner to confident coder in London's most innovative coding workshops
+              Transform from beginner to confident coder in London&apos;s most innovative coding workshops
             </p>
           </motion.div>
 
@@ -202,7 +186,7 @@ export default function HomePage() {
               </div>
               
               <p className="text-blue-200 mb-6">
-                I'm passionate about making coding accessible to everyone. With years of experience in software development and education, I've designed a workshop that takes you from zero to building real projects, using modern tools and AI assistance to make the journey smoother.
+                I&apos;m passionate about making coding accessible to everyone. With years of experience in software development and education, I&apos;ve designed a workshop that takes you from zero to building real projects, using modern tools and AI assistance to make the journey smoother.
               </p>
 
               <div className="space-y-4">
