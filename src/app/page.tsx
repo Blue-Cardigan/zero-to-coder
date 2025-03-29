@@ -186,7 +186,7 @@ export default function HomePage() {
               </div>
               
               <p className="text-blue-200 mb-6">
-                I&apos;m passionate about making coding accessible to everyone. With years of experience in software development and education, I&apos;ve designed a workshop that takes you from zero to building real projects, using modern tools and AI assistance to make the journey smoother.
+                I&apos;m passionate about making coding accessible to everyone. With experience in software development and education, I&apos;ve designed a workshop that takes you from zero to building real projects, using modern tools and AI assistance to make the journey smoother.
               </p>
 
               <div className="space-y-4">
