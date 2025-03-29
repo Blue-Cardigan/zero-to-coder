@@ -4,7 +4,7 @@ export interface TestimonialConfig {
     column: string;
   }[];
   whitelist: {
-    id: string;
+    id: number;
     column: string;
   }[];
 }
@@ -14,6 +14,8 @@ export const testimonialConfig: TestimonialConfig = {
     { id: 26, column: "testimonial" }
   ],
   whitelist: [
-    // Example: { id: "456", column: "went_well" }
+    { id: 21, column: "went_well" },
+    { id: 22, column: "went_well" },
+    { id: 26, column: "went_well" }
   ]
 }; 

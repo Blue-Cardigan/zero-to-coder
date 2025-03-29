@@ -11,13 +11,11 @@ import { testimonialConfig } from '../config/testimonials';
 import Link from 'next/link';
 import Script from 'next/script';
 
-interface Testimonial {
-  id: string;
+interface DisplayTestimonial {
+  id: number;
   name: string;
-  testimonial: string;
+  content: string;
   project_url?: string;
-  went_well?: string;
-  could_improve?: string;
 }
 
 interface Event {
@@ -27,7 +25,7 @@ interface Event {
 }
 
 export default function HomePage() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [displayTestimonials, setDisplayTestimonials] = useState<DisplayTestimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [nextEvent, setNextEvent] = useState<Event | null>(null);
   const [pastEvents, setPastEvents] = useState<Event[]>([]);
@@ -37,28 +35,99 @@ export default function HomePage() {
       try {
         const { data, error } = await supabase
           .from('workshop_feedback')
-          .select('*');
+          .select('id, name, testimonial, went_well, project_url');
 
         if (error) throw error;
 
-        // Filter testimonials based on whitelist/blacklist from config
-        const filteredData = data?.filter(item => {
-          // Check if item is blacklisted
-          const isBlacklisted = testimonialConfig.blacklist.some(
-            blacklistItem => blacklistItem.id === item.id && blacklistItem.column === 'testimonial'
-          );
-          if (isBlacklisted) return false;
+        const processedTestimonials: DisplayTestimonial[] = [];
 
-          // Check if item has a whitelisted value
-          const isWhitelisted = testimonialConfig.whitelist.some(
-            whitelist => whitelist.id === item.id && item[whitelist.column]
-          );
+        data?.forEach(item => {
+          // For each column (testimonial, went_well), check if it should be included
+          const columns = {
+            testimonial: item.testimonial?.trim(),
+            went_well: item.went_well?.trim()
+          };
 
-          // Include if whitelisted or has a testimonial
-          return isWhitelisted || (item.testimonial && item.testimonial.trim() !== '');
-        }) || [];
+          Object.entries(columns).forEach(([column, value]) => {
+            if (!value) return; // Skip empty values
 
-        setTestimonials(filteredData);
+            const isBlacklisted = testimonialConfig.blacklist.some(b => 
+              b.id === item.id && b.column === column
+            );
+            const isWhitelisted = testimonialConfig.whitelist.some(w => 
+              w.id === item.id && w.column === column
+            );
+
+            // Include if:
+            // 1. It's a testimonial that's not blacklisted, OR
+            // 2. It's a whitelisted value from another column
+            if ((column === 'testimonial' && !isBlacklisted) || isWhitelisted) {
+              processedTestimonials.push({
+                id: item.id,
+                name: item.name,
+                content: value,
+                project_url: item.project_url
+              });
+            }
+          });
+        });
+
+        // Shuffle and space out testimonials from the same person
+        const spaceOutTestimonials = (testimonials: DisplayTestimonial[]): DisplayTestimonial[] => {
+          // First shuffle randomly
+          const shuffled = [...testimonials].sort(() => Math.random() - 0.5);
+          const result: DisplayTestimonial[] = [];
+          
+          // For each testimonial, find the best position that maintains spacing
+          shuffled.forEach(testimonial => {
+            let bestPosition = 0;
+            let maxSpacing = -1;
+
+            // Try each possible position
+            for (let i = 0; i <= result.length; i++) {
+              // Check spacing to previous and next same-id items
+              let prevSameId = -1;
+              let nextSameId = -1;
+
+              // Look backwards for same id
+              for (let j = i - 1; j >= 0; j--) {
+                if (result[j].id === testimonial.id) {
+                  prevSameId = j;
+                  break;
+                }
+              }
+
+              // Look forwards for same id
+              for (let j = i; j < result.length; j++) {
+                if (result[j].id === testimonial.id) {
+                  nextSameId = j;
+                  break;
+}
+              }
+
+              // Calculate minimum spacing at this position
+              const spacing = Math.min(
+                prevSameId === -1 ? Infinity : i - prevSameId,
+                nextSameId === -1 ? Infinity : nextSameId - i
+              );
+
+              // Update best position if this spacing is better
+              if (spacing > maxSpacing) {
+                maxSpacing = spacing;
+                bestPosition = i;
+              }
+            }
+
+            // Insert at the best position
+            result.splice(bestPosition, 0, testimonial);
+          });
+
+          return result;
+        };
+
+        const spacedTestimonials = spaceOutTestimonials(processedTestimonials);
+        setDisplayTestimonials(spacedTestimonials);
+
       } catch (error) {
         console.error('Error fetching testimonials:', error);
       } finally {
@@ -67,7 +136,7 @@ export default function HomePage() {
     };
 
     fetchTestimonials();
-  }, []); // Remove blacklist from dependencies since we're not using it
+  }, []);
 
   useEffect(() => {
     // Process events once on component mount
@@ -209,14 +278,15 @@ export default function HomePage() {
             >
               <h2 className="text-2xl font-bold text-blue-300 mb-6">Workshop Highlights</h2>
               
+              
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="bg-blue-500/20 p-3 rounded-lg mr-4">
-                    <FiCode className="text-blue-300 text-xl" />
+                  <div className="bg-indigo-500/20 p-3 rounded-lg mr-4">
+                    <FiAward className="text-indigo-300 text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-blue-300 mb-2">Hands-on Learning</h3>
-                    <p className="text-blue-200">Build real projects from day one, using modern tools and frameworks.</p>
+                    <h3 className="text-lg font-semibold text-blue-300 mb-2">AI-Powered Learning</h3>
+                    <p className="text-blue-200">Leverage AI tools to accelerate your learning and problem-solving.</p>
                   </div>
                 </div>
 
@@ -229,14 +299,14 @@ export default function HomePage() {
                     <p className="text-blue-200">Intimate workshops with personalised attention and support.</p>
                   </div>
                 </div>
-
+                                
                 <div className="flex items-start">
-                  <div className="bg-indigo-500/20 p-3 rounded-lg mr-4">
-                    <FiAward className="text-indigo-300 text-xl" />
+                  <div className="bg-blue-500/20 p-3 rounded-lg mr-4">
+                    <FiCode className="text-blue-300 text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-blue-300 mb-2">AI-Powered Learning</h3>
-                    <p className="text-blue-200">Leverage AI tools to accelerate your learning and problem-solving.</p>
+                    <h3 className="text-lg font-semibold text-blue-300 mb-2">Hands-on Learning</h3>
+                    <p className="text-blue-200">Build real projects from day one, using modern tools and frameworks.</p>
                   </div>
                 </div>
               </div>
@@ -265,9 +335,9 @@ export default function HomePage() {
                   >
                     <div className="flex animate-scroll-x">
                       {/* First set of testimonials */}
-                      {testimonials.map((testimonial) => (
+                      {displayTestimonials.map((testimonial, index) => (
                         <div
-                          key={`${testimonial.id}-1`}
+                          key={`${testimonial.id}-${index}-1`}
                           className="flex-none mx-4 w-[400px] first:ml-0"
                         >
                           <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
@@ -278,7 +348,7 @@ export default function HomePage() {
                               </h3>
                             </div>
                             <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
-                              {testimonial.testimonial}
+                              {testimonial.content}
                             </p>
                             {testimonial.project_url && (
                               <a
@@ -294,9 +364,9 @@ export default function HomePage() {
                         </div>
                       ))}
                       {/* Duplicate set for seamless scrolling */}
-                      {testimonials.map((testimonial) => (
+                      {displayTestimonials.map((testimonial, index) => (
                         <div
-                          key={`${testimonial.id}-2`}
+                          key={`${testimonial.id}-${index}-2`}
                           className="flex-none mx-4 w-[400px]"
                         >
                           <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
@@ -307,7 +377,7 @@ export default function HomePage() {
                               </h3>
                             </div>
                             <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
-                              {testimonial.testimonial}
+                              {testimonial.content}
                             </p>
                             {testimonial.project_url && (
                               <a
