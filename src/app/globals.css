@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
+
 /* Global styles */
 html, body {
   height: 100%;
@@ -61,6 +71,28 @@ html, body {
 
 .drop-shadow-lg {
   animation: pulse-shadow 4s ease-in-out infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 60s linear infinite; /* Slowed down the animation */
+  width: fit-content;
+  display: flex;
+  /* Add diagonal movement */
+  transform: rotate(-5deg) scale(1.2); /* Slight rotation and scale up to ensure coverage */
+  margin: -50px; /* Negative margin to compensate for rotation */
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
 }
 
 /* Soft pulse animation for highlights */
@@ -274,3 +306,65 @@ a, button, .transition-all {
 .text-yellow-400:hover:after, .text-green-300:hover:after, .text-purple-300:hover:after {
   height: 50%;
 } 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-x {
+  animation: scroll-x 60s linear infinite;
+}
+
+/* Custom scrollbar styles */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+/* For Firefox */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.3) rgba(59, 130, 246, 0.1);
+}
+
+/* Optional: Add smooth scrolling */
+.scrollbar-thin {
+  scroll-behavior: smooth;
+}
+
+/* Ensure the animation plays while scrolling */
+.animate-scroll-x {
+  will-change: transform;
+}

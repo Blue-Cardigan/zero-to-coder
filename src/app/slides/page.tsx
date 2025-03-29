@@ -7,6 +7,7 @@ import 'reveal.js/dist/theme/black.css';
 import './slides.css';
 import { QRCodeSVG } from 'qrcode.react';
 import Image from 'next/image';
+import PasscodeScreen from '@/components/PasscodeScreen';
 
 const ColorPresets = [
   { bg: '#ffffff', fg: '#000000', name: 'Classic' },
@@ -17,45 +18,52 @@ const ColorPresets = [
 ];
 
 export default function Slides() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [qrColors, setQrColors] = useState(ColorPresets[0]);
   const [pulseSize, setPulseSize] = useState(250);
 
   useEffect(() => {
-    const deck = new Reveal({
-      hash: true,
-      slideNumber: true,
-      controls: true,
-      progress: true,
-      center: true,
-      transition: 'convex',
-      backgroundTransition: 'zoom',
-      plugins: [],
-      width: '100%',
-      height: '100%',
-      margin: 0.04,
-      minScale: 0.2,
-      maxScale: 2.0,
-      // Add more interactive features
-      keyboard: true,
-      overview: true,
-      touch: true,
-    });
+    if (isAuthenticated) {
+      const deck = new Reveal({
+        hash: true,
+        slideNumber: true,
+        controls: true,
+        progress: true,
+        center: true,
+        transition: 'convex',
+        backgroundTransition: 'zoom',
+        plugins: [],
+        width: '100%',
+        height: '100%',
+        margin: 0.04,
+        minScale: 0.2,
+        maxScale: 2.0,
+        keyboard: true,
+        overview: true,
+        touch: true,
+      });
 
-    // Apply background after initialization
-    document.querySelector('.reveal')?.setAttribute(
-      'style', 
-      'background-image: radial-gradient(circle at center, #4338ca 0%, #1e1b4b 100%); background-repeat: no-repeat; background-size: cover;'
-    );
+      document.querySelector('.reveal')?.setAttribute(
+        'style', 
+        'background-image: radial-gradient(circle at center, #4338ca 0%, #1e1b4b 100%); background-repeat: no-repeat; background-size: cover;'
+      );
 
-    deck.initialize();
-  }, []);
+      deck.initialize();
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPulseSize((size) => (size === 220 ? 230 : 220));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+    if (isAuthenticated) {
+      const interval = setInterval(() => {
+        setPulseSize((size) => (size === 220 ? 230 : 220));
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return <PasscodeScreen onPasscodeCorrect={() => setIsAuthenticated(true)} />;
+  }
 
   return (
     <div className="reveal">
