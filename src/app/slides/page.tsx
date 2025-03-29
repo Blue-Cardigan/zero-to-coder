@@ -471,7 +471,7 @@ export default function Slides() {
                   <div className="bg-blue-600/40 p-5 rounded-lg mr-6">
                     <span className="text-5xl">&nbsp;💬&nbsp;</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-blue-300">AI Chatbot</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold text-purple-300">AI Chatbot</h3>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
@@ -490,17 +490,17 @@ export default function Slides() {
                   <div className="bg-purple-600/40 p-5 rounded-lg mr-6">
                     <span className="text-5xl">&nbsp;📊&nbsp;</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-purple-300">Data visualization</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold text-purple-300">Text Data Analysis</h3>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
-                    <span>Common stack (Django/React)</span>
+                    <span>First step: Get data</span>
                   </li>
                   <li className="flex items-center">
-                    <span>Database integration</span>
+                    <span>Second step: Analyse it</span>
                   </li>
                   <li className="flex items-center">
-                    <span>Interactive charts</span>
+                    <span>Third step: Visualise it</span>
                   </li>
                 </ul>
               </div>
@@ -514,25 +514,31 @@ export default function Slides() {
             Start in Cursor this time
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full">
+            <div className="fragment fade-up text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full">
               <h3 className="text-left text-3xl font-bold text-blue-300 mb-4">&nbsp;Example prompts:</h3>
               <div className="space-y-6">
                 <div className="fragment fade-up bg-indigo-800/40 rounded-lg p-4 border-l-4 border-blue-400 shadow-md">
                   <code className="block bg-indigo-950 p-5 rounded-lg text-left border border-indigo-700 shadow-inner text-xl">
                     &quot;Build me a chatbot to [use case] using the OpenAI API&quot;
                   </code>
+                  <span className="text-sm text-gray-400">
+
+                  </span>
                   <div className="w-full h-1 bg-gradient-to-r from-blue-500/50 to-transparent rounded-full mt-3"></div>
                 </div>
                 <div className="fragment fade-up bg-indigo-800/40 rounded-lg p-4 border-l-4 border-purple-400 shadow-md">
                   <code className="block bg-indigo-950 p-5 rounded-lg text-left border border-indigo-700 shadow-inner text-xl">
-                    &quot;Build me a data visualization tool with Django/React to [visualize what]&quot;
+                    &quot;Provide steps to scrape webpage text from a website, and analyse it using appropriate Natural Language Processing techniques&quot;
                   </code>
+                  <span className="text-sm text-gray-400">
+                    Wikipedia, News, Reddit, etc.
+                  </span>
                   <div className="w-full h-1 bg-gradient-to-r from-purple-500/50 to-transparent rounded-full mt-3"></div>
                 </div>
               </div>
             </div>
             <div className="flex flex-col gap-6">
-              <div className="fragment fade-left bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-1/2 flex flex-col justify-center">
+              <div className="fragment fade-left bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full flex flex-col justify-center">
                 <div className="p-4 bg-indigo-800/40 rounded-lg border border-indigo-700/40">
                   <div className="flex items-center mb-3">
                     <span className="text-3xl mr-4">&nbsp;✨&nbsp;</span>
@@ -543,17 +549,6 @@ export default function Slides() {
                     <li className="text-xl fragment fade-in-then-semi-out">Be ready to iterate on your prompt, and add more features later</li>
                     <li className="text-xl fragment fade-in-then-semi-out">Try to understand as much of the code as you can as you go (you&apos;ll thank yourself later)</li>
                   </ul>
-                </div>
-              </div>
-              <div className="fragment fade-up bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-1/2 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="inline-block mb-4 bg-indigo-800/40 p-4 rounded-full">
-                    <svg className="w-12 h-12 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"></path>
-                    </svg>
-                  </div>
-                  <p className="text-2xl text-blue-300 font-bold mb-2">See the magic happen</p>
-                  <p className="text-xl text-gray-300">Cursor builds your project based on your natural language instructions</p>
                 </div>
               </div>
             </div>
