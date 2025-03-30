@@ -212,12 +212,12 @@ export default function HomePage() {
           
           <div className="flex items-center space-x-4">
             <a
-              href="https://lu.ma/event/evt-kGkALdzPondGbvj"
+              href={`https://lu.ma/event/${nextEvent?.code}`}
               className="luma-checkout--button bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200"
               data-luma-action="checkout"
-              data-luma-event-id="evt-kGkALdzPondGbvj"
+              data-luma-event-id={nextEvent?.code}
             >
-              Register for the next one
+              Register for the next workshop
             </a>
           </div>
         </div>

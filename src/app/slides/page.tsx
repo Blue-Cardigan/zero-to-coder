@@ -76,26 +76,26 @@ export default function Slides() {
             Zero-to-coder
           </h1>
           <div className="text-2xl md:text-3xl space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-300 mb-8 drop-shadow-md">Before we start, make sure to have:</h2>
-            <div className="grid grid-cols-2 gap-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-blue-300 mb-8 drop-shadow-md">First:</h2>
+            <div className="text-4xl grid grid-cols-2 gap-6">
               <div className="bg-indigo-900/40 p-6 rounded-lg border border-indigo-700/40 flex items-center">
                 <span className="text-blue-300 text-5xl mr-6">&nbsp;🔑</span>
-                <span>&nbsp;An account on <span className="text-blue-300 font-bold"><a href="https://github.com" target="_blank" rel="noopener noreferrer">Github.com</a></span></span>
+                <span>&nbsp;Create a <span className="text-blue-300 font-bold"><a href="https://github.com" target="_blank" rel="noopener noreferrer">Github</a></span> account</span>
               </div>
               <div className="bg-indigo-900/40 p-6 rounded-lg border border-indigo-700/40 flex items-center">
                 <span className="text-blue-300 text-5xl mr-6">&nbsp;💻</span>
-                <span><span className="text-blue-300 font-bold"><a href="https://cursor.sh" target="_blank" rel="noopener noreferrer">&nbsp;Cursor</a></span> installed on your machine</span>
+                <span>Install <span className="text-blue-300 font-bold"><a href="https://cursor.sh" target="_blank" rel="noopener noreferrer">&nbsp;Cursor</a></span></span>
               </div>
             </div>
           </div>
           <div className="absolute top-0 right-8">
             <div className="bg-indigo-900/30 p-4 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
               <div className="text-center mb-2">
-                <p className="text-sm text-blue-300">Scan for slides</p>
+                <p className="text-xl text-blue-300">Scan for slides</p>
               </div>
               <QRCodeSVG 
                 value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
-                size={120}
+                size={170}
                 bgColor={qrColors.bg}
                 fgColor={qrColors.fg}
                 level="L"
@@ -107,7 +107,7 @@ export default function Slides() {
 
         {/* Slide 2 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-6xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Session outline
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -115,35 +115,13 @@ export default function Slides() {
               <div className="flex items-center mb-6">
                 <div className="text-5xl font-bold text-blue-300 mr-4">&nbsp;1</div>
               </div>
-              <p className="text-2xl md:text-3xl text-gray-200 mb-8">Build and host your first website</p>
-              <div className="grid grid-cols-3 gap-8 flex-grow">
-                <div className="bg-indigo-900/40 p-8 rounded-lg border border-indigo-700/40 flex items-center justify-center text-center">
-                  <span className="text-xl">Prompting Bolt.new</span>
-                </div>
-                <div className="bg-indigo-900/40 p-8 rounded-lg border border-indigo-700/40 flex items-center justify-center text-center">
-                  <span className="text-xl">Developing in Cursor</span>
-                </div>
-                <div className="bg-indigo-900/40 p-8 rounded-lg border border-indigo-700/40 flex items-center justify-center text-center">
-                  <span className="text-xl">Hosting on Vercel</span>
-                </div>
-              </div>
+              <p className="text-4xl md:text-3xl text-gray-200 mb-8">Build and host your first website</p>
             </div>
             <div className="fragment fade-left bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col h-full">
               <div className="flex items-center mb-6">
                 <div className="text-5xl font-bold text-blue-300 mr-4">&nbsp;2</div>
               </div>
-              <p className="text-2xl md:text-3xl text-gray-200 mb-8">Start your own project with custom features</p>
-              <div className="grid grid-cols-3 gap-8 flex-grow">
-                <div className="bg-indigo-900/40 p-8 rounded-lg border border-indigo-700/40 flex items-center justify-center text-center">
-                  <span className="text-xl">Database</span>
-                </div>
-                <div className="bg-indigo-900/40 p-8 rounded-lg border border-indigo-700/40 flex items-center justify-center text-center">
-                  <span className="text-xl">Authentication</span>
-                </div>
-                <div className="bg-indigo-900/40 p-8 rounded-lg border border-indigo-700/40 flex items-center justify-center text-center">
-                  <span className="text-xl">APIs</span>
-                </div>
-              </div>
+              <p className="text-4xl md:text-3xl text-gray-200 mb-8">Start your own project with custom features</p>
             </div>
           </div>
           <div className="mt-12 grid grid-cols-2 gap-0">
@@ -166,14 +144,14 @@ export default function Slides() {
 
         {/* Slide 3 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Part 1
+          <h2 className="text-6xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Build and host your first website
           </h2>
           <div className="text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
             <div className="flex flex-wrap md:flex-nowrap gap-6">
               <div className="fragment fade-up flex-1 bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
                 <div className="text-4xl text-blue-300 mb-4">1</div>
-                <p className="text-center">Prompt Bolt.new</p>
+                <p className="text-center">Prompt <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">Bolt.new</a></p>
                 <div className="mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
                   <Image src="/images/bolt-screenshot.png" alt="Bolt.new screenshot" width={400} height={225} className="w-full h-full object-contain" />
                 </div>
@@ -202,29 +180,23 @@ export default function Slides() {
             Open <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">Bolt.new</a> and prompt a nice landing page
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+            <div className="fragment fade-up text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
               <ul className="space-y-6">
                 <li className="fragment fade-up bg-indigo-800/30 rounded-lg p-4 border-blue-400 shadow-md">
-                  <div className="flex">
-                    <span>Think of a project you want to build, then... ask for it</span>
-                  </div>
-              </li>
+                  <span>Think of a project you want to build, then... ask for it</span>
+                </li>
                 <li className="fragment fade-up bg-indigo-800/30 rounded-lg p-4 border-blue-400 shadow-md">
-                  <div className="flex">
-                    <span>Ask questions about the code (to me or your preferred LLM)</span>
-                  </div>
-              </li>
+                  <span>Ask questions about the code (to me or your preferred LLM)</span>
+                </li>
                 <li className="fragment fade-up bg-indigo-800/30 rounded-lg p-4 border-blue-400 shadow-md">
-                  <div className="flex">
-                    <span>Don&apos;t be afraid of the code - click around and see what sense you can make of it</span>
-                  </div>
-              </li>
-            </ul>
+                  <span>Don't be afraid of the code - click around and see what sense you can make of it</span>
+                </li>
+              </ul>
             </div>
             <div className="fragment fade-left flex flex-col justify-center">
-              <div className="mt-60 p-4 bg-indigo-900/60 rounded-lg">
-                <p className="text-center text-2xl text-blue-300 italic">&ldquo;Build me a landing page for a productivity app called TimeFlow with a modern, minimalist design&rdquo;</p>
-                <p className="text-center text-2xl text-blue-300 italic">&ldquo;Build me a site for my business called The Assembly. Include a homepage, blog, a shop, and a calendar&rdquo;</p>
+              <div className="p-4 bg-indigo-900/60 rounded-lg">
+                <p className="text-center text-2xl text-blue-300 italic mb-4">&ldquo;Build me a landing page for a productivity app called TimeFlow with a modern, minimalist design&rdquo;</p>
+                <p className="text-center text-2xl text-blue-300 italic mb-4">&ldquo;Build me a site for my business called The Assembly. Include a homepage, blog, a shop, and a calendar&rdquo;</p>
                 <p className="text-center text-2xl text-blue-300 italic">&ldquo;Build me a personal portfolio site with links to my social media and a blog. Include pretty animations and a contact form&rdquo;</p>
               </div>
             </div>
@@ -233,11 +205,11 @@ export default function Slides() {
 
         {/* Slide 5 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-6xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Open your project in Cursor
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 items-center">
-            <div style={{ padding: '1rem' }} className="text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl order-1 md:order-1">
+          <div className="fragment fade-up grid grid-cols-2 md:grid-cols-2 gap-8 items-center">
+            <div className="text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl order-1 md:order-1">
               <ol className="list-none space-y-8">
                 <li className="fragment fade-up">
                   <div className="flex items-center mb-2">
@@ -260,96 +232,48 @@ export default function Slides() {
               </ol>
             </div>
             <div className="flex justify-center order-2 md:order-2">
-              <div className="w-full max-w-[450px] fragment fade-left bg-indigo-800/40 p-4 rounded-lg flex shadow-lg">
-                <Image src="/images/cursor_localhost.png" alt="Cursor screenshot" width={450} height={253} className="w-full h-full object-contain" />
+              <div className="w-full max-w-[450px] relative">
+                <div className="fragment fade-left bg-indigo-800/40 p-4 rounded-lg shadow-lg flex items-center justify-center">
+                  <Image 
+                    src="/images/cursor_localhost.png" 
+                    alt="Cursor screenshot" 
+                    width={450} 
+                    height={253} 
+                    className="w-full h-full object-contain rounded-lg"
+                  />
+                </div>
+                <div className="fragment fade-up absolute bottom-[30%] left-0 right-0 bg-indigo-900/90 p-6 rounded-lg backdrop-blur-sm border border-indigo-600/50 floating-overlay">
+                  <p className="text-xl text-blue-300 text-center font-semibold">
+                    And... babysit the AI as it installs everything you need
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Slide 6 */}
-        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Shortcuts for a Speedy Workflow
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
-            <div className="text-xl md:text-2xl bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full">
-              <div className="space-y-6 h-full flex flex-col justify-between p-2">
-                <div style={{ padding: '0.5rem' }} className="fragment fade-up bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40">
-                  <div>
-                    <h3 className="font-bold text-blue-300">📋 Add a file to the chat</h3>
-                    <p className="pl-2">Select all with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + A</code> then <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + L</code></p>
-                  </div>
-                </div>
-                <div style={{ padding: '1rem' }} className="fragment fade-up bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40">
-                  <div>
-                    <h3 className="font-bold text-blue-300">🔍 Search all files in the codebase</h3>
-                    <p className="pl-2">Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + Shift + F</code> to search the entire codebase</p>
-                  </div>
-                </div>
-                <div style={{ padding: '1rem' }} className="fragment fade-up bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40">
-                  <div>
-                    <h3 className="font-bold text-blue-300">📂 Find files</h3>
-                    <p className="pl-2">Search for filenames with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + P</code></p>
-                  </div>
-                </div>
-                <div style={{ padding: '1rem' }} className="fragment fade-up bg-indigo-800/40 rounded-lg border border-indigo-600/40">
-                  <div>
-                    <h3 className="font-bold text-blue-300">⚓ Terminal</h3>
-                    <p className="text-xl text-gray-300">
-                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">Ctrl + ~ + Shift / Ctrl + `</code> to open the terminal
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="fragment fade-right h-full flex flex-col gap-6">
-              <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full flex flex-col justify-center" data-fragment-index="3">
-                <h3 className="text-2xl font-bold text-blue-300 mb-6">If the agent starts looping:</h3>
-                <ul className="text-xl space-y-7 p-2">
-                  <li className="flex items-center bg-indigo-800/40 p-4 rounded-lg">
-                    <span>Make it a regular chat with a specific instruction <code className="bg-indigo-950 px-2 py-1 rounded text-sm">⌘/Ctrl + L</code></span>
-                  </li>
-                  <li className="flex items-center bg-indigo-800/40 p-4 rounded-lg">
-                    <span>Use the latest model (not Auto)</span>
-                  </li>
-                  <li className="flex items-center bg-indigo-800/40 p-4 rounded-lg">
-                    <span>Debug it yourself if needed (These models can leave remarkably easy to spot bugs)</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Slide 7 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Play around adding functionality
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <div className="text-2xl md:text-2xl bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+          <div className="grid grid-cols-3 md:grid-cols-2 gap-6">
+            <div className="fragment fade-up col-span-1 text-2xl bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
               <div className="space-y-6">
                 <div className="fragment fade-up flex">
                   <p className="text-2xl">&nbsp;💡 When it breaks, <span className="text-blue-300 font-bold">investigate</span> — debugging is part of coding</p>
                 </div>
                 
                 <div className="fragment fade-up flex">
-                  <p className="text-2xl">&nbsp;🤔 Moving too fast? <span className="text-blue-300 font-bold">Formulate a specific question</span> and ask an LLM</p>
+                  <p className="text-2xl">&nbsp;🤔 Moving too fast? Frustrated?<span className="text-blue-300 font-bold">Formulate a specific question</span> and ask an LLM</p>
                 </div>
-                
-                <div className="fragment fade-up flex text-left">
-                  <div>
-                    <p className="text-2xl mb-2">&nbsp;<span className="text-blue-300 font-bold">🧩 Frustrated?</span></p>
-                    <div className="border-l-2 border-indigo-600 space-y-3">
-                      <p>&nbsp;Welcome to code!</p>
-                      <p>&nbsp;The computer is only doing exactly what it&apos;s told</p>
-                      <p>&nbsp;Be curious, not frustrated</p>
-                    </div>
-                  </div>
-                </div>
+            
+              </div>
+            </div>
+
+            <div className="col-span-1">
                 {/* Final message that appears last with more space */}
-                <div className="fragment fade-up mt-10 col-span-full">
+                <div className="fragment fade-up col-span-full">
                   <div className="bg-indigo-900/60 p-8 rounded-xl border-2 border-indigo-600/70 shadow-2xl max-w-4xl mx-auto">
                     <p className="text-4xl md:text-3xl text-center font-bold">
                       <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text">
@@ -357,83 +281,138 @@ export default function Slides() {
                     </p>
                   </div>
                 </div>
+            
+              <div className="flex items-center justify-center">
+                <Image 
+                  src="/images/spanner.png" 
+                  alt="Spanner tool" 
+                  width={350}
+                  height={350}
+                  className="object-contain drop-shadow-lg"
+                />
               </div>
             </div>
-            
-            <div className="flex items-center justify-center">
-              <Image 
-                src="/images/spanner.png" 
-                alt="Spanner tool" 
-                width={400}
-                height={400}
-                className="object-contain drop-shadow-lg"
-              />
+          </div>
+        </section>
+
+        {/* Slide 7 */}
+        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
+          <h2 className="text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Shortcuts for a Speedy Workflow
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+            {/* Left Column - Shortcuts */}
+            <div className="fragment fade-up text-xl bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+              <div className="space-y-4">
+                <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
+                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
+                    <span className="text-2xl">📋</span> Add a file to the chat
+                  </h3>
+                  <div className="space-y-2">
+                    <p className="flex items-center gap-2">
+                      Select all with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + A</code>
+                    </p>
+                    <p className="flex items-center gap-2">
+                      Add it with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + L</code>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
+                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
+                    <span className="text-2xl">🔍</span> Find
+                  </h3>
+                  <p className="flex items-center gap-2">
+                    All project files <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + Shift + F</code>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    Filename <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + P</code>
+                  </p>
+                </div>
+
+                <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
+                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
+                    <span className="text-2xl">⚓</span> New Terminal
+                  </h3>
+                  <p className="flex items-center gap-2">
+                    Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">^ + Shift + ` / Ctrl + '</code>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Troubleshooting */}
+            <div className="fragment fade-right">
+              <div className="bg-indigo-900/60 text-3xl p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                <h3 className="text-3xl font-bold text-blue-300 mb-4 flex items-center gap-2">
+                  <span className="">🔄</span> When the agent gets stuck:
+                </h3>
+                <ul className="space-y-3">
+                  <li className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
+                    <div className="flex items-center gap-2">
+                      <span>New chat</span>
+                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + Shift + L</code>
+                    </div>
+                  </li>
+                  <div className="fragment fade-up flex text-left relative">
+                  <Image 
+                    src="/images/new_chat_prompt.png" 
+                    alt="new chat" 
+                    width={600} 
+                    height={670} 
+                    className="object-contain drop-shadow-lg" 
+                  />
+                  <div className="absolute bottom-1 right-9 w-20 h-16 border-4 border-red-500/70 rounded-full animate-pulse"></div>
+                </div>
+                  <li className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
+                    <div className="flex items-center gap-2">
+                      <span>Use a regular chat or another model</span>
+                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + L</code>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Slide 8 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            More Cursor Tips
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 relative">
-            <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
-              <div className="mb-4 flex justify-between">
-                <div className="flex flex-col-2">
-                  <div className="bg-blue-600/40 p-5 rounded-lg flex-shrink-0 mr-6">
-                    <span className="text-4xl">⚙️</span>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-2">Custom Rules</h3>
-                    <p className="text-xl md:text-2xl">Add custom rules for the AI</p>
-                  </div>
-                </div>
-                <div className="fragment fade-up text-xs p-3 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
-                  <p>&quot;I&apos;m a beginner; explain everything&quot;</p>
-                  <p>&quot;Use terse language and avoid mansplaining&quot;</p>
-                  <p>&quot;I&apos;m a designer; make sure the code is beautiful&quot;</p>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <Image src="/images/cursor_at.png" alt="Custom Rules Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
-                </div>
-              </div>
-            </div>
-            <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
-              <div className="mb-4 flex justify-between">
-                <div className="flex flex-col-2">
-                  <div className="bg-blue-600/40 p-5 rounded-lg flex-shrink-0 mr-6">
-                    <span className="text-4xl">📚</span>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-2">Integrated Docs</h3>
-                    <p className="text-xl md:text-2xl">Access documentation within Cursor</p>
-                  </div>
-                </div>
-                <div className="fragment fade-up text-lg p-3 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
-                  <p>@OpenAI</p>
-                  <p>@NextJS</p>
-                  <p>@React</p>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <Image src="/images/cursor_at_docs.png" alt="Docs Integration Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
-                </div>
-              </div>
-            </div>
+          <div className="h-full flex flex-col gap-8 p-8">
+            {/* Title at the top */}
+            <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+              Don't be afraid to read the code
+            </h2>
             
-            {/* Overlay instruction box */}
-            <div className="fragment fade-up absolute inset-0 flex items-center justify-center z-10" data-fragment-index="5">
-              <div className="relative">
-                <div className="absolute inset-0 bg-indigo-900/90 blur-md rounded-lg"></div>
-                <div className="relative bg-gradient-to-r from-indigo-900/90 to-blue-900/90 backdrop-blur-md px-8 py-6 rounded-lg border-2 border-blue-400/70 shadow-2xl flex items-center">
-                  <div className="bg-blue-600/40 p-4 rounded-full mr-5 flex-shrink-0">
-                    <span className="text-4xl">🔍</span>
-                  </div>
-                  <p className="text-2xl font-bold">Type or Click <span className="text-blue-300 font-bold text-4xl mx-2">@</span> in the Chat input</p>
+            {/* Content grid below */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
+              {/* Left column - Text boxes */}
+              <div className="space-y-8 flex flex-col justify-center">
+                <div className="fragment fade-up bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <p className="text-3xl text-blue-300 text-center">
+                    The more you know, the faster you can direct the AI
+                  </p>
+                </div>
+                
+                <div className="fragment fade-up bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <p className="text-3xl text-blue-300 text-center">
+                    These models can leave remarkably easy to spot bugs
+                  </p>
+                </div>
+              </div>
+
+              {/* Right column - Meme image */}
+              <div className="fragment fade-left flex items-center justify-center">
+                <div className="bg-indigo-900/60 p-2 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <Image 
+                    src="/images/cursor_debug_meme.png" 
+                    alt="Debugging meme showing the journey between bug fixes" 
+                    width={800}
+                    height={800}
+                    className="rounded-lg min-w-[500px] min-h-[500px]"
+                    style={{ width: 'auto', height: 'auto' }}
+                    priority
+                  />
                 </div>
               </div>
             </div>
@@ -450,7 +429,7 @@ export default function Slides() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-xl"></div>
                 <div className="relative bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                  <p className="text-3xl md:text-4xl text-gray-200">&nbsp;Take 5 minutes to stretch and relax&nbsp;</p>
+                  <p className="text-3xl md:text-4xl text-gray-200">&nbsp;Take 10 minutes to grab tea, go outside, or just take a break&nbsp;</p>
                 </div>
               </div>
             </div>
@@ -557,6 +536,74 @@ export default function Slides() {
                     <li className="text-xl fragment fade-in-then-semi-out">Be ready to iterate on your prompt, and add more features later</li>
                     <li className="text-xl fragment fade-in-then-semi-out">Try to understand as much of the code as you can as you go (you&apos;ll thank yourself later)</li>
                   </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Slide 9 */}
+        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            More Cursor Tips
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 relative">
+            <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
+              <div className="mb-4 flex justify-between">
+                <div className="flex flex-col-2">
+                  <div className="bg-blue-600/40 p-5 rounded-lg flex-shrink-0 mr-6">
+                    <span className="text-4xl">⚙️</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-2">Custom Rules</h3>
+                    <p className="text-xl md:text-2xl">Add custom rules for the AI</p>
+                  </div>
+                </div>
+                <div className="fragment fade-up text-xs p-3 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
+                  <p>&quot;I&apos;m a beginner; explain everything&quot;</p>
+                  <p>&quot;Use terse language and avoid mansplaining&quot;</p>
+                  <p>&quot;I&apos;m a designer; make sure the code is beautiful&quot;</p>
+                </div>
+              </div>
+              <div className="mt-auto">
+                <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
+                  <Image src="/images/cursor_at.png" alt="Custom Rules Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
+                </div>
+              </div>
+            </div>
+            <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
+              <div className="mb-4 flex justify-between">
+                <div className="flex flex-col-2">
+                  <div className="bg-blue-600/40 p-5 rounded-lg flex-shrink-0 mr-6">
+                    <span className="text-4xl">📚</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-2">Integrated Docs</h3>
+                    <p className="text-xl md:text-2xl">Access documentation within Cursor</p>
+                  </div>
+                </div>
+                <div className="fragment fade-up text-lg p-3 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
+                  <p>@OpenAI</p>
+                  <p>@NextJS</p>
+                  <p>@React</p>
+                </div>
+              </div>
+              <div className="mt-auto">
+                <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
+                  <Image src="/images/cursor_at_docs.png" alt="Docs Integration Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Overlay instruction box */}
+            <div className="fragment fade-up absolute inset-0 flex items-center justify-center z-10" data-fragment-index="5">
+              <div className="relative">
+                <div className="absolute inset-0 bg-indigo-900/90 blur-md rounded-lg"></div>
+                <div className="relative bg-gradient-to-r from-indigo-900/90 to-blue-900/90 backdrop-blur-md px-8 py-6 rounded-lg border-2 border-blue-400/70 shadow-2xl flex items-center">
+                  <div className="bg-blue-600/40 p-4 rounded-full mr-5 flex-shrink-0">
+                    <span className="text-4xl">🔍</span>
+                  </div>
+                  <p className="text-2xl font-bold">Type or Click <span className="text-blue-300 font-bold text-4xl mx-2">@</span> in the Chat input</p>
                 </div>
               </div>
             </div>

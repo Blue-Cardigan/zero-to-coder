@@ -8,16 +8,16 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        'xs': '0.75rem',    // 12px
-        'sm': '0.875rem',   // 14px
-        'base': '1rem',     // 16px
-        'lg': '1.125rem',   // 18px
-        'xl': '1.25rem',    // 20px
-        '2xl': '1.4rem',    // Reduced from default 1.5rem (24px)
-        '3xl': '1.75rem',   // Reduced from default 1.875rem (30px)
-        '4xl': '2rem',      // Reduced from default 2.25rem (36px)
-        '5xl': '2.5rem',    // Reduced from default 3rem (48px)
-        '6xl': '3rem',      // Reduced from default 3.75rem (60px)
+        'xs': '0.875rem',    // Increased from 0.75rem (14px)
+        'sm': '1rem',        // Increased from 0.875rem (16px)
+        'base': '1.125rem',  // Increased from 1rem (18px)
+        'lg': '1.5rem',     // Increased from 1.125rem (20px)
+        'xl': '1.75rem',      // Increased from 1.25rem (24px)
+        '2xl': '2rem',    // Increased from 1.4rem (28px)
+        '3xl': '2.5rem',       // Increased from 1.75rem (32px)
+        '4xl': '3rem',     // Increased from 2rem (40px)
+        '5xl': '3.5rem',       // Increased from 2.5rem (48px)
+        '6xl': '4rem',     // Increased from 3rem (56px)
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

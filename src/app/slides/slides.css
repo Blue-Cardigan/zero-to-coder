@@ -51,7 +51,7 @@
 }
 
 .reveal .slides section ul li:before {
-  content: "•";
+  content: "";
   color: #3b82f6;
   position: absolute;
   left: 0;
@@ -59,42 +59,42 @@
 
 .reveal .text-xs,
 .reveal .slides .text-xs {
-  font-size: 0.75rem !important;
+  font-size: 0.875rem !important;
 }
 
 .reveal .text-sm,
 .reveal .slides .text-sm {
-  font-size: 0.875rem !important;
+  font-size: 1rem !important;
 }
 
 .reveal .text-base,
 .reveal .slides .text-base {
-  font-size: 1rem !important;
+  font-size: 1.125rem !important;
 }
 
 .reveal .text-lg,
 .reveal .slides .text-lg {
-  font-size: 1.125rem !important;
+  font-size: 1.25rem !important;
 }
 
 .reveal .text-xl,
 .reveal .slides .text-xl {
-  font-size: 1.25rem !important;
+  font-size: 1.5rem !important;
 }
 
 .reveal .text-2xl,
 .reveal .slides .text-2xl {
-  font-size: 1.5rem !important;
+  font-size: 1.75rem !important;
 }
 
 .reveal .text-3xl,
 .reveal .slides .text-3xl {
-  font-size: 1.75rem !important;
+  font-size: 2rem !important;
 }
 
 .reveal .text-4xl,
 .reveal .slides .text-4xl {
-  font-size: 2.25rem !important;
+  font-size: 2.5rem !important;
 }
 
 .reveal .text-5xl,
@@ -312,4 +312,21 @@ section[data-background-gradient] {
 .reveal .slides section .grid {
   max-width: 100%;
   width: 100%;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating-overlay {
+  animation: float 3s ease-in-out infinite;
+  bottom: 30%;  /* Moved up from bottom: 0 */
 } 
