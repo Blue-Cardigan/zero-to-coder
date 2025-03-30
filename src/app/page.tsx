@@ -102,7 +102,7 @@ export default function HomePage() {
                 if (result[j].id === testimonial.id) {
                   nextSameId = j;
                   break;
-}
+                }
               }
 
               // Calculate minimum spacing at this position
@@ -163,15 +163,19 @@ export default function HomePage() {
 
       const now = new Date();
       const future = sortedEvents.filter(event => event.date > now);
-      const past = sortedEvents.filter(event => event.date <= now);
+      const past = sortedEvents.filter(event => event.date <= now)
+        .sort((a, b) => b.date.getTime() - a.date.getTime()); // Sort past events in reverse chronological order
       
-      // Set next event (if any)
-      setNextEvent(future[0] || null);
+      // Set next event (if any upcoming, otherwise most recent past)
+      setNextEvent(future[0] || past[0] || null);
+      
+      // Remove the most recent past event if it's being shown as "next"
+      const pastEventsToShow = future[0] ? past : past.slice(1);
       
       // Duplicate past events if needed to ensure at least 5 items
-      let processedPastEvents = [...past];
+      let processedPastEvents = [...pastEventsToShow];
       while (processedPastEvents.length < 5) {
-        processedPastEvents = [...processedPastEvents, ...past];
+        processedPastEvents = [...processedPastEvents, ...pastEventsToShow];
       }
       setPastEvents(processedPastEvents);
     };
@@ -414,48 +418,48 @@ export default function HomePage() {
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8">
-              {/* Upcoming Workshop */}
-              <div className="md:col-span-2">
-                <h3 className="text-xl font-semibold text-blue-300 mb-4">Next Workshop</h3>
-                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl h-full">
+              {/* Upcoming/Most Recent Workshop */}
+              <div className="md:col-span-2 grid grid-rows-[auto_1fr] gap-4">
+                <h3 className="text-xl font-semibold text-blue-300">
+                  {nextEvent?.date && nextEvent.date > new Date() ? 'Next Workshop' : 'Most Recent Workshop'}
+                </h3>
+                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl max-h-[600px]">
                   {nextEvent ? (
-                    <div className="relative">
+                    <div className="relative h-full">
                       <div className="absolute -top-2 -right-2 bg-blue-500 text-white text-sm px-3 py-1 rounded-full">
-                        Upcoming
+                        {nextEvent.date > new Date() ? 'Upcoming' : 'Most Recent'}
                       </div>
-                      <div className="text-lg text-blue-300 font-medium mb-4">
+                      <div className="text-sm text-blue-400 font-medium mb-2">
                         {nextEvent.formattedDate}
                       </div>
-                      <div className="relative">
-                        <iframe
-                          src={`https://lu.ma/embed/event/${nextEvent.code}/simple`}
-                          width="100%"
-                          height="600"
-                          frameBorder="0"
-                          style={{ 
-                            border: '1px solid #bfcbda55',
-                            borderRadius: '8px',
-                            transition: 'all 0.3s ease',
-                          }}
-                          allowFullScreen
-                          aria-hidden="false"
-                          tabIndex={0}
-                        />
-                      </div>
+                      <iframe
+                        src={`https://lu.ma/embed/event/${nextEvent.code}/simple`}
+                        className="w-full h-[calc(100%-2rem)]"
+                        frameBorder="0"
+                        style={{ 
+                          border: '1px solid #bfcbda55',
+                          borderRadius: '8px',
+                          transition: 'all 0.3s ease',
+                          opacity: nextEvent.date > new Date() ? '1' : '0.8',
+                        }}
+                        allowFullScreen
+                        aria-hidden="false"
+                        tabIndex={0}
+                      />
                     </div>
                   ) : (
-                    <div className="flex items-center justify-center h-64 text-blue-300">
-                      No upcoming workshops scheduled
+                    <div className="h-full flex items-center justify-center text-blue-300">
+                      No workshops found
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Past Workshops */}
-              <div>
-                <h3 className="text-xl font-semibold text-blue-300 mb-4">Past Workshops</h3>
-                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl">
-                  <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+              <div className="grid grid-rows-[auto_1fr] gap-4">
+                <h3 className="text-xl font-semibold text-blue-300">Past Workshops</h3>
+                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl max-h-[600px]">
+                  <div className="h-full overflow-y-auto pr-2 custom-scrollbar space-y-4">
                     {pastEvents.slice(0, 5).map((event, index) => (
                       <div
                         key={`${event.code}-${index}`}
@@ -466,8 +470,7 @@ export default function HomePage() {
                         </div>
                         <iframe
                           src={`https://lu.ma/embed/event/${event.code}/simple`}
-                          width="100%"
-                          height="200"
+                          className="w-full h-[200px]"
                           frameBorder="0"
                           style={{ 
                             border: '1px solid #bfcbda11',

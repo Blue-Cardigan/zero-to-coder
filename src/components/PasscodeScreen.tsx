@@ -34,7 +34,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="passcode" className="block text-sm font-medium text-blue-200 mb-2">
-              Enter Passcode
+              Enter Code
             </label>
             <input
               type="password"
@@ -42,7 +42,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
               value={passcode}
               onChange={(e) => setPasscode(e.target.value)}
               className="w-full px-4 py-2 bg-indigo-800/50 border border-blue-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              placeholder="Enter passcode"
+              placeholder="Enter Code"
             />
           </div>
           
