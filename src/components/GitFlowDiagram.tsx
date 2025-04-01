@@ -30,6 +30,12 @@ export default function GitFlowDiagram() {
           <stop offset="0%" style={{ stopColor: '#1e40af', stopOpacity: 0.9 }} />
           <stop offset="100%" style={{ stopColor: '#312e81', stopOpacity: 0.9 }} />
         </linearGradient>
+
+        {/* Text stroke gradient */}
+        <linearGradient id="textStrokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style={{ stopColor: '#ffffff' }} />
+          <stop offset="100%" style={{ stopColor: '#f8fafc' }} />
+        </linearGradient>
       </defs>
 
       {/* Local Repository Box */}
@@ -123,9 +129,15 @@ export default function GitFlowDiagram() {
             height="24"
             rx="6"
             fill="url(#commandGradient)"
-            className="drop-shadow-md"
           />
-          <text x="0" y="4" textAnchor="middle" fill="#bfdbfe" className="text-sm font-bold">
+          <text 
+            x="0" 
+            y="4" 
+            textAnchor="middle"
+            fill="#bfdbfe"
+            stroke="url(#textStrokeGradient)"
+            strokeWidth="1"
+            className="text-sm">
             git add
           </text>
         </g>
@@ -143,9 +155,15 @@ export default function GitFlowDiagram() {
             height="24"
             rx="6"
             fill="url(#commandGradient)"
-            className="drop-shadow-md"
           />
-          <text x="0" y="4" textAnchor="middle" fill="#bfdbfe" className="text-sm font-bold">
+          <text 
+            x="0" 
+            y="4" 
+            textAnchor="middle"
+            fill="#bfdbfe"
+            stroke="url(#textStrokeGradient)"
+            strokeWidth="1"
+            className="text-sm font">
             git commit & push
           </text>
         </g>
@@ -163,9 +181,15 @@ export default function GitFlowDiagram() {
             height="24"
             rx="6"
             fill="url(#commandGradient)"
-            className="drop-shadow-md"
           />
-          <text x="0" y="4" textAnchor="middle" fill="#bfdbfe" className="text-sm font-bold">
+          <text 
+            x="0" 
+            y="4" 
+            textAnchor="middle"
+            fill="#bfdbfe"
+            stroke="url(#textStrokeGradient)"
+            strokeWidth="1"
+            className="text-sm font">
             git pull
           </text>
         </g>

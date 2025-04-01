@@ -340,16 +340,14 @@ export default function Slides() {
               </div>
 
               {/* Vercel screenshot */}
-              <div className="bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                <div className="relative">
-                  <Image 
-                    src="/images/vercel-deploy.png" 
-                    alt="Vercel deployment interface showing the deployment process" 
-                    width={500}
-                    height={300}
-                    className="rounded-lg"
-                  />
-                </div>
+              <div>
+                <Image 
+                  src="/images/vercel-deploy.png" 
+                  alt="Vercel deployment interface showing the deployment process" 
+                  width={530}
+                  height={200}
+                  className="rounded-lg"
+                />
               </div>
             </div>
           </div>
@@ -467,7 +465,7 @@ export default function Slides() {
                     <span className="text-3xl mr-4">&nbsp;✨&nbsp;</span>
                     <h3 className="text-2xl font-bold text-blue-300">Pro Tips</h3>
                   </div>
-                  <ul className="space-y-3 pl-12 list-disc">
+                  <ul className="space-y-3 -pl-16 list-disc">
                     <li className="text-xl fragment fade-in-then-semi-out">Research the stack your project needs then specify it in your prompt</li>
                     <li className="text-xl fragment fade-in-then-semi-out">Be ready to iterate on your prompt, and add more features later</li>
                     <li className="text-xl fragment fade-in-then-semi-out">Try to understand as much of the code as you can as you go (you&apos;ll thank yourself later)</li>
