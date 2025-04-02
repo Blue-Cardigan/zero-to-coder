@@ -48,7 +48,6 @@ export default function TagCloudPage() {
   const [tags, setTags] = useState<WordCloudWord[]>([]);
   const [loading, setLoading] = useState(true);
   const [useMockData, setUseMockData] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const previousTagsSignatureRef = useRef<string>('');
@@ -71,8 +70,6 @@ export default function TagCloudPage() {
           console.log('No tags returned from procedure, switching to mock data');
           setUseMockData(true);
           setTags(mockTags);
-          setLastUpdated(new Date());
-          previousTagsSignatureRef.current = generateTagSignature(mockTags);
         }
         return;
       }
@@ -123,7 +120,6 @@ export default function TagCloudPage() {
           console.log('No valid tags found, switching to mock data');
           setUseMockData(true);
           setTags(mockTags);
-          setLastUpdated(new Date());
           previousTagsSignatureRef.current = generateTagSignature(mockTags);
         }
         return;
@@ -137,7 +133,6 @@ export default function TagCloudPage() {
         console.log('Tags have changed, updating cloud');
         setUseMockData(false);
         setTags(newWords);
-        setLastUpdated(new Date());
         previousTagsSignatureRef.current = newTagsSignature;
       } else {
         console.log('No changes in tags, maintaining current visualization');
@@ -148,7 +143,6 @@ export default function TagCloudPage() {
       if (!useMockData) {
         setUseMockData(true);
         setTags(mockTags);
-        setLastUpdated(new Date());
         previousTagsSignatureRef.current = generateTagSignature(mockTags);
       }
     }

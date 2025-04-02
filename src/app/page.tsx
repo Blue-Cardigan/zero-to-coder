@@ -10,6 +10,7 @@ import events from '../data/events.json';
 import { testimonialConfig } from '../config/testimonials';
 import Link from 'next/link';
 import Script from 'next/script';
+import Image from 'next/image';
 
 interface DisplayTestimonial {
   id: number;
@@ -250,7 +251,13 @@ export default function HomePage() {
             >
               <div className="flex items-center mb-6">
                 <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mr-4">
-                  <img src="/images/me3.png" alt="Jethro" className="w-20 h-20 rounded-full transform scale-x-[-1]" />
+                  <Image 
+                    src="/images/me3.png" 
+                    alt="Jethro" 
+                    width={80} 
+                    height={80}
+                    className="rounded-full transform scale-x-[-1]" 
+                  />
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-blue-300">About Jethro</h2>

@@ -20,7 +20,7 @@ const ColorPresets = [
 
 export default function Slides() {
   const [isAuthenticated, setIsAuthenticated] = useState(process.env.NODE_ENV === 'development');
-  const [qrColors, setQrColors] = useState(ColorPresets[0]);
+  const [qrColors] = useState(ColorPresets[0]);
   const [pulseSize, setPulseSize] = useState(250);
 
   useEffect(() => {
@@ -190,7 +190,7 @@ export default function Slides() {
                   <span className="text-lg md:text-xl">Ask questions about the code (to me or your preferred LLM)</span>
                 </li>
                 <li className="fragment fade-up bg-indigo-800/30 rounded-lg p-4 border-blue-400 shadow-md">
-                  <span className="text-lg md:text-xl">Don't be afraid of the code - click around and see what sense you can make of it</span>
+                  <span className="text-lg md:text-xl">Don&apos;t be afraid of the code - click around and see what sense you can make of it</span>
                 </li>
               </ul>
             </div>
@@ -306,7 +306,7 @@ export default function Slides() {
               <div className="bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
                 <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">Push to GitHub</h3>
                 <span className="text-lg md:text-xl">
-                  <p>Git tracks your project's changes. Github stores it in the cloud.</p>
+                  <p>Git tracks your project&apos;s changes. Github stores it in the cloud.</p>
                 </span>
               </div>
 
@@ -486,7 +486,7 @@ export default function Slides() {
           <div className="h-full flex flex-col gap-6 md:gap-8 p-4 md:p-8">
             {/* Title at the top */}
             <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-              Don't be afraid to read the code
+              Don&apos;t be afraid to read the code
             </h2>
             
             {/* Content grid below */}
@@ -601,7 +601,7 @@ export default function Slides() {
                     <span className="text-xl md:text-2xl">⚓</span> New Terminal
                   </h3>
                   <p className="flex items-center gap-2">
-                    Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">^ + Shift + ` / Ctrl + '</code>
+                    Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">^ + Shift + ` / Ctrl + &apos;</code>
                   </p>
                 </div>
               </div>
@@ -689,8 +689,8 @@ export default function Slides() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl md:text-3xl font-bold text-blue-300 mb-4">Join the gang</h3>
-                    <p>You'll probably learn faster if you're not alone.</p>
-                    <p>It's also the best way to ask me questions :D</p>
+                    <p>You&apos;ll probably learn faster if you&apos;re not alone.</p>
+                    <p>It&apos;s also the best way to ask me questions :D</p>
                   </div>
                 </div>
               </div>
