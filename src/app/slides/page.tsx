@@ -71,32 +71,32 @@ export default function Slides() {
       <div className="slides">
         {/* Slide 1 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h1 className="text-6xl font-bold mb-100 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Welcome to 
             <br />
             Zero-to-coder
           </h1>
-          <div className="text-2xl md:text-3xl space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-300 mb-8 drop-shadow-md">First:</h2>
-            <div className="text-4xl grid grid-cols-2 gap-6">
-              <div className="bg-indigo-900/40 p-6 rounded-lg border border-indigo-700/40 flex items-center">
-                <span className="text-blue-300 text-5xl mr-6">&nbsp;🔑</span>
-                <span>&nbsp;Create a <span className="text-blue-300 font-bold"><a href="https://github.com" target="_blank" rel="noopener noreferrer">Github</a></span> account</span>
+          <div className="text-xl md:text-3xl space-y-4 md:space-y-6">
+            <h2 className="text-2xl md:text-4xl font-bold text-blue-300 mb-6 md:mb-8 drop-shadow-md">First:</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <div className="bg-indigo-900/40 p-4 md:p-6 rounded-lg border border-indigo-700/40 flex items-center">
+                <span className="text-blue-300 text-4xl md:text-5xl mr-4 md:mr-6">&nbsp;🔑</span>
+                <span className="text-lg md:text-xl">&nbsp;Create a <span className="text-blue-300 font-bold"><a href="https://github.com" target="_blank" rel="noopener noreferrer">Github</a></span> account</span>
               </div>
-              <div className="bg-indigo-900/40 p-6 rounded-lg border border-indigo-700/40 flex items-center">
-                <span className="text-blue-300 text-5xl mr-6">&nbsp;💻</span>
-                <span>Install <span className="text-blue-300 font-bold"><a href="https://cursor.sh" target="_blank" rel="noopener noreferrer">&nbsp;Cursor</a></span></span>
+              <div className="bg-indigo-900/40 p-4 md:p-6 rounded-lg border border-indigo-700/40 flex items-center">
+                <span className="text-blue-300 text-4xl md:text-5xl mr-4 md:mr-6">&nbsp;💻</span>
+                <span className="text-lg md:text-xl">Install <span className="text-blue-300 font-bold"><a href="https://cursor.sh" target="_blank" rel="noopener noreferrer">&nbsp;Cursor</a></span></span>
               </div>
             </div>
           </div>
-          <div className="absolute top-0 right-8">
-            <div className="bg-indigo-900/30 p-4 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+          <div className="absolute top-0 right-4 md:right-8">
+            <div className="bg-indigo-900/30 p-3 md:p-4 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
               <div className="text-center mb-2">
-                <p className="text-xl text-blue-300">Scan for slides</p>
+                <p className="text-lg md:text-xl text-blue-300">Scan for slides</p>
               </div>
               <QRCodeSVG 
                 value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
-                size={170}
+                size={120}
                 bgColor={qrColors.bg}
                 fgColor={qrColors.fg}
                 level="L"
@@ -108,33 +108,33 @@ export default function Slides() {
 
         {/* Slide 2 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-6xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Session outline
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="fragment fade-right bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col h-full">
-              <div className="flex items-center mb-6">
-                <div className="text-5xl font-bold text-blue-300 mr-4">&nbsp;1</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+            <div className="fragment fade-right bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col h-full">
+              <div className="flex items-center mb-4 md:mb-6">
+                <div className="text-4xl md:text-5xl font-bold text-blue-300 mr-4">&nbsp;1</div>
               </div>
-              <p className="text-4xl md:text-3xl text-gray-200 mb-8">Build and host your first website</p>
+              <p className="text-2xl md:text-3xl text-gray-200 mb-6 md:mb-8">Build and host your first website</p>
             </div>
-            <div className="fragment fade-left bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col h-full">
-              <div className="flex items-center mb-6">
-                <div className="text-5xl font-bold text-blue-300 mr-4">&nbsp;2</div>
+            <div className="fragment fade-left bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col h-full">
+              <div className="flex items-center mb-4 md:mb-6">
+                <div className="text-4xl md:text-5xl font-bold text-blue-300 mr-4">&nbsp;2</div>
               </div>
-              <p className="text-4xl md:text-3xl text-gray-200 mb-8">Start your own project with custom features</p>
+              <p className="text-2xl md:text-3xl text-gray-200 mb-6 md:mb-8">Start your own project with custom features</p>
             </div>
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-0">
+          <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div className="fragment fade-up flex justify-center">
-              <div className="w-[370px] bg-indigo-900/40 p-2 rounded-lg hover:scale-105 transition-transform duration-300">
+              <div className="w-full max-w-[370px] bg-indigo-900/40 p-2 rounded-lg hover:scale-105 transition-transform duration-300">
                 <a href="https://recipe-routine-saver.vercel.app/" target="_blank" rel="noopener noreferrer">
                   <Image src="/images/website_image_1.png" alt="Website example 1" width={370} height={208} className="w-full rounded-lg shadow-lg" />
                 </a>
               </div>
             </div>
             <div className="fragment fade-up flex justify-center">
-              <div className="w-[370px] bg-indigo-900/40 p-2 rounded-lg hover:scale-105 transition-transform duration-300">
+              <div className="w-full max-w-[370px] bg-indigo-900/40 p-2 rounded-lg hover:scale-105 transition-transform duration-300">
                 <a href="https://greater-manchester-assembly-helper.vercel.app/#" target="_blank" rel="noopener noreferrer">
                   <Image src="/images/website_image_2.png" alt="Website example 2" width={370} height={208} className="w-full rounded-lg shadow-lg" />
                 </a>
@@ -145,29 +145,29 @@ export default function Slides() {
 
         {/* Slide 3 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h2 className="text-6xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Build and host your first website
           </h2>
-          <div className="text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-            <div className="flex flex-wrap md:flex-nowrap gap-6">
-              <div className="fragment fade-up flex-1 bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
-                <div className="text-4xl text-blue-300 mb-4">1</div>
-                <p className="text-center">Prompt <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">Bolt.new</a></p>
-                <div className="mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
+          <div className="text-xl md:text-3xl space-y-4 md:space-y-6 bg-indigo-900/60 p-6 md:p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+              <div className="fragment fade-up flex-1 bg-indigo-800/40 p-4 md:p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
+                <div className="text-3xl md:text-4xl text-blue-300 mb-4">1</div>
+                <p className="text-center text-lg md:text-xl">Prompt <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">Bolt.new</a></p>
+                <div className="mt-4 md:mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
                   <Image src="/images/bolt-screenshot.png" alt="Bolt.new screenshot" width={400} height={225} className="w-full h-full object-contain" />
                 </div>
               </div>
-              <div className="fragment fade-up flex-1 bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
-                <div className="text-4xl text-blue-300 mb-4">2</div>
-                <p className="text-center">Develop in Cursor</p>
-                <div className="mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
+              <div className="fragment fade-up flex-1 bg-indigo-800/40 p-4 md:p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
+                <div className="text-3xl md:text-4xl text-blue-300 mb-4">2</div>
+                <p className="text-center text-lg md:text-xl">Develop in Cursor</p>
+                <div className="mt-4 md:mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
                   <Image src="/images/cursor_homepage_screenshot.png" alt="Cursor screenshot" width={400} height={225} className="w-full h-full object-contain" />
                 </div>
               </div>
-              <div className="fragment fade-up flex-1 bg-indigo-800/40 p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
-                <div className="text-4xl text-blue-300 mb-4">3</div>
-                <p className="text-center">Host on Vercel</p>
-                <div className="mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
+              <div className="fragment fade-up flex-1 bg-indigo-800/40 p-4 md:p-6 rounded-lg border border-indigo-600/40 flex flex-col items-center">
+                <div className="text-3xl md:text-4xl text-blue-300 mb-4">3</div>
+                <p className="text-center text-lg md:text-xl">Host on Vercel</p>
+                <div className="mt-4 md:mt-6 w-full aspect-video bg-indigo-700/50 rounded flex items-center justify-center overflow-hidden">
                   <Image src="/images/vercel_homepage_screenshot.png" alt="Vercel screenshot" width={400} height={225} className="w-full h-full object-contain" />
                 </div>
               </div>
@@ -177,28 +177,28 @@ export default function Slides() {
 
         {/* Slide 4 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Open <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">Bolt.new</a> and prompt a nice landing page
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="fragment fade-up text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-              <ul className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="fragment fade-up text-xl md:text-3xl space-y-4 md:space-y-6 bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+              <ul className="space-y-4 md:space-y-6">
                 <li className="fragment fade-up bg-indigo-800/30 rounded-lg p-4 border-blue-400 shadow-md">
-                  <span>Think of a project you want to build, then... ask for it</span>
+                  <span className="text-lg md:text-xl">Think of a project you want to build, then... ask for it</span>
                 </li>
                 <li className="fragment fade-up bg-indigo-800/30 rounded-lg p-4 border-blue-400 shadow-md">
-                  <span>Ask questions about the code (to me or your preferred LLM)</span>
+                  <span className="text-lg md:text-xl">Ask questions about the code (to me or your preferred LLM)</span>
                 </li>
                 <li className="fragment fade-up bg-indigo-800/30 rounded-lg p-4 border-blue-400 shadow-md">
-                  <span>Don't be afraid of the code - click around and see what sense you can make of it</span>
+                  <span className="text-lg md:text-xl">Don't be afraid of the code - click around and see what sense you can make of it</span>
                 </li>
               </ul>
             </div>
             <div className="fragment fade-left flex flex-col justify-center">
               <div className="p-4 bg-indigo-900/60 rounded-lg">
-                <p className="text-center text-2xl text-blue-300 italic mb-4">&ldquo;Build me a landing page for a productivity app called TimeFlow with a modern, minimalist design&rdquo;</p>
-                <p className="text-center text-2xl text-blue-300 italic mb-4">&ldquo;Build me a site for my business called The Assembly. Include a homepage, blog, a shop, and a calendar&rdquo;</p>
-                <p className="text-center text-2xl text-blue-300 italic">&ldquo;Build me a personal portfolio site with links to my social media and a blog. Include pretty animations and a contact form&rdquo;</p>
+                <p className="text-center text-lg md:text-2xl text-blue-300 italic mb-4">&ldquo;Build me a landing page for a productivity app called TimeFlow with a modern, minimalist design&rdquo;</p>
+                <p className="text-center text-lg md:text-2xl text-blue-300 italic mb-4">&ldquo;Build me a site for my business called The Assembly. Include a homepage, blog, a shop, and a calendar&rdquo;</p>
+                <p className="text-center text-lg md:text-2xl text-blue-300 italic">&ldquo;Build me a personal portfolio site with links to my social media and a blog. Include pretty animations and a contact form&rdquo;</p>
               </div>
             </div>
           </div>
@@ -206,29 +206,29 @@ export default function Slides() {
 
         {/* Slide 5 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h2 className="text-6xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Open your project in Cursor
           </h2>
-          <div className="fragment fade-up grid grid-cols-2 md:grid-cols-2 gap-8 items-center">
-            <div className="text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl order-1 md:order-1">
-              <ol className="list-none space-y-8">
+          <div className="fragment fade-up grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+            <div className="text-xl md:text-3xl space-y-4 md:space-y-6 bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl order-1 md:order-1">
+              <ol className="list-none space-y-4">
                 <li className="fragment fade-up">
                   <div className="flex items-center mb-2">
-                    <h3 className="text-2xl font-bold text-blue-300">Export the files (at the top)</h3>
+                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Export the files (at the top)</h3>
                   </div>
-                  <p className="ml-6 text-gray-300">Look for the export button in the Bolt interface</p>
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Look for the export button in the Bolt interface</p>
                 </li>
                 <li className="fragment fade-up">
                   <div className="flex items-center mb-2">
-                    <h3 className="text-2xl font-bold text-blue-300">Open the project in Cursor</h3>
+                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Open the project in Cursor</h3>
                   </div>
-                  <p className="ml-6 text-gray-300">In Cursor, File -&gt; Open... and select your folder</p>
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">In Cursor, File -&gt; Open... and select your folder</p>
                 </li>
                 <li className="fragment fade-up">
                   <div className="flex items-center mb-2">
-                    <h3 className="text-2xl font-bold text-blue-300">Ask the AI to help</h3>
+                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Ask the AI to help</h3>
                   </div>
-                  <p className="ml-6 text-gray-300">Type &apos;Get this project running on localhost&apos; in the chat</p>
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Type &apos;Get this project running on localhost&apos; in the chat</p>
                 </li>
               </ol>
             </div>
@@ -243,9 +243,9 @@ export default function Slides() {
                     className="w-full h-full object-contain rounded-lg"
                   />
                 </div>
-                <div className="fragment fade-up absolute bottom-[30%] left-0 right-0 bg-indigo-900/90 p-6 rounded-lg backdrop-blur-sm border border-indigo-600/50 floating-overlay">
-                  <p className="text-xl text-blue-300 text-center font-semibold">
-                    And... babysit the AI as it installs everything you need
+                <div className="fragment fade-up absolute bottom-[30%] left-0 right-0 bg-indigo-900/90 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-600/50 floating-overlay">
+                  <p className="text-lg md:text-xl text-blue-300 text-center font-semibold">
+                    Ask an LLM questions before you ask me. The best outcome you can get from this workshop is to learn to problem solve yourself.
                   </p>
                 </div>
               </div>
@@ -255,64 +255,64 @@ export default function Slides() {
 
         {/* Slide 6 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Play around adding functionality
           </h2>
-          <div className="grid grid-cols-3 md:grid-cols-2 gap-6">
-            <div className="fragment fade-up col-span-1 text-2xl bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-fit">
-              <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="fragment fade-up text-xl md:text-2xl bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-fit">
+              <div className="space-y-4 md:space-y-6">
                 <div className="fragment fade-up flex">
-                  <p className="text-2xl">&nbsp;💡 When it breaks, <span className="text-blue-300 font-bold">investigate</span> — debugging is part of coding</p>
+                  <p className="text-lg md:text-2xl">&nbsp;💡 When it breaks, <span className="text-blue-300 font-bold">investigate</span> — debugging is part of coding</p>
                 </div>
                 
                 <div className="fragment fade-up flex">
-                  <p className="text-2xl">&nbsp;🤔 Moving too fast? Frustrated?<span className="text-blue-300 font-bold">Formulate a specific question</span> and ask an LLM</p>
+                  <p className="text-lg md:text-2xl">&nbsp;🤔 Moving too fast? Frustrated?<span className="text-blue-300 font-bold">Formulate a specific question</span> and ask an LLM</p>
                 </div>
               </div>
             </div>
 
-            <div className="col-span-1 flex flex-col">
+            <div className="flex flex-col gap-6">
                 {/* Final message that appears last with more space */}
-                <div className="fragment fade-up col-span-full">
-                  <div className="bg-indigo-900/60 p-8 rounded-xl border-2 border-indigo-600/70 shadow-2xl max-w-4xl mx-auto">
-                    <p className="text-3xl md:text-3xl text-center font-bold">
+              <div className="fragment fade-up">
+                <div className="bg-indigo-900/60 p-6 md:p-8 rounded-xl border-2 border-indigo-600/70 shadow-2xl max-w-4xl mx-auto">
+                  <p className="text-2xl md:text-3xl text-center font-bold">
                       <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text">
                         Developers are always learning — the tools are endless</span>
                     </p>
                   </div>
                 </div>
             
-              <div className="flex items-center justify-center mt-8">
+              <div className="flex items-center justify-center mt-4 md:mt-8">
                 <Image 
                   src="/images/spanner.png" 
                   alt="Spanner tool" 
                   width={350}
                   height={350}
-                  className="object-contain drop-shadow-lg"
+                  className="w-full max-w-[350px] object-contain drop-shadow-lg"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* New Slide: Host on Vercel */}
+        {/* Slide 7 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 mt-0 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Host your site
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-fit">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 h-fit">
             {/* Left column - Git steps */}
-            <div className="fragment fade-up space-y-6">
-              <div className="bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                <h3 className="text-2xl font-bold text-blue-300 mb-4">Push to GitHub</h3>
-                <span className="text-xl">
+            <div className="fragment fade-up space-y-4 md:space-y-6">
+              <div className="bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">Push to GitHub</h3>
+                <span className="text-lg md:text-xl">
                   <p>Git tracks your project's changes. Github stores it in the cloud.</p>
                 </span>
               </div>
 
               {/* Git flow diagram */}
-              <div className="bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                <h3 className="text-2xl font-bold text-blue-300 mb-4">How Git Works</h3>
+              <div className="bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">How Git Works</h3>
                 <div className="relative">
                   <GitFlowDiagram />
                 </div>
@@ -320,10 +320,10 @@ export default function Slides() {
             </div>
 
             {/* Right column - Vercel deployment */}
-            <div className="fragment fade-left space-y-6">
-              <div className="bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                <h3 className="text-2xl font-bold text-blue-300 mb-4">Deploy on Vercel</h3>
-                <ol className="space-y-4 text-xl">
+            <div className="fragment fade-left space-y-4 md:space-y-6">
+              <div className="bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">Deploy on Vercel</h3>
+                <ol className="space-y-3 md:space-y-4 text-lg md:text-xl">
                   <li className="flex items-start">
                     <span className="text-blue-300 mr-2">1.</span>
                     <span>Connect your GitHub repository to Vercel</span>
@@ -340,87 +340,100 @@ export default function Slides() {
               </div>
 
               {/* Vercel screenshot */}
-              <div>
+              <div className="w-full">
                 <Image 
                   src="/images/vercel-deploy.png" 
                   alt="Vercel deployment interface showing the deployment process" 
-                  width={530}
-                  height={200}
-                  className="rounded-lg"
+                  width={700}
+                  height={500}
+                  className="w-full h-auto rounded-lg"
+                  style={{ maxWidth: '100%', height: 'auto' }}
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Slide 7 */}
+        {/* New Slide - Time to Share */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           <div className="flex flex-col items-center justify-center min-h-[70vh]">
-            <h2 className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse mb-12">
+            <h2 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg mb-12">
+              Time to Share!
+            </h2>
+            <div className="fragment fade-up">
+                <span style={{ fontSize: '16rem' }}>🎉</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Slide 8 */}
+        <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
+          <div className="flex flex-col items-center justify-center min-h-[70vh] p-4 md:p-8">
+            <h2 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse mb-8 md:mb-12">
             Break
           </h2>
             <div className="fragment fade-up">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-xl"></div>
-                <div className="relative bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                  <p className="text-3xl md:text-4xl text-gray-200">&nbsp;Take 10 minutes to grab tea, go outside, or just take a break&nbsp;</p>
+                <div className="relative bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <p className="text-2xl md:text-4xl text-gray-200 text-center">&nbsp;Take 10 minutes to grab tea, go outside, or just take a break&nbsp;</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Slide 8 */}
+        {/* Slide 9 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Part 2
           </h2>
-          <div className="text-2xl md:text-3xl">
-            <div className="fragment fade-up bg-indigo-900/60 p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl mb-8">
-              <div className="flex items-center mb-6">
-                <div className="bg-blue-600/40 p-5 rounded-full mr-6">
-                  <span className="text-5xl">&nbsp;🚀&nbsp;</span>
+          <div className="text-xl md:text-3xl">
+            <div className="fragment fade-up bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl mb-6 md:mb-8">
+              <div className="flex items-center mb-2">
+                <div className="bg-blue-600/40 p-4 md:p-5 rounded-full mr-4 md:mr-6">
+                  <span className="text-4xl md:text-5xl">&nbsp;🚀&nbsp;</span>
                 </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-blue-300">New project, from scratch, in Cursor</h3>
+                <h3 className="text-2xl md:text-4xl font-bold text-blue-300">New project, from scratch, in Cursor</h3>
               </div>
-              <p className="text-2xl md:text-3xl text-gray-200 pl-16">Choose your path: <span className="text-blue-300">AI Chatbot</span> or <span className="text-purple-300">Data Visualization</span></p>
-            </div>
+           </div>
+            <p className="fragment fade-up text-xl md:text-3xl text-gray-200 mb-6 md:mb-8">Choose your path</p>
             
-            <div className="grid grid-cols-2 gap-10 mt-8">
-              <div className="fragment fade-right bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="bg-blue-600/40 p-5 rounded-lg mr-6">
-                    <span className="text-5xl">&nbsp;💬&nbsp;</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+              <div className="fragment fade-right bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
+                <div className="flex items-center mb-4 md:mb-6">
+                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg mr-4 md:mr-6">
+                    <span className="text-4xl md:text-5xl">&nbsp;💬&nbsp;</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-purple-300">AI Chatbot</h3>
+                  <h3 className="text-2xl md:text-4xl font-bold text-purple-300">A Web App</h3>
                 </div>
                 <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
+                  <li className="flex items-center text-lg md:text-xl">
                     <span>APIs</span>
                   </li>
-                  <li className="flex items-center">
-                    <span>Authentication</span>
+                  <li className="flex items-center text-lg md:text-xl">
+                    <span>User Authentication</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-center text-lg md:text-xl">
                     <span>Database</span>
                   </li>
                 </ul>
               </div>
-              <div className="fragment fade-left bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="bg-purple-600/40 p-5 rounded-lg mr-6">
-                    <span className="text-5xl">&nbsp;📊&nbsp;</span>
+              <div className="fragment fade-left bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
+                <div className="flex items-center mb-4 md:mb-6">
+                  <div className="bg-purple-600/40 p-4 md:p-5 rounded-lg mr-4 md:mr-6">
+                    <span className="text-4xl md:text-5xl">&nbsp;📊&nbsp;</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-purple-300">Text Data Analysis</h3>
+                  <h3 className="text-2xl md:text-4xl font-bold text-purple-300">Text Data Analysis</h3>
                 </div>
                 <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
+                  <li className="flex items-center text-lg md:text-xl">
                     <span>First step: Get data</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-center text-lg md:text-xl">
                     <span>Second step: Analyse it</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-center text-lg md:text-xl">
                     <span>Third step: Visualise it</span>
                   </li>
                 </ul>
@@ -429,27 +442,23 @@ export default function Slides() {
           </div>
         </section>
 
-        {/* Slide 9 */}
+        {/* Slide 10 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Start in Cursor this time
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Create a new project in Cursor
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="fragment fade-up text-2xl md:text-3xl space-y-6 bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full">
-              <h3 className="text-left text-3xl font-bold text-blue-300 mb-4">&nbsp;Example prompts:</h3>
-              <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="fragment fade-up text-xl md:text-3xl space-y-4 md:space-y-6 bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full">
+              <div className="space-y-4 md:space-y-6">
                 <div className="fragment fade-up bg-indigo-800/40 rounded-lg p-4 border-l-4 border-blue-400 shadow-md">
-                  <code className="block bg-indigo-950 p-5 rounded-lg text-left border border-indigo-700 shadow-inner text-xl">
-                    &quot;Build me a chatbot to [use case] using the OpenAI API&quot;
+                  <code className="block bg-indigo-950 p-4 md:p-5 rounded-lg text-left border border-indigo-700 shadow-inner text-lg md:text-xl">
+                    &quot;Build me a Next.js web app to [...]. Use Supabase for the database and authentication&quot;
                   </code>
-                  <span className="text-sm text-gray-400">
-
-                  </span>
                   <div className="w-full h-1 bg-gradient-to-r from-blue-500/50 to-transparent rounded-full mt-3"></div>
                 </div>
                 <div className="fragment fade-up bg-indigo-800/40 rounded-lg p-4 border-l-4 border-purple-400 shadow-md">
-                  <code className="block bg-indigo-950 p-5 rounded-lg text-left border border-indigo-700 shadow-inner text-xl">
-                    &quot;Provide steps to scrape webpage text from a website, and analyse it using appropriate Natural Language Processing techniques&quot;
+                  <code className="block bg-indigo-950 p-4 md:p-5 rounded-lg text-left border border-indigo-700 shadow-inner text-lg md:text-xl">
+                    &quot;Provide steps to [scrape webpage text from a website / get data from an API / etc], and analyse it using appropriate Natural Language Processing techniques&quot;
                   </code>
                   <span className="text-sm text-gray-400">
                     Wikipedia, News, Reddit, etc.
@@ -458,45 +467,40 @@ export default function Slides() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-6">
-              <div className="fragment fade-left bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full flex flex-col justify-center">
+            <div className="flex flex-col gap-4 md:gap-6">
+              <div className="fragment fade-left bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full flex flex-col justify-center">
                 <div className="p-4 bg-indigo-800/40 rounded-lg border border-indigo-700/40">
                   <div className="flex items-center mb-3">
-                    <span className="text-3xl mr-4">&nbsp;✨&nbsp;</span>
-                    <h3 className="text-2xl font-bold text-blue-300">Pro Tips</h3>
+                    <span className="text-2xl md:text-3xl mr-4">&nbsp;✨&nbsp;</span>
+                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Pro Tip</h3>
                   </div>
-                  <ul className="space-y-3 -pl-16 list-disc">
-                    <li className="text-xl fragment fade-in-then-semi-out">Research the stack your project needs then specify it in your prompt</li>
-                    <li className="text-xl fragment fade-in-then-semi-out">Be ready to iterate on your prompt, and add more features later</li>
-                    <li className="text-xl fragment fade-in-then-semi-out">Try to understand as much of the code as you can as you go (you&apos;ll thank yourself later)</li>
-                  </ul>
+                  <p className="text-lg md:text-xl">Figure out the stack your project needs in one chat, then switch to a new chat to start building</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-
-        {/* Slide 10 */}
+        {/* Slide 11 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <div className="h-full flex flex-col gap-8 p-8">
+          <div className="h-full flex flex-col gap-6 md:gap-8 p-4 md:p-8">
             {/* Title at the top */}
-            <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
               Don't be afraid to read the code
             </h2>
             
             {/* Content grid below */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1">
               {/* Left column - Text boxes */}
-              <div className="space-y-8 flex flex-col justify-center">
-                <div className="fragment fade-up bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                  <p className="text-3xl text-blue-300 text-center">
+              <div className="space-y-6 md:space-y-8 flex flex-col justify-center">
+                <div className="fragment fade-up bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <p className="text-2xl md:text-3xl text-blue-300 text-center">
                     The more you know, the faster you can direct the AI
                   </p>
                 </div>
                 
-                <div className="fragment fade-up bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                  <p className="text-3xl text-blue-300 text-center">
+                <div className="fragment fade-up bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <p className="text-2xl md:text-3xl text-blue-300 text-center">
                     These models can leave remarkably easy to spot bugs
                   </p>
                 </div>
@@ -510,7 +514,7 @@ export default function Slides() {
                     alt="Debugging meme showing the journey between bug fixes" 
                     width={800}
                     height={800}
-                    className="rounded-lg min-w-[500px] min-h-[500px]"
+                    className="rounded-lg w-full max-w-[500px] h-auto"
                     style={{ width: 'auto', height: 'auto' }}
                     priority
                   />
@@ -520,196 +524,85 @@ export default function Slides() {
           </div>
         </section>
 
-        {/* Slide 11 */}
+        {/* Slide 12 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Shortcuts for a Speedy Workflow
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-            {/* Left Column - Shortcuts */}
-            <div className="fragment fade-up text-xl bg-indigo-900/60 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-              <div className="space-y-4">
-                <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
-                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
-                    <span className="text-2xl">📋</span> Add a file to the chat
-                  </h3>
-                  <div className="space-y-2">
-                    <p className="flex items-center gap-2">
-                      Select all with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + A</code>
-                    </p>
-                    <p className="flex items-center gap-2">
-                      Add it with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + L</code>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
-                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
-                    <span className="text-2xl">🔍</span> Find
-                  </h3>
-                  <p className="flex items-center gap-2">
-                    All project files <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + Shift + F</code>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    Filename <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + P</code>
-                  </p>
-                </div>
-
-                <div className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
-                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
-                    <span className="text-2xl">⚓</span> New Terminal
-                  </h3>
-                  <p className="flex items-center gap-2">
-                    Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">^ + Shift + ` / Ctrl + '</code>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Troubleshooting */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Left Column - Troubleshooting */}
             <div className="fragment fade-right">
-              <div className="bg-indigo-900/60 text-3xl p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                <h3 className="text-3xl font-bold text-blue-300 mb-4 flex items-center gap-2">
+              <div className="bg-indigo-900/60 text-xl md:text-3xl p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4 flex items-center gap-2">
                   <span className="">🔄</span> When the agent gets stuck:
                 </h3>
                 <ul className="space-y-3">
-                  <li className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
+                  <li className="fragment fade-up bg-indigo-800/40 p-3 md:p-4 rounded-lg border border-indigo-600/40">
                     <div className="flex items-center gap-2">
                       <span>New chat</span>
-                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + Shift + L</code>
+                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + Shift + L</code>
                     </div>
                   </li>
                   <div className="fragment fade-up flex text-left relative">
-                  <Image 
-                    src="/images/new_chat_prompt.png" 
-                    alt="new chat" 
-                    width={600} 
-                    height={670} 
-                    className="object-contain drop-shadow-lg" 
-                  />
-                  <div className="absolute bottom-1 right-9 w-20 h-16 border-4 border-red-500/70 rounded-full animate-pulse"></div>
-                </div>
-                  <li className="fragment fade-up bg-indigo-800/40 p-4 rounded-lg border border-indigo-600/40">
+                    <div className="relative w-full">
+                      <Image 
+                        src="/images/new_chat_prompt.png" 
+                        alt="new chat" 
+                        width={600} 
+                        height={670} 
+                        className="w-full h-auto object-contain drop-shadow-lg" 
+                      />
+                      <div className="absolute bottom-[8%] right-[7%] w-[15%] aspect-[1.75/1] border-4 border-red-500/70 rounded-full animate-pulse"></div>
+                    </div>
+                  </div>
+                  <li className="fragment fade-up bg-indigo-800/40 p-3 md:p-4 rounded-lg border border-indigo-600/40">
                     <div className="flex items-center gap-2">
                       <span>Use a regular chat or another model</span>
-                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700">⌘/Ctrl + L</code>
+                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + L</code>
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Slide 9 */}
-        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            More Cursor Tips
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 relative">
-            <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
-              <div className="mb-4 flex justify-between">
-                <div className="flex flex-col-2">
-                  <div className="bg-blue-600/40 p-5 rounded-lg flex-shrink-0 mr-6">
-                    <span className="text-4xl">⚙️</span>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-2">Custom Rules</h3>
-                    <p className="text-xl md:text-2xl">Add custom rules for the AI</p>
-                  </div>
-                </div>
-                <div className="fragment fade-up text-xs p-3 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
-                  <p>&quot;I&apos;m a beginner; explain everything&quot;</p>
-                  <p>&quot;Use terse language and avoid mansplaining&quot;</p>
-                  <p>&quot;I&apos;m a designer; make sure the code is beautiful&quot;</p>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <Image src="/images/cursor_at.png" alt="Custom Rules Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
-                </div>
-              </div>
-            </div>
-            <div className="bg-indigo-900/60 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
-              <div className="mb-4 flex justify-between">
-                <div className="flex flex-col-2">
-                  <div className="bg-blue-600/40 p-5 rounded-lg flex-shrink-0 mr-6">
-                    <span className="text-4xl">📚</span>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-2">Integrated Docs</h3>
-                    <p className="text-xl md:text-2xl">Access documentation within Cursor</p>
+            {/* Right Column - Shortcuts */}
+            <div className="fragment fade-up text-lg md:text-xl bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+              <div className="space-y-3 md:space-y-4">
+                <div className="fragment fade-up bg-indigo-800/40 p-3 md:p-4 rounded-lg border border-indigo-600/40">
+                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
+                    <span className="text-xl md:text-2xl">📋</span> Add a file to the chat
+                  </h3>
+                  <div className="space-y-2">
+                    <p className="flex items-center gap-2">
+                      Select all with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + A</code>
+                    </p>
+                    <p className="flex items-center gap-2">
+                      Add it with <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + L</code>
+                    </p>
                   </div>
                 </div>
-                <div className="fragment fade-up text-lg p-3 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 self-start ml-4 max-w-[250px]">
-                  <p>@OpenAI</p>
-                  <p>@NextJS</p>
-                  <p>@React</p>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <div className="fragment fade-up w-full aspect-video bg-indigo-800/50 rounded-lg mt-6 flex items-center justify-center">
-                  <Image src="/images/cursor_at_docs.png" alt="Docs Integration Screenshot" width={400} height={225} className="w-full object-contain max-h-32" />
-                </div>
-              </div>
-            </div>
-            
-            {/* Overlay instruction box */}
-            <div className="fragment fade-up absolute inset-0 flex items-center justify-center z-10" data-fragment-index="5">
-              <div className="relative">
-                <div className="absolute inset-0 bg-indigo-900/90 blur-md rounded-lg"></div>
-                <div className="relative bg-gradient-to-r from-indigo-900/90 to-blue-900/90 backdrop-blur-md px-8 py-6 rounded-lg border-2 border-blue-400/70 shadow-2xl flex items-center">
-                  <div className="bg-blue-600/40 p-4 rounded-full mr-5 flex-shrink-0">
-                    <span className="text-4xl">🔍</span>
-                  </div>
-                  <p className="text-2xl font-bold">Type or Click <span className="text-blue-300 font-bold text-4xl mx-2">@</span> in the Chat input</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Slide 12 */}
-        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            What am I actually learning?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="text-2xl md:text-3xl">
-              <div style={{ padding: '1rem' }} className="fragment fade-up bg-indigo-900/60 p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl mb-6 h-full flex">
-                <div className="bg-blue-600/40 p-5 rounded-lg mr-8 h-min flex items-center justify-center">
-                  <span className="text-5xl">🧩</span>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-6">Problem solving</h3>
-                  <p className="mb-6">Actual engineers rarely go into a project already knowing everything they need</p>
-                  <div className="mt-8 p-6 bg-indigo-800/40 rounded-lg text-gray-300 text-xl italic">
-                    &ldquo;It&apos;s not about memorization, but knowing how to find and apply solutions&rdquo;
+                <div className="fragment fade-up bg-indigo-800/40 p-3 md:p-4 rounded-lg border border-indigo-600/40">
+                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
+                    <span className="text-xl md:text-2xl">🔍</span> Find
+                  </h3>
+                  <div className="space-y-2">
+                    <p className="flex items-center gap-2">
+                      All project files <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + Shift + F</code>
+                    </p>
+                    <p className="flex items-center gap-2">
+                      Filename <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + P</code>
+                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="text-2xl md:text-3xl flex flex-col">
-              <div style={{ padding: '1rem' }} className="fragment fade-up bg-indigo-900/60 p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl mb-8 flex-grow">
-                <div className="flex mb-6">
-                  <div className="bg-blue-600/40 p-5 rounded-lg mr-8 flex items-center justify-center">
-                    <span className="text-5xl">🤖</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4">Learn to do, not just know</h3>
-                    <p>Chat with another LLM to understand concepts when you&apos;re curious</p>
-                  </div>
-                </div>
-              </div>
-              <div style={{ padding: '1rem' }} className="fragment fade-up bg-indigo-900/60 p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl mb-8 flex-grow">
-                <div className="flex mb-6">
-                  <div className="bg-blue-600/40 p-5 rounded-lg mr-8 flex items-center justify-center">
-                    <span className="text-5xl">💡</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4">Exactly what AI is good at</h3>
-                    <p>It&apos;s, like, *pretty* good at some things</p>
-                  </div>
+
+                <div className="fragment fade-up bg-indigo-800/40 p-3 md:p-4 rounded-lg border border-indigo-600/40">
+                  <h3 className="font-bold text-blue-300 flex items-center gap-2 mb-2">
+                    <span className="text-xl md:text-2xl">⚓</span> New Terminal
+                  </h3>
+                  <p className="flex items-center gap-2">
+                    Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">^ + Shift + ` / Ctrl + '</code>
+                  </p>
                 </div>
               </div>
             </div>
@@ -717,9 +610,109 @@ export default function Slides() {
         </section>
 
         {/* Slide 13 */}
+        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
+          <h2 className="fragment fade-down text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Customise Context with <span className="text-blue-300 font-bold text-3xl md:text-4xl mx-2">@</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 relative max-w-5xl mx-auto">
+            {/* Custom Rules Card */}
+            <div className="fragment fade-right bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
+              <div className="flex flex-col h-full">
+                <div className="flex items-start mb-4 md:mb-6">
+                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg flex-shrink-0 mr-4 md:mr-6">
+                    <span className="text-3xl md:text-4xl">⚙️</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl md:text-3xl font-bold text-blue-300 mb-2">Custom Rules</h3>
+                    <p className="text-lg md:text-2xl">Fine tune the AI for your project</p>
+                  </div>
+                </div>
+                <div className="fragment fade-up mt-auto text-lg md:text-xl p-4 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300">
+                  <p>Design components that are premium and delightful.<br/><br/>
+                  Explain your steps for a beginner and justify your choices.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Integrated Docs Card */}
+            <div className="fragment fade-left bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col">
+              <div className="flex flex-col h-full">
+                <div className="flex items-start mb-4 md:mb-6">
+                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg flex-shrink-0 mr-4 md:mr-6">
+                    <span className="text-3xl md:text-4xl">📚</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl md:text-3xl font-bold text-blue-300 mb-2">Integrated Docs</h3>
+                    <p className="text-lg md:text-2xl">Access documentation within Cursor</p>
+                  </div>
+                </div>
+                <div className="fragment fade-up mt-auto text-lg md:text-xl p-4 bg-indigo-950 rounded-lg border border-indigo-700 text-gray-300 space-y-2">
+                  <p className="text-lg md:text-xl">@OpenAI Use the latest documentation to implement structured outputs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Slide 14 */}
+        <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            What next?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+            {/* Left column - QR Code */}
+            <div className="fragment fade-up flex flex-col items-center justify-center">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                <div className="relative bg-indigo-900/30 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col items-center">
+                  <div 
+                    className="relative"
+                  >
+                    <Image 
+                      src="/images/whatsapp_qr.jpg" 
+                      alt="QR Code"
+                      width={520}
+                      height={520}
+                      className="rounded-lg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right column - Keep in touch */}
+            <div className="text-xl md:text-3xl flex flex-col gap-6 md:gap-8">
+              <div className="fragment fade-up bg-indigo-900/60 p-6 md:p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex-grow">
+                <div className="flex mb-4 md:mb-6">
+                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg mr-4 md:mr-8 flex items-center justify-center">
+                    <span className="text-4xl md:text-5xl">👈</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-3xl font-bold text-blue-300 mb-4">Join the gang</h3>
+                    <p>You'll probably learn faster if you're not alone.</p>
+                    <p>It's also the best way to ask me questions :D</p>
+                  </div>
+                </div>
+              </div>
+              <div className="fragment fade-up bg-indigo-900/60 p-6 md:p-10 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex-grow">
+                <div className="flex mb-4 md:mb-6">
+                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg mr-4 md:mr-8 flex items-center justify-center">
+                    <span className="text-4xl md:text-5xl">🤿</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-3xl font-bold text-blue-300 mb-4">Say yes to stuff</h3>
+                    <p>Building is the best way to learn</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Slide 15 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           {/* Tag cloud background */}
-          <div className="absolute top-0 left-0 w-[120%] h-[120%] -translate-x-[10vw] -translate-y-[10vh]">
+          <div className="absolute top-0 left-0 w-[125%] h-[120%] -translate-x-[10vw] -translate-y-[10vh]">
             <iframe
               src="/tag-cloud"
               className="w-full h-full"
@@ -727,22 +720,22 @@ export default function Slides() {
             />
           </div>
 
-          <div className="relative z-20 -translate-y-7">
+          <div className="relative z-20 justify-start">
             <div className="max-w-sm">
-              <div className="text-lg bg-indigo-900/30 p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-3">Make me better!</h3>
-                <p className="text-lg md:text-xl mb-2">Share your thoughts and experiences with the workshop</p>
+              <div className="text-base md:text-lg bg-indigo-900/30 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                <h3 className="text-lg md:text-2xl font-bold text-blue-300 mb-3">Make me better!</h3>
+                <p className="text-base md:text-xl mb-4">Share your thoughts and experiences with the workshop</p>
                 
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-1 rounded-lg">
+                <ul className="space-y-3 mb-6 md:mb-8">
+                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-2 rounded-lg">
                     <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
                     <span>What worked well?</span>
                   </li>
-                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-1 rounded-lg">
+                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-2 rounded-lg">
                     <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
                     <span>What could be improved?</span>
                   </li>
-                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-1 rounded-lg">
+                  <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-indigo-800/40 p-2 rounded-lg">
                     <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
                     <span>What would you like to learn next?</span>
                   </li>
@@ -750,7 +743,7 @@ export default function Slides() {
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-lg group-hover:blur-xl transition-all duration-300"></div>
-                  <div className="relative bg-indigo-900/30 p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col items-center">
+                  <div className="relative bg-indigo-900/30 p-6 md:p-8 pb-0 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl flex flex-col items-center">
                     <div 
                       className="relative transition-transform duration-700 ease-in-out"
                       style={{ transform: `scale(${pulseSize/220})` }}
@@ -759,35 +752,15 @@ export default function Slides() {
                         <QRCodeSVG 
                           value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/feedback`}
                           size={220}
-                          bgColor={qrColors.bg}
-                          fgColor={qrColors.fg}
                         level="L"
-                        className={`bg-${qrColors.bg} p-2 rounded-lg transition-all duration-300 hover:shadow-2xl`}
+                        className={`bg-white p-2 rounded-lg transition-all duration-300 hover:shadow-2xl`}
                       />
                       </a>
                     </div>
 
-                    <div className="relative left-0 right-0 text-center mt-2">
-                      <p className="text-sm text-blue-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <p className="text-sm text-blue-300">
                         It takes 3 minutes!
                       </p>
-                    </div>
-
-                    <div className="mt-4 flex justify-center gap-2">
-                      {ColorPresets.map((preset) => (
-                        <button
-                          key={preset.name}
-                          onClick={() => setQrColors(preset)}
-                          className={`w-8 h-8 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg ${
-                            qrColors === preset ? 'ring-2 ring-blue-400 scale-110' : ''
-                          }`}
-                          style={{ 
-                            background: `linear-gradient(45deg, ${preset.bg}, ${preset.fg})`,
-                          }}
-                          title={preset.name}
-                        />
-                      ))}
-                    </div>
                   </div>
                 </div>
               </div>

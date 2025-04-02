@@ -96,7 +96,7 @@ export default function TagCloudPage() {
       // Create a logarithmic scale for tag sizes that maximizes space usage
       const sizeScale = d3.scaleLog()
         .domain([Math.max(1, minFreq), Math.max(2, maxFreq)])
-        .range([45, 90]) // Reduced base range to allow for more dynamic scaling
+        .range([80, 160]) // Reduced base range to allow for more dynamic scaling
         .clamp(true);
         
       // Convert to format needed for d3-cloud
@@ -243,7 +243,7 @@ export default function TagCloudPage() {
 
       // Create word cloud layout with more padding for sparse and readable cloud
       const layout = cloud<CloudWord>()
-        .size([width, height])
+        .size([width * 0.77, height]) // Constrain width to two-thirds
         .words(tags as CloudWord[])
         .padding(() => {
           // Dynamic padding based on tag count
@@ -264,36 +264,8 @@ export default function TagCloudPage() {
           return ~~(Math.random() * 3) * 30 - 30;
         })
         .fontSize(d => {
-          // Dynamically scale font sizes based on tag count and available space
-          const baseSize = d.size;
-          
-          // Calculate available area per tag
-          const totalArea = width * height;
-          const areaPerTag = totalArea / tags.length;
-          
-          // Calculate ideal size based on area (square root for 2D scaling)
-          const idealSize = Math.sqrt(areaPerTag) * 0.8; // 0.8 factor to account for padding
-          
-          // Apply scaling based on tag count for better distribution 
-          let countScale = 1;
-          if (tags.length > 50) countScale = 0.7;
-          else if (tags.length > 30) countScale = 0.8;
-          else if (tags.length > 15) countScale = 0.9;
-          
-          // Scale based on viewport size
-          const viewportScale = Math.min(
-            width / 800, // Scale by width ratio
-            height / 600  // Scale by height ratio
-          );
-          
-          // Combine all scaling factors
-          const finalScale = Math.min(
-            idealSize / baseSize, // Scale to fit available space
-            viewportScale * countScale // Scale based on viewport and count
-          );
-          
-          // Scale the size but maintain a minimum readable size
-          return Math.max(baseSize * finalScale, 14);
+          // Use the size directly from sizeScale, with a minimum size
+          return Math.max(d.size, 14);
         })
         .spiral("rectangular") // Use rectangular spiral for better space utilization
         .random(() => 0.5) // Deterministic layout
@@ -308,7 +280,7 @@ export default function TagCloudPage() {
           .attr("width", width)
           .attr("height", height)
           .append("g")
-          .attr("transform", `translate(${width / 2},${height / 2})`);
+          .attr("transform", `translate(${width * 0.67},${height / 2})`); // Shift to right two-thirds
 
         // Update background glow for better visibility
         g.selectAll<SVGTextElement, CloudWord>(".word-bg")
@@ -496,21 +468,6 @@ export default function TagCloudPage() {
             <span className="inline-flex items-center">
               <span className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>
               No tags submitted yet
-            </span>
-          </div>
-        )}
-
-        {/* Live data badge with timestamp */}
-        {!useMockData && lastUpdated && (
-          <div className="absolute top-4 right-4 bg-indigo-900/70 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-white border border-indigo-700/50 shadow-lg">
-            <span className="inline-flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-              <div>
-                <span>Live workshop tags</span>
-                <span className="text-xs block text-blue-300">
-                  Last updated: {lastUpdated.toLocaleTimeString()}
-                </span>
-              </div>
             </span>
           </div>
         )}
