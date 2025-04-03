@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiCode, FiCoffee, FiAward, FiMapPin, FiCalendar, FiStar, FiArrowRight } from 'react-icons/fi';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { supabase } from '../lib/supabase';
@@ -24,6 +24,54 @@ interface Event {
   code: string;
   formattedDate: string;
 }
+
+const RotatingWord = () => {
+  const words = ['innovative', 'vibey', 'intuitive'];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isWobbling, setIsWobbling] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Start wobble 500ms before change
+      setIsWobbling(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % words.length);
+        setIsWobbling(false);
+      }, 500);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <span className="inline-block relative h-[1.12em] w-[157px]">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentIndex}
+          initial={{ y: 20, opacity: 0, scale: 0.8 }}
+          animate={{ 
+            y: 0, 
+            opacity: 1, 
+            scale: 1,
+            rotate: isWobbling ? [0, -2, 2, -1, 1, 0] : 0
+          }}
+          exit={{ y: -20, opacity: 0, scale: 1.2 }}
+          transition={{ 
+            duration: 0.5, 
+            ease: [0.4, 0, 0.2, 1],
+            rotate: {
+              duration: 0.5,
+              ease: "easeInOut",
+              times: [0, 0.2, 0.4, 0.6, 0.8, 1]
+            }
+          }}
+          className="absolute left-0 right-0 text-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold"
+        >
+          {words[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+};
 
 export default function HomePage() {
   const [displayTestimonials, setDisplayTestimonials] = useState<DisplayTestimonial[]>([]);
@@ -200,32 +248,7 @@ export default function HomePage() {
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-indigo-900/60 backdrop-blur-lg border-b border-blue-500/30">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="p-2 bg-white/10 backdrop-blur-sm rounded-full">
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Z2C
-              </span>
-            </div>
-          </Link>
-          
-          <div className="flex items-center space-x-4">
-            <a
-              href={`https://lu.ma/event/${nextEvent?.code}`}
-              className="luma-checkout--button bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200"
-              data-luma-action="checkout"
-              data-luma-event-id={nextEvent?.code}
-            >
-              Register for the next workshop
-            </a>
-          </div>
-        </div>
-      </header>
-
-      {/* Add padding to account for fixed header */}
-      <div className="pt-16">
+      <div className="">
         <div className="container mx-auto px-4 py-12 relative z-10">
           {/* Hero Section */}
           <motion.div 
@@ -237,7 +260,7 @@ export default function HomePage() {
               Zero to Coder
             </h1>
             <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-              Transform from beginner to confident coder in London&apos;s most innovative coding workshops
+              Transform from beginner to confident coder in London&apos;s most<RotatingWord />coding workshops
             </p>
           </motion.div>
 
