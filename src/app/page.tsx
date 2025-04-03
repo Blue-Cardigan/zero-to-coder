@@ -40,7 +40,7 @@ const RotatingWord = () => {
       }, 500);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length]);
 
   return (
     <span className="inline-block relative h-[1.12em] w-[157px]">
