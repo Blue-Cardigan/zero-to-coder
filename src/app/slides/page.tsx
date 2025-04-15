@@ -9,6 +9,8 @@ import { QRCodeSVG } from 'qrcode.react';
 import Image from 'next/image';
 import PasscodeScreen from '@/components/PasscodeScreen';
 import GitFlowDiagram from '@/components/GitFlowDiagram';
+import LinkShareForm from '@/components/LinkShareForm';
+import SharedLinksList from '@/components/SharedLinksList';
 
 const ColorPresets = [
   { bg: '#ffffff', fg: '#000000', name: 'Classic' },
@@ -71,7 +73,22 @@ export default function Slides() {
       <div className="slides">
         {/* Slide 1 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <div className="fixed -top-24 right-2 md:right-0">
+            <div className="bg-indigo-900/30 p-1 md:p-2 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+              <div className="flex justify-center items-center pt-4">
+                <QRCodeSVG 
+                  value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
+                  size={200}
+                  bgColor={qrColors.bg}
+                  fgColor={qrColors.fg}
+                  level="H"
+                  className="rounded-lg transition-all duration-300 hover:shadow-lg"
+                />
+              </div>
+              <p className="text-sm md:text-xl text-blue-300 text-center"><a href="https://zero-to-coder.vercel.app/slides" target="_blank" rel="noopener noreferrer">zero-to-coder.vercel.app/slides</a></p>
+            </div>
+          </div>
+          <h1 className="text-6xl md:text-6xl font-bold mb-8 md:mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Welcome to 
             <br />
             Zero-to-coder
@@ -87,21 +104,6 @@ export default function Slides() {
                 <span className="text-blue-300 text-4xl md:text-5xl mr-4 md:mr-6">&nbsp;💻</span>
                 <span className="text-lg md:text-xl">Install <span className="text-blue-300 font-bold"><a href="https://cursor.sh" target="_blank" rel="noopener noreferrer">&nbsp;Cursor</a></span></span>
               </div>
-            </div>
-          </div>
-          <div className="absolute top-0 right-4 md:right-8">
-            <div className="bg-indigo-900/30 p-3 md:p-4 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-              <div className="text-center mb-2">
-                <p className="text-lg md:text-xl text-blue-300">Scan for slides</p>
-              </div>
-              <QRCodeSVG 
-                value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
-                size={120}
-                bgColor={qrColors.bg}
-                fgColor={qrColors.fg}
-                level="L"
-                className="rounded-lg transition-all duration-300 hover:shadow-lg"
-              />
             </div>
           </div>
         </section>
@@ -177,7 +179,10 @@ export default function Slides() {
 
         {/* Slide 4 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Let's get started...
+          </h1>
+          <h2 className="fragment fade-up text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Open <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">Bolt.new</a> and prompt a nice landing page
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -216,7 +221,7 @@ export default function Slides() {
                   <div className="flex items-center mb-2">
                     <h3 className="text-xl md:text-2xl font-bold text-blue-300">Export the files (at the top)</h3>
                   </div>
-                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Look for the export button in the Bolt interface</p>
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Then extract the files and move them to a good folder (e.g Documents/Code/[project name])</p>
                 </li>
                 <li className="fragment fade-up">
                   <div className="flex items-center mb-2">
@@ -226,28 +231,87 @@ export default function Slides() {
                 </li>
                 <li className="fragment fade-up">
                   <div className="flex items-center mb-2">
-                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Ask the AI to help</h3>
+                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Begin the vibe</h3>
                   </div>
-                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Type &apos;Get this project running on localhost&apos; in the chat</p>
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Type &apos;Get this project running on localhost&apos; in the chat (⌘/Ctrl+L), then follow the installation steps</p>
                 </li>
               </ol>
             </div>
             <div className="flex justify-center order-2 md:order-2">
-              <div className="w-full max-w-[450px] relative">
-                <div className="fragment fade-left bg-indigo-800/40 p-4 rounded-lg shadow-lg flex items-center justify-center">
+              <div className="w-full max-w-[400px] relative">
+                <div className="fragment fade-left bg-indigo-800/40 p-4 rounded-lg shadow-lg flex items-center justify-center relative">
                   <Image 
-                    src="/images/cursor_localhost.png" 
+                    src="/images/cursor_accept.png" 
                     alt="Cursor screenshot" 
                     width={450} 
-                    height={253} 
+                    height={233} 
                     className="w-full h-full object-contain rounded-lg"
                   />
+                  {/* Floating overlays */}
+                  <div className="absolute top-[15%] right-[75%] bg-blue-500/80 text-white p-2 rounded-lg text-sm max-w-[160px] shadow-lg transform translate-x-1/2 translate-y-1/2">
+                    Run a command in the terminal (interface with your machine)
+                  </div>
+                  <div className="absolute bottom-[10%] right-[70%] bg-green-500/80 text-white p-2 rounded-lg text-sm max-w-[140px] shadow-lg transform translate-x-1/2 translate-y-1/2">
+                    Accept changes to code files
+                  </div>
                 </div>
-                <div className="fragment fade-up absolute bottom-[30%] left-0 right-0 bg-indigo-900/90 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-600/50 floating-overlay">
-                  <p className="text-lg md:text-xl text-blue-300 text-center font-semibold">
-                    Ask an LLM questions before you ask me. The best outcome you can get from this workshop is to learn to problem solve yourself.
+              </div>
+            </div>
+          </div>
+        </section>
+        
+
+        {/* Slide 5.5 */}
+        <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Get the Vibes Flowing
+          </h2>
+          <div className="fragment fade-up grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+            <div className="text-xl md:text-3xl space-y-4 md:space-y-6 bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl order-1 md:order-1">
+              <ol className="list-none space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-blue-300">Hot Tips 🔥</h3>             
+                <li className="fragment fade-up">
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl"><span className="text-red-300 font-bold">Read and respond</span>, then the <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent font-bold">vibes will flow</span></p>
+                </li>
+                <li className="fragment fade-up">
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">
+                    Many installation obstacles can be overcome by closing Cursor and opening it again.
                   </p>
+                </li>
+
+                <li className="fragment fade-up">
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Watch for the New Chat button in the bottom right corner of the screen</p>
+                </li>
+                <li className="fragment fade-up">
+                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Open a real terminal to run <code className="text-blue-300">npm run dev</code> <br/>(⌃ + ⇧ + ` or Ctrl + &apos;)</p>
+                </li>
+              </ol>
+            </div>
+            <div className="flex-col-2 justify-center order-2 md:order-2">
+              <div className="w-full max-w-[400px] relative left-20">
+                <div className="relative w-full">
+                  <Image 
+                    src="/images/new_chat_prompt.png" 
+                    alt="new chat" 
+                    width={600} 
+                    height={670} 
+                    className="w-full h-auto object-contain drop-shadow-lg" 
+                  />
+                  <div className="absolute bottom-[34%] right-[7%] w-[15%] aspect-[1.75/1] border-4 border-red-500/70 rounded-full animate-pulse"></div>
+                  <div className="text-gray-300 text-lg md:text-xl">When chats get too long, the model starts to hallucinate</div>
                 </div>
+              </div>
+              <div className="w-full max-w-[600px] relative">
+                <div className="relative w-full">
+                  <Image 
+                    src="/images/open_terminal.png" 
+                    alt="new chat" 
+                    width={600} 
+                    height={670} 
+                    className="w-full h-auto object-contain drop-shadow-lg" 
+                  />
+                </div>
+                <div className="text-gray-300 text-lg md:text-xl">The terminal will appear in the bottom-centre of the screen</div>
               </div>
             </div>
           </div>
@@ -256,41 +320,46 @@ export default function Slides() {
         {/* Slide 6 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Play around adding functionality
+            Once the coding begins
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="fragment fade-up text-xl md:text-2xl bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-fit">
-              <div className="space-y-4 md:space-y-6">
-                <div className="fragment fade-up flex">
-                  <p className="text-lg md:text-2xl">&nbsp;💡 When it breaks, <span className="text-blue-300 font-bold">investigate</span> — debugging is part of coding</p>
+            <div className="flex flex-col gap-6">
+              
+              <div className="fragment fade-up">
+                <div className="bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <p className="text-xl md:text-2xl text-center">
+                    <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent font-bold">When it breaks, don't be <span className="text-red-300 font-bold">glum</span> — be <span className="text-green-300 font-bold">curious</span></span>
+                  </p>
                 </div>
-                
-                <div className="fragment fade-up flex">
-                  <p className="text-lg md:text-2xl">&nbsp;🤔 Moving too fast? Frustrated?<span className="text-blue-300 font-bold">Formulate a specific question</span> and ask an LLM</p>
+              </div>
+              
+              <div className="fragment fade-up">
+                <div className="bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
+                  <p className="text-xl md:text-2xl text-center">
+                    <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent font-bold">Look things up — the more you know, the better you can babysit the agent</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="fragment fade-up">
+                <div className="bg-indigo-900/60 p-6 md:p-8 rounded-xl border-2 border-indigo-600/70 shadow-2xl max-w-4xl mx-auto">
+                  <p className="text-xl md:text-2xl text-center font-bold">
+                    <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text text-transparent">
+                      Developers are always learning — the tools are endless
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
-
-            <div className="flex flex-col gap-6">
-                {/* Final message that appears last with more space */}
-              <div className="fragment fade-up">
-                <div className="bg-indigo-900/60 p-6 md:p-8 rounded-xl border-2 border-indigo-600/70 shadow-2xl max-w-4xl mx-auto">
-                  <p className="text-2xl md:text-3xl text-center font-bold">
-                      <span className="bg-gradient-to-r from-blue-300 to-purple-400 bg-clip-text">
-                        Developers are always learning — the tools are endless</span>
-                    </p>
-                  </div>
-                </div>
             
-              <div className="flex items-center justify-center mt-4 md:mt-8">
-                <Image 
-                  src="/images/spanner.png" 
-                  alt="Spanner tool" 
-                  width={350}
-                  height={350}
-                  className="w-full max-w-[350px] object-contain drop-shadow-lg"
-                />
-              </div>
+            <div className="flex items-center justify-center mt-4 md:mt-8">
+              <Image 
+                src="/images/spanner.png" 
+                alt="Spanner tool" 
+                width={350}
+                height={350}
+                className="w-full max-w-[350px] object-contain drop-shadow-lg"
+              />
             </div>
           </div>
         </section>
@@ -306,7 +375,7 @@ export default function Slides() {
               <div className="bg-indigo-900/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
                 <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">Push to GitHub</h3>
                 <span className="text-lg md:text-xl">
-                  <p>Git tracks your project&apos;s changes. Github stores it in the cloud.</p>
+                  <p>"Provide steps to initialise a new git repo, add a remote, and push to GitHub"</p>
                 </span>
               </div>
 
@@ -354,14 +423,25 @@ export default function Slides() {
           </div>
         </section>
 
-        {/* New Slide - Time to Share */}
+        {/* Time to Share */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           <div className="flex flex-col items-center justify-center min-h-[70vh]">
-            <h2 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg mb-12">
+            <h2 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg mb-6 md:mb-8">
               Time to Share!
             </h2>
-            <div className="fragment fade-up">
-                <span style={{ fontSize: '16rem' }}>🎉</span>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full max-w-5xl mx-auto mb-6">
+              <div className="fragment fade-up">
+                <LinkShareForm />
+              </div>
+              
+              <div className="fragment fade-up flex flex-col">
+                <SharedLinksList />
+              </div>
+            </div>
+            
+            <div className="fragment fade-up mt-4 md:mt-6">
+              <span className="text-6xl md:text-7xl">🎉</span>
             </div>
           </div>
         </section>
@@ -447,6 +527,7 @@ export default function Slides() {
           <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Create a new project in Cursor
           </h2>
+          <p className="text-xl md:text-3xl text-gray-200 mb-6 md:mb-8">File -&gt; New Window -&gt; Open Project... and create a new project</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="fragment fade-up text-xl md:text-3xl space-y-4 md:space-y-6 bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl h-full">
               <div className="space-y-4 md:space-y-6">
@@ -540,7 +621,7 @@ export default function Slides() {
                   <li className="fragment fade-up bg-indigo-800/40 p-3 md:p-4 rounded-lg border border-indigo-600/40">
                     <div className="flex items-center gap-2">
                       <span>New chat</span>
-                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + Shift + L</code>
+                      <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + ⇧ + L</code>
                     </div>
                   </li>
                   <div className="fragment fade-up flex text-left relative">
@@ -588,7 +669,7 @@ export default function Slides() {
                   </h3>
                   <div className="space-y-2">
                     <p className="flex items-center gap-2">
-                      All project files <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + Shift + F</code>
+                      All project files <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + ⇧ + F</code>
                     </p>
                     <p className="flex items-center gap-2">
                       Filename <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">⌘/Ctrl + P</code>
@@ -601,7 +682,7 @@ export default function Slides() {
                     <span className="text-xl md:text-2xl">⚓</span> New Terminal
                   </h3>
                   <p className="flex items-center gap-2">
-                    Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">^ + Shift + ` / Ctrl + &apos;</code>
+                    Use <code className="bg-indigo-950 px-2 py-1 rounded border border-indigo-700 text-sm md:text-base">^ + ⇧ + ` / Ctrl + &apos;</code>
                   </p>
                 </div>
               </div>

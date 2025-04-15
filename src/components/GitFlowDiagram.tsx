@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function GitFlowDiagram() {
   return (
@@ -36,6 +37,11 @@ export default function GitFlowDiagram() {
           <stop offset="0%" style={{ stopColor: '#ffffff' }} />
           <stop offset="100%" style={{ stopColor: '#f8fafc' }} />
         </linearGradient>
+
+        {/* Cloud filter for drop shadow */}
+        <filter id="cloud-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000" floodOpacity="0.25"/>
+        </filter>
       </defs>
 
       {/* Local Repository Box */}
@@ -87,32 +93,49 @@ export default function GitFlowDiagram() {
         </text>
       </g>
 
-      {/* Remote Repository Box */}
+      {/* Remote Repository Cloud */}
       <g transform="translate(350, 40)">
-        <rect
-          width="140"
-          height="90"
-          rx="10"
+        {/* Cloud shape */}
+        <path
+          d="M 70,5 
+             C 45,5 25,20 25,40 
+             C 10,40 0,55 0,70 
+             C 0,85 15,100 35,100 
+             C 40,110 55,115 70,115 
+             C 85,115 100,110 105,100 
+             C 125,100 140,85 140,70 
+             C 140,55 130,40 115,40 
+             C 115,20 95,5 70,5 z"
           fill="url(#remoteGradient)"
           stroke="#a855f7"
           strokeWidth="2"
-          className="drop-shadow-lg"
+          filter="url(#cloud-shadow)"
         />
         <text
           x="70"
-          y="50"
+          y="60"
           textAnchor="middle"
           fill="#bfdbfe"
           className="text-base font-semibold"
         >
-          <tspan x="70" y="40" textAnchor="middle" fill="#bfdbfe" className="text-base font-semibold">
+          <tspan x="70" y="50" textAnchor="middle" fill="#bfdbfe" className="text-base font-semibold">
             Remote
           </tspan>
-          <tspan x="70" y="60" textAnchor="middle" fill="#bfdbfe" className="text-base font-semibold">
-            Repository
+          <tspan x="70" y="70" textAnchor="middle" fill="#bfdbfe" className="text-base font-semibold">
+            (Github)
           </tspan>
         </text>
       </g>
+
+      {/* GitHub Logo */}
+      <foreignObject x="370" y="110" width="100" height="130">
+        <Image 
+          src="/images/gh-logo.png" 
+          height={100} 
+          width={100} 
+          alt="GitHub Logo"
+        />
+      </foreignObject>
 
       {/* Arrows */}
       <g stroke="url(#arrowGradient)" strokeWidth="2" fill="none">
@@ -165,32 +188,6 @@ export default function GitFlowDiagram() {
             strokeWidth="1"
             className="text-sm font">
             git commit & push
-          </text>
-        </g>
-
-        {/* Remote to Local */}
-        <path
-          d="M 420 130 C 420 400, 290 200, 150 245"
-          markerEnd="url(#arrowhead)"
-        />
-        <g transform="translate(370, 270)">
-          <rect
-            x="-35"
-            y="-12"
-            width="70"
-            height="24"
-            rx="6"
-            fill="url(#commandGradient)"
-          />
-          <text 
-            x="0" 
-            y="4" 
-            textAnchor="middle"
-            fill="#bfdbfe"
-            stroke="url(#textStrokeGradient)"
-            strokeWidth="1"
-            className="text-sm font">
-            git pull
           </text>
         </g>
       </g>

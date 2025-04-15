@@ -13,6 +13,14 @@ export type FeedbackRecord = {
   tags?: string[];
 };
 
+export type SharedLink = {
+  id?: number;
+  created_at?: string;
+  name: string;
+  project_url: string;
+  description?: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -20,6 +28,11 @@ export type Database = {
         Row: FeedbackRecord;
         Insert: Omit<FeedbackRecord, 'id' | 'created_at'>;
         Update: Partial<FeedbackRecord>;
+      };
+      shared_links: {
+        Row: SharedLink;
+        Insert: Omit<SharedLink, 'id' | 'created_at'>;
+        Update: Partial<SharedLink>;
       };
     };
   };
