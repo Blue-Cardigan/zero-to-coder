@@ -8,6 +8,7 @@ export type FeedbackRecord = {
   email: string;
   went_well: string;
   could_improve: string;
+  next_session_topics: string;
   project_url: string;
   testimonial: string;
   tags?: string[];

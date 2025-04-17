@@ -24,6 +24,7 @@ export default function FeedbackPage() {
     email: '',
     wentWell: '',
     couldImprove: '',
+    nextSessionTopics: '',
     projectUrl: '',
     testimonial: ''
   });
@@ -136,6 +137,7 @@ export default function FeedbackPage() {
             email: formData.email,
             went_well: formData.wentWell,
             could_improve: formData.couldImprove,
+            next_session_topics: formData.nextSessionTopics,
             project_url: formData.projectUrl,
             testimonial: formData.testimonial,
             tags: formattedTags.length > 0 ? formattedTags : null
@@ -347,6 +349,26 @@ export default function FeedbackPage() {
                   )}
                 </div>
                 
+                <div className="relative">
+                  <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
+                    <FiStar className={`mr-2 text-green-400 ${activeField === 'nextSessionTopics' ? 'drop-shadow-glow' : ''}`} />
+                    What would make you excited about Zero-to-Coder&nbsp;<strong>Part 2</strong>?
+                  </label>
+                  <textarea
+                    name="nextSessionTopics"
+                    value={formData.nextSessionTopics}
+                    onChange={handleChange}
+                    onFocus={() => handleFocus('nextSessionTopics')}
+                    onBlur={handleBlur}
+                    rows={3}
+                    className={`w-full bg-blue-950/40 border ${errors.nextSessionTopics ? 'border-red-500' : activeField === 'nextSessionTopics' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                    placeholder="Topics or skills you'd like to explore in a follow-up session..."
+                  />
+                  {errors.nextSessionTopics && (
+                    <p className="text-red-400 text-xs mt-1 ml-1">{errors.nextSessionTopics}</p>
+                  )}
+                </div>
+                
                 <motion.div 
                   className="relative"
                   animate={{ 
@@ -356,29 +378,8 @@ export default function FeedbackPage() {
                   transition={{ duration: 0.4 }}
                 >
                   <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                    <FiLink className={`mr-2 ${activeField === 'projectUrl' ? 'text-blue-400' : ''}`} />
-                    Link to your project (If you want it featured on my website)
-                  </label>
-                  <input
-                    type="url"
-                    name="projectUrl"
-                    required={false}
-                    value={formData.projectUrl}
-                    onChange={handleChange}
-                    onFocus={() => handleFocus('projectUrl')}
-                    onBlur={handleBlur}
-                    className={`w-full bg-blue-950/40 border ${errors.projectUrl ? 'border-red-500' : activeField === 'projectUrl' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
-                    placeholder="https://your-project.vercel.app"
-                  />
-                  {errors.projectUrl && (
-                    <p className="text-red-400 text-xs mt-1 ml-1">{errors.projectUrl}</p>
-                  )}
-                </motion.div>
-                
-                <div className="relative">
-                  <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
                     <FiStar className={`mr-2 text-purple-400 ${activeField === 'testimonial' ? 'drop-shadow-glow' : ''}`} />
-                    Testimonial for our website
+                    Testimonial for the website
                   </label>
                   <textarea
                     name="testimonial"
@@ -390,13 +391,13 @@ export default function FeedbackPage() {
                     className={`w-full bg-blue-950/40 border ${activeField === 'testimonial' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
                     placeholder="Share your experience that I can feature on my website..."
                   />
-                </div>
+                </motion.div>
                 
                 {/* Tag your experience section */}
                 <div className="relative">
                   <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
                     <FiTag className={`mr-2 text-teal-400 ${activeField === 'tags' ? 'drop-shadow-glow' : ''}`} />
-                    Tag your experience (Then look up at the slides)
+                    Tag your experience (Then look at the last slide!)
                   </label>
                   
                   <div className="flex flex-wrap gap-2 mb-2">
@@ -428,7 +429,7 @@ export default function FeedbackPage() {
                       onFocus={() => handleFocus('tags')}
                       onBlur={handleBlur}
                       className={`flex-grow bg-blue-950/40 border ${tagError ? 'border-red-500' : activeField === 'tags' ? 'border-teal-400' : 'border-blue-700/50'} focus:border-teal-500 rounded-lg rounded-r-none px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
-                      placeholder="'awe-inspiring', 'breathtaking', 'captivating'..."
+                      placeholder="'awe-inspiring', '𝓵𝓲𝓯𝓮-𝓬𝓱𝓪𝓷𝓰𝓲𝓷𝓰', 'g̴̢͓̬͖̬͔̤̼͑̐̉͑̐̀̀̈́͆͊̃̚͝͝l̵̡̙̲̭͛̌͋̀̀ͅi̶̱̮̊̿͒̄͊͋͒̃̾̋̏̏̕͠t̴̡̢̜͔̣̫̼̮̱̮̲̥̀̿̄̿͗͘̕͘͜͝͝c̶̨̧̟̭̺͔̳̻̺̫̹̐̊̏̄͋̅̓̍̓̄̅̄͜h̵̲̎́̾̂̑̿͊͠y̵͓̦̒̚'..."
                       maxLength={MAX_TAG_LENGTH}
                     />
                     <button
@@ -444,10 +445,6 @@ export default function FeedbackPage() {
                   {tagError && (
                     <p className="text-red-400 text-xs mt-1 ml-1">{tagError}</p>
                   )}
-                  
-                  <p className="text-xs text-blue-300 mt-1 ml-1">
-                    {tags.length}/{MAX_TAGS} tags • Press Enter or click + to add • Max {MAX_TAG_LENGTH} chars per tag
-                  </p>
                 </div>
               </div>
               
@@ -485,7 +482,7 @@ export default function FeedbackPage() {
             <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl">
               <h3 className="text-xl font-semibold mb-3 flex items-center">
                 <FiAward className="text-yellow-400 mr-2 drop-shadow-glow" /> 
-                <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">About Zero to Coder</span>
+                <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">About Z2C</span>
               </h3>
               <p className="text-blue-200 mb-4">
                 My workshop is designed to help beginners transform into confident coders from the top-down, starting with results and working backwards.

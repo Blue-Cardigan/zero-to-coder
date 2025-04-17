@@ -3,6 +3,7 @@ export type FeedbackFormData = {
   email: string;
   wentWell: string;
   couldImprove: string;
+  nextSessionTopics: string;
   projectUrl: string;
   testimonial: string;
   tags?: string[]; // Optional array of tag strings
