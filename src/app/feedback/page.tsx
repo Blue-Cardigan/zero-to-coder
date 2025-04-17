@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { FiSend, FiUser, FiMail, FiLink, FiCheckCircle, FiStar, FiArrowRight, FiAward, FiCoffee, FiCode, FiTag, FiX, FiPlus } from 'react-icons/fi';
+import { FiSend, FiUser, FiMail, FiCheckCircle, FiStar, FiArrowRight, FiAward, FiCoffee, FiCode, FiTag, FiX, FiPlus } from 'react-icons/fi';
 import { supabase } from '../../lib/supabase';
 import { validateFeedbackForm, type FeedbackFormData, type ValidationErrors } from '../../lib/validation';
 import '../globals.css';
