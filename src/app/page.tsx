@@ -6,7 +6,6 @@ import { FiCode, FiCoffee, FiAward, FiMapPin, FiCalendar, FiStar, FiArrowRight }
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { supabase } from '../lib/supabase';
 import { useEffect, useState } from 'react';
-import events from '../data/events.json';
 import { testimonialConfig } from '../config/testimonials';
 import Link from 'next/link';
 import Script from 'next/script';
