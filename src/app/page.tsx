@@ -77,7 +77,6 @@ export default function HomePage() {
   const [displayTestimonials, setDisplayTestimonials] = useState<DisplayTestimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [nextEvent, setNextEvent] = useState<Event | null>(null);
-  const [pastEvents, setPastEvents] = useState<Event[]>([]);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -186,51 +185,6 @@ export default function HomePage() {
 
     fetchTestimonials();
   }, []);
-
-  useEffect(() => {
-    // Process events once on component mount
-    const processEvents = () => {
-      const sortedEvents: Event[] = Object.entries(events)
-        .map(([dateKey, code]) => {
-          const [day, month, year] = dateKey.split('_').map(Number);
-          const date = new Date(year, month - 1, day);
-          
-          const formattedDate = new Intl.DateTimeFormat('en-GB', {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-          }).format(date);
-
-          return {
-            date,
-            code,
-            formattedDate
-          };
-        })
-        .sort((a, b) => a.date.getTime() - b.date.getTime());
-
-      const now = new Date();
-      const future = sortedEvents.filter(event => event.date > now);
-      const past = sortedEvents.filter(event => event.date <= now)
-        .sort((a, b) => b.date.getTime() - a.date.getTime()); // Sort past events in reverse chronological order
-      
-      // Set next event (if any upcoming, otherwise most recent past)
-      setNextEvent(future[0] || past[0] || null);
-      
-      // Remove the most recent past event if it's being shown as "next"
-      const pastEventsToShow = future[0] ? past : past.slice(1);
-      
-      // Duplicate past events if needed to ensure at least 5 items
-      let processedPastEvents = [...pastEventsToShow];
-      while (processedPastEvents.length < 5) {
-        processedPastEvents = [...processedPastEvents, ...pastEventsToShow];
-      }
-      setPastEvents(processedPastEvents);
-    };
-
-    processEvents();
-  }, []); // Empty dependency array since events is imported statically
 
   const getFirstName = (fullName: string) => {
     return fullName.split(' ')[0];
