@@ -18,12 +18,6 @@ interface DisplayTestimonial {
   project_url?: string;
 }
 
-interface Event {
-  date: Date;
-  code: string;
-  formattedDate: string;
-}
-
 const RotatingWord = () => {
   const words = ['innovative', 'vibey', 'intuitive'];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -75,7 +69,6 @@ const RotatingWord = () => {
 export default function HomePage() {
   const [displayTestimonials, setDisplayTestimonials] = useState<DisplayTestimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [nextEvent, setNextEvent] = useState<Event | null>(null);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -314,7 +307,6 @@ export default function HomePage() {
               {/* Upcoming/Most Recent Workshop */}
               <div className="gap-4">
                 <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl max-h-[600px]">
-                  {nextEvent ? (
                     <div className="relative h-full">
                       <iframe
                         src="https://lu.ma/embed/calendar/cal-EnG2LIAEMCY2vYF/events"
@@ -325,16 +317,9 @@ export default function HomePage() {
                           border: "1px solid #bfcbda88",
                           borderRadius: "4px"
                         }}
-                        allowFullScreen=""
                         aria-hidden="false"
-                        tabIndex="0"
                       ></iframe>
                     </div>
-                  ) : (
-                    <div className="h-full flex items-center justify-center text-blue-300">
-                      No workshops found
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
