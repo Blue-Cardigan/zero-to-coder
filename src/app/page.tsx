@@ -284,7 +284,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-blue-300">About Jethro</h2>
-                  <p className="text-blue-200">Your Coding Mentor</p>
+                  <p className="text-blue-200">Your Instructor</p>
                 </div>
               </div>
               
@@ -346,6 +346,46 @@ export default function HomePage() {
               </div>
             </motion.div>
           </div>
+
+          {/* Workshops Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+              Upcoming Workshops
+            </h2>
+            
+            <div className="gap-8">
+              {/* Upcoming/Most Recent Workshop */}
+              <div className="gap-4">
+                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl max-h-[600px]">
+                  {nextEvent ? (
+                    <div className="relative h-full">
+                      <iframe
+                        src="https://lu.ma/embed/calendar/cal-EnG2LIAEMCY2vYF/events"
+                        className="w-full"
+                        height="450"
+                        frameBorder="0"
+                        style={{
+                          border: "1px solid #bfcbda88",
+                          borderRadius: "4px"
+                        }}
+                        allowFullScreen=""
+                        aria-hidden="false"
+                        tabIndex="0"
+                      ></iframe>
+                    </div>
+                  ) : (
+                    <div className="h-full flex items-center justify-center text-blue-300">
+                      No workshops found
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Testimonials */}
           <motion.div
@@ -437,90 +477,9 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Workshops Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-              Workshops
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Upcoming/Most Recent Workshop */}
-              <div className="md:col-span-2 grid grid-rows-[auto_1fr] gap-4">
-                <h3 className="text-xl font-semibold text-blue-300">
-                  {nextEvent?.date && nextEvent.date > new Date() ? 'Next Workshop' : 'Most Recent Workshop'}
-                </h3>
-                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl max-h-[600px]">
-                  {nextEvent ? (
-                    <div className="relative h-full">
-                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white text-sm px-3 py-1 rounded-full">
-                        {nextEvent.date > new Date() ? 'Upcoming' : 'Most Recent'}
-                      </div>
-                      <div className="text-sm text-blue-400 font-medium mb-2">
-                        {nextEvent.formattedDate}
-                      </div>
-                      <iframe
-                        src={`https://lu.ma/embed/event/${nextEvent.code}/simple`}
-                        className="w-full h-[calc(100%-2rem)]"
-                        frameBorder="0"
-                        style={{ 
-                          border: '1px solid #bfcbda55',
-                          borderRadius: '8px',
-                          transition: 'all 0.3s ease',
-                          opacity: nextEvent.date > new Date() ? '1' : '0.8',
-                        }}
-                        allowFullScreen
-                        aria-hidden="false"
-                        tabIndex={0}
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-full flex items-center justify-center text-blue-300">
-                      No workshops found
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Past Workshops */}
-              <div className="grid grid-rows-[auto_1fr] gap-4">
-                <h3 className="text-xl font-semibold text-blue-300">Past Workshops</h3>
-                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl max-h-[600px]">
-                  <div className="h-full overflow-y-auto pr-2 custom-scrollbar space-y-4">
-                    {pastEvents.slice(0, 5).map((event, index) => (
-                      <div
-                        key={`${event.code}-${index}`}
-                        className="bg-indigo-900/30 rounded-lg p-4 border border-blue-700/30"
-                      >
-                        <div className="text-sm text-blue-400 font-medium mb-2">
-                          {event.formattedDate}
-                        </div>
-                        <iframe
-                          src={`https://lu.ma/embed/event/${event.code}/simple`}
-                          className="w-full h-[200px]"
-                          frameBorder="0"
-                          style={{ 
-                            border: '1px solid #bfcbda11',
-                            borderRadius: '4px',
-                            opacity: '0.7',
-                          }}
-                          allowFullScreen
-                          aria-hidden="false"
-                          tabIndex={0}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
-
+          
       {/* Footer */}
       <footer className="relative z-10 border-t border-blue-500/30 bg-indigo-900/60 backdrop-blur-lg">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
