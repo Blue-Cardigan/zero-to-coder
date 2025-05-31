@@ -19,6 +19,7 @@ export type SharedLink = {
   created_at?: string;
   name: string;
   project_url: string;
+  description?: string;
 };
 
 export type Database = {
