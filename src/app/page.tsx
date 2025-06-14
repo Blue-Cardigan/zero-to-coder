@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiCode, FiCoffee, FiAward, FiMapPin, FiCalendar, FiStar, FiArrowRight } from 'react-icons/fi';
+import { FiCode, FiCoffee, FiAward, FiMapPin, FiCalendar, FiStar, FiArrowRight, FiUser } from 'react-icons/fi';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { supabase } from '../lib/supabase';
 import { useEffect, useState } from 'react';
@@ -36,7 +36,7 @@ const RotatingWord = () => {
   }, [words.length]);
 
   return (
-    <span className="inline-block relative h-[1.12em] w-[157px]">
+    <span className="inline-block relative h-[1.12em] w-[200px]">
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
@@ -195,28 +195,27 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       
       <div className="">
-        <div className="container mx-auto px-4 py-12 relative z-10">
+        <div className="container mx-auto px-4 relative z-10">
           {/* Hero Section */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="min-h-screen flex flex-col justify-center items-center text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Zero to Coder
             </h1>
-            <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-              Transform from beginner to confident coder in London&apos;s most<RotatingWord />coding workshops
+            <p className="text-2xl md:text-3xl text-blue-200 mx-auto">
+              London&apos;s most<RotatingWord />coding workshops
             </p>
           </motion.div>
-
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* About Section */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl"
+              className="bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl h-full flex flex-col"
             >
               <div className="flex items-center mb-6">
                 <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mr-4">
@@ -228,24 +227,56 @@ export default function HomePage() {
                     className="rounded-full transform scale-x-[-1]" 
                   />
                 </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-blue-300">About Jethro</h2>
-                  <p className="text-blue-200">Your Instructor</p>
+                <div className="space-y-4">
+                <div className="flex items-center text-blue-200">
+                  <FiUser className="text-blue-400 mr-3" />
+                  <span>Workshops by Jethro</span>
                 </div>
-              </div>
-              
-              <p className="text-blue-200 mb-6">
-                I&apos;m passionate about making coding accessible to everyone. With experience in software development and education, I&apos;ve designed a workshop that takes you from zero to building real projects, using modern tools and AI assistance to make the journey smoother.
-              </p>
-
-              <div className="space-y-4">
                 <div className="flex items-center text-blue-200">
                   <FiMapPin className="text-blue-400 mr-3" />
-                  <span>Shoreditch, London</span>
+                  <span>in London</span>
                 </div>
                 <div className="flex items-center text-blue-200">
                   <FiCalendar className="text-blue-400 mr-3" />
-                  <span>Regular workshops throughout the year</span>
+                  <span>Every 2 weeks</span>
+                </div>
+              </div>
+              </div>
+              
+              <motion.p 
+                className="text-md font-medium bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                Learn the streamlined version of my own path.
+              </motion.p>
+
+              <div className="space-y-4 flex-grow">
+                <div className="relative">
+                  <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400"></div>
+                  <div className="space-y-6 pl-6">
+                    <div className="relative">
+                      <div className="absolute -left-8 top-1 w-4 h-4 rounded-full bg-blue-400 ring-4 ring-blue-400/20"></div>
+                      <div className="w-24 text-sm text-blue-400 font-medium">Oct 2023</div>
+                      <div className="text-blue-200 mt-1">Total beginner & fresh graduate</div>
+                    </div>
+                    <div className="relative">
+                      <div className="absolute -left-8 top-1 w-4 h-4 rounded-full bg-purple-400 ring-4 ring-purple-400/20"></div>
+                      <div className="w-24 text-sm text-purple-400 font-medium">Nov 2023</div>
+                      <div className="text-blue-200 mt-1">First data science contract</div>
+                    </div>
+                    <div className="relative">
+                      <div className="absolute -left-8 top-1 w-4 h-4 rounded-full bg-pink-400 ring-4 ring-pink-400/20"></div>
+                      <div className="w-24 text-sm text-pink-400 font-medium">Jun 2024</div>
+                      <div className="text-blue-200 mt-1">First React developer contract</div>
+                    </div>
+                    <div className="relative">
+                      <div className="absolute -left-8 top-1 w-4 h-4 rounded-full bg-blue-400 ring-4 ring-blue-400/20"></div>
+                      <div className="w-24 text-sm text-blue-400 font-medium">Mar 2025</div>
+                      <div className="text-blue-200 mt-1">Full time developer</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -254,10 +285,8 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl"
-            >
-              <h2 className="text-2xl font-bold text-blue-300 mb-6">Workshop Highlights</h2>
-              
+              className="bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl h-full flex flex-col"
+            >              
               
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -266,7 +295,21 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-blue-300 mb-2">AI-Powered Learning</h3>
-                    <p className="text-blue-200">Leverage AI tools to accelerate your learning and problem-solving.</p>
+                    <p className="text-blue-200">Leverage AI tools to accelerate your learning.</p>
+                    <ul className="space-y-2 mt-2">
+                      <li className="flex items-center space-x-2 text-blue-200 bg-indigo-500/10 p-2 rounded-md hover:bg-indigo-500/20 transition-colors">
+                        <FiStar className="text-indigo-300" />
+                        <span>Bolt</span>
+                      </li>
+                      <li className="flex items-center space-x-2 text-blue-200 bg-indigo-500/10 p-2 rounded-md hover:bg-indigo-500/20 transition-colors">
+                        <FiStar className="text-indigo-300" />
+                        <span>Cursor</span>
+                      </li>
+                      <li className="flex items-center space-x-2 text-blue-200 bg-indigo-500/10 p-2 rounded-md hover:bg-indigo-500/20 transition-colors">
+                        <FiStar className="text-indigo-300" />
+                        <span>NextJS</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
 
@@ -297,16 +340,17 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
+            className="min-h-screen flex items-center"
           >
-            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-              Upcoming Workshops
-            </h2>
-            
-            <div className="gap-8">
-              {/* Upcoming/Most Recent Workshop */}
-              <div className="gap-4">
-                <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl max-h-[600px]">
+            <div className="w-full">
+              <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+                Upcoming Workshops
+              </h2>
+              
+              <div className="gap-8">
+                {/* Upcoming/Most Recent Workshop */}
+                <div className="gap-4">
+                  <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl">
                     <div className="relative h-full">
                       <iframe
                         src="https://lu.ma/embed/calendar/cal-EnG2LIAEMCY2vYF/events"
@@ -320,6 +364,7 @@ export default function HomePage() {
                         aria-hidden="false"
                       ></iframe>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -329,89 +374,91 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
+            className="min-h-screen flex items-center"
           >
-            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-              What People Say
-            </h2>
-            
-            <div className="bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl overflow-hidden">
-              {isLoading ? (
-                <div className="flex justify-center items-center h-64">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-400"></div>
-                </div>
-              ) : (
-                <div className="relative">
-                  <div 
-                    className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-500/50 scrollbar-track-blue-900/30 pb-4"
-                  >
-                    <div className="flex animate-scroll-x">
-                      {/* First set of testimonials */}
-                      {displayTestimonials.map((testimonial, index) => (
-                        <div
-                          key={`${testimonial.id}-${index}-1`}
-                          className="flex-none mx-4 w-[400px] first:ml-0"
-                        >
-                          <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
-                            <div className="flex items-center mb-4">
-                              <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
-                              <h3 className="text-lg font-semibold text-blue-300">
-                                {getFirstName(testimonial.name)}
-                              </h3>
-                            </div>
-                            <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
-                              {testimonial.content}
-                            </p>
-                            {testimonial.project_url && (
-                              <a
-                                href={testimonial.project_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-4"
-                              >
-                                View their project <FiArrowRight className="ml-1" />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                      {/* Duplicate set for seamless scrolling */}
-                      {displayTestimonials.map((testimonial, index) => (
-                        <div
-                          key={`${testimonial.id}-${index}-2`}
-                          className="flex-none mx-4 w-[400px]"
-                        >
-                          <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
-                            <div className="flex items-center mb-4">
-                              <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
-                              <h3 className="text-lg font-semibold text-blue-300">
-                                {getFirstName(testimonial.name)}
-                              </h3>
-                            </div>
-                            <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
-                              {testimonial.content}
-                            </p>
-                            {testimonial.project_url && (
-                              <a
-                                href={testimonial.project_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-4"
-                              >
-                                View their project <FiArrowRight className="ml-1" />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+            <div className="w-full">
+              <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+                What People Say
+              </h2>
+              
+              <div className="bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl overflow-hidden">
+                {isLoading ? (
+                  <div className="flex justify-center items-center h-64">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-400"></div>
                   </div>
-                  
-                  {/* Gradient overlays */}
-                  <div className="absolute left-0 top-0 bottom-4 w-32 bg-gradient-to-r from-indigo-900/60 to-transparent pointer-events-none"></div>
-                  <div className="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-indigo-900/60 to-transparent pointer-events-none"></div>
-                </div>
-              )}
+                ) : (
+                  <div className="relative">
+                    <div 
+                      className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-500/50 scrollbar-track-blue-900/30 pb-4"
+                    >
+                      <div className="flex animate-scroll-x">
+                        {/* First set of testimonials */}
+                        {displayTestimonials.map((testimonial, index) => (
+                          <div
+                            key={`${testimonial.id}-${index}-1`}
+                            className="flex-none mx-4 w-[400px] first:ml-0"
+                          >
+                            <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
+                              <div className="flex items-center mb-4">
+                                <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
+                                <h3 className="text-lg font-semibold text-blue-300">
+                                  {getFirstName(testimonial.name)}
+                                </h3>
+                              </div>
+                              <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
+                                {testimonial.content}
+                              </p>
+                              {testimonial.project_url && (
+                                <a
+                                  href={testimonial.project_url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-4"
+                                >
+                                  View their project <FiArrowRight className="ml-1" />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                        {/* Duplicate set for seamless scrolling */}
+                        {displayTestimonials.map((testimonial, index) => (
+                          <div
+                            key={`${testimonial.id}-${index}-2`}
+                            className="flex-none mx-4 w-[400px]"
+                          >
+                            <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
+                              <div className="flex items-center mb-4">
+                                <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
+                                <h3 className="text-lg font-semibold text-blue-300">
+                                  {getFirstName(testimonial.name)}
+                                </h3>
+                              </div>
+                              <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
+                                {testimonial.content}
+                              </p>
+                              {testimonial.project_url && (
+                                <a
+                                  href={testimonial.project_url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-4"
+                                >
+                                  View their project <FiArrowRight className="ml-1" />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Gradient overlays */}
+                    <div className="absolute left-0 top-0 bottom-4 w-32 bg-gradient-to-r from-indigo-900/60 to-transparent pointer-events-none"></div>
+                    <div className="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-indigo-900/60 to-transparent pointer-events-none"></div>
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
 
