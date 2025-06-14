@@ -11,6 +11,15 @@ interface QRCodeOverlayProps {
 }
 
 export default function QRCodeOverlay({ isOpen, onClose, url, bgColor, fgColor }: QRCodeOverlayProps) {
+  const [copiedPassword, setCopiedPassword] = React.useState(false);
+  const password = 'premiumanddelightful';
+
+  const handleCopyPassword = () => {
+    navigator.clipboard.writeText(password);
+    setCopiedPassword(true);
+    setTimeout(() => setCopiedPassword(false), 2000);
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -48,6 +57,28 @@ export default function QRCodeOverlay({ isOpen, onClose, url, bgColor, fgColor }
                   {url}
                 </a>
               </p>
+              
+              {/* Password section */}
+              <div className="mt-6 bg-indigo-800/50 p-4 rounded-xl border border-indigo-600/40 w-full max-w-md">
+                <h3 className="text-blue-300 font-bold text-center mb-3">Password</h3>
+                <div className="relative">
+                  <button
+                    onClick={handleCopyPassword}
+                    className="w-full bg-slate-900/80 p-3 rounded-lg border border-indigo-600/40 text-blue-300 font-mono text-lg hover:bg-slate-800/80 transition-colors group relative"
+                  >
+                    <span className="relative z-10">{password}</span>
+                    <span className={`absolute inset-0 bg-blue-500/20 rounded-lg transition-opacity duration-200 ${copiedPassword ? 'opacity-100' : 'opacity-0'}`}></span>
+                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs bg-blue-500/90 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                      📋 Click to copy
+                    </span>
+                  </button>
+                  {copiedPassword && (
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-green-300 text-sm font-medium">
+                      Copied to clipboard!
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </motion.div>
         </motion.div>
