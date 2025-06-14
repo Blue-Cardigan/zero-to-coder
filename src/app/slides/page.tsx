@@ -377,7 +377,7 @@ export default function Slides() {
         {/* Slide 5.5 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           <h2 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            <span className="text-blue-300">3. </span>Get the Vibes Flowing
+          Get the Vibes Flowing
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start max-w-7xl mx-auto">
             {/* Left column - Instructions */}
@@ -497,7 +497,7 @@ export default function Slides() {
         {/* Slide 7 */}
         <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Host your site
+            <span className="text-blue-300">3. </span>Host your site
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 h-fit">
             {/* Left column - Git steps */}
