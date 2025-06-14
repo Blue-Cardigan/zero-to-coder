@@ -11,6 +11,7 @@ import PasscodeScreen from '@/components/PasscodeScreen';
 import GitFlowDiagram from '@/components/GitFlowDiagram';
 import LinkShareForm from '@/components/LinkShareForm';
 import SharedLinksList from '@/components/SharedLinksList';
+import QRCodeOverlay from '@/components/QRCodeOverlay';
 
 const ColorPresets = [
   { bg: '#ffffff', fg: '#000000', name: 'Classic' },
@@ -24,6 +25,14 @@ export default function Slides() {
   const [isAuthenticated, setIsAuthenticated] = useState(process.env.NODE_ENV === 'development');
   const [qrColors] = useState(ColorPresets[0]);
   const [pulseSize, setPulseSize] = useState(250);
+  const [isQRCodeOpen, setIsQRCodeOpen] = useState(false);
+  const [copiedText, setCopiedText] = useState<string | null>(null);
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedText(text);
+    setTimeout(() => setCopiedText(null), 2000);
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -67,49 +76,124 @@ export default function Slides() {
   if (!isAuthenticated) {
     return <PasscodeScreen onPasscodeCorrect={() => setIsAuthenticated(true)} />;
   }
-
   return (
     <div className="reveal">
       <div className="slides">
         {/* Slide 1 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <div className="fixed -top-24 right-2 md:right-0">
-            <div className="bg-indigo-900/30 p-1 md:p-2 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
-              <div className="flex justify-center items-center pt-4">
-                <QRCodeSVG 
-                  value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
-                  size={200}
-                  bgColor={qrColors.bg}
-                  fgColor={qrColors.fg}
-                  level="H"
-                  className="rounded-lg transition-all duration-300 hover:shadow-lg"
-                />
-              </div>
-              <p className="text-sm md:text-xl text-blue-300 text-center"><a href="https://zero-to-coder.vercel.app/slides" target="_blank" rel="noopener noreferrer">zero-to-coder.vercel.app/slides</a></p>
-            </div>
-          </div>
           <h1 className="text-6xl md:text-6xl font-bold mb-8 md:mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Welcome to 
             <br />
             Zero-to-coder
           </h1>
-          <div className="text-xl md:text-3xl space-y-4 md:space-y-6">
-            <h2 className="text-2xl md:text-4xl font-bold text-blue-300 mb-6 md:mb-8 drop-shadow-md">First:</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              <div className="bg-indigo-900/40 p-4 md:p-6 rounded-lg border border-indigo-700/40 flex items-center">
-                <span className="text-blue-300 text-4xl md:text-5xl mr-4 md:mr-6">&nbsp;🔑</span>
-                <span className="text-lg md:text-xl">&nbsp;Create a <span className="text-blue-300 font-bold"><a href="https://github.com" target="_blank" rel="noopener noreferrer">Github</a></span> account</span>
+
+          <div className="mt-8">
+            <div className="bg-indigo-900/30 p-1 md:p-2 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl inline-block">
+              <div className="flex justify-center items-center pt-4">
+                <div 
+                  onClick={() => setIsQRCodeOpen(true)}
+                  className="cursor-pointer transition-all duration-300 hover:shadow-lg"
+                >
+                  <QRCodeSVG 
+                    value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
+                    size={200}
+                    bgColor={qrColors.bg}
+                    fgColor={qrColors.fg}
+                    level="H"
+                    className="rounded-lg"
+                  />
+                </div>
               </div>
-              <div className="bg-indigo-900/40 p-4 md:p-6 rounded-lg border border-indigo-700/40 flex items-center">
-                <span className="text-blue-300 text-4xl md:text-5xl mr-4 md:mr-6">&nbsp;💻</span>
-                <span className="text-lg md:text-xl">Install <span className="text-blue-300 font-bold"><a href="https://cursor.sh" target="_blank" rel="noopener noreferrer">&nbsp;Cursor</a></span></span>
+              <p className="text-sm md:text-xl text-blue-300 text-center"><a href="https://zero-to-coder.vercel.app/slides" target="_blank" rel="noopener noreferrer">zero-to-coder.vercel.app/slides</a></p>
+            </div>
+          </div>
+        </section>
+
+        {/* New Installation Steps Slide */}
+        <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            First Steps
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {/* Create Accounts */}
+            <div className="bg-indigo-900/40 p-6 rounded-lg border border-indigo-700/40">
+              <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4">Create Free Accounts</h3>
+              <div className="space-y-4">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-blue-300 transition-colors">
+                  <span className="text-2xl">🐙</span>
+                  <span>github.com</span>
+                </a>
+                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-blue-300 transition-colors">
+                  <span className="text-2xl">▲</span>
+                  <span>vercel.com (Use GitHub login!)</span>
+                </a>
               </div>
+            </div>
+
+            {/* Install Software */}
+            <div className="bg-indigo-900/40 p-6 rounded-lg border border-indigo-700/40">
+              <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4">Install Software</h3>
+              <div className="space-y-4">
+                <a href="https://cursor.sh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-blue-300 transition-colors">
+                  <span className="text-2xl">⌨️</span>
+                  <span>cursor.sh</span>
+                </a>
+                <div className="flex items-center gap-3 text-lg">
+                  <span className="text-2xl">🟢</span>
+                  <span><a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">Node.js</a> (Windows only)</span>
+                </div>
+                <div className="flex items-center gap-3 text-lg">
+                  <span className="text-2xl">📦</span>
+                  <span><a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">git</a> (Windows only)</span>
+                </div>
+              </div>
+            </div>
+            {/* Mac Instructions */}
+            <div className="md:col-span-2 bg-indigo-900/40 p-6 rounded-lg border border-indigo-700/40">
+              <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-4">Open Cursor and ask the agent:</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Mac Section */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-blue-300">MacOS</h4>
+                  <div className="bg-indigo-950 p-4 rounded-lg border border-indigo-700/40">
+                    <button 
+                      onClick={() => handleCopy("Install Homebrew, Node.js and git on my system, then authenticate my GitHub account through CLI web browser login")}
+                      className="text-blue-300 font-mono text-lg hover:text-blue-200 transition-colors w-full text-left group relative"
+                    >
+                      <span className="relative z-10">"Install Homebrew, Node.js and git on my system, then authenticate my GitHub account through CLI web browser login"</span>
+                      <span className={`absolute inset-0 bg-green-500/20 rounded transition-opacity duration-200 ${copiedText === "Install Homebrew, Node.js and git on my system, then authenticate my GitHub account through CLI web browser login" ? 'opacity-100' : 'opacity-0'}`}></span>
+                      <span className="absolute -right-2 -top-2 text-xs bg-green-500/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click to copy
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Windows Section */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-blue-300">Windows</h4>
+                  <div className="bg-indigo-950 p-4 rounded-lg border border-indigo-700/40">
+                    <button 
+                      onClick={() => handleCopy("Authenticate my GitHub account through CLI web browser login")}
+                      className="text-blue-300 font-mono text-lg hover:text-blue-200 transition-colors w-full text-left group relative"
+                    >
+                      <span className="relative z-10">"Authenticate my GitHub account through CLI web browser login"</span>
+                      <span className={`absolute inset-0 bg-green-500/20 rounded transition-opacity duration-200 ${copiedText === "Authenticate my GitHub account through CLI web browser login" ? 'opacity-100' : 'opacity-0'}`}></span>
+                      <span className="absolute -right-2 -top-2 text-xs bg-green-500/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click to copy
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm text-blue-300/80 italic mt-4">NB: Installation may be slower on older machines!</p>
             </div>
           </div>
         </section>
 
         {/* Slide 2 */}
-        <section data-background-gradient="radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%)">
+        <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
             Session outline
           </h2>
@@ -233,7 +317,6 @@ export default function Slides() {
                   <div className="flex items-center mb-2">
                     <h3 className="text-xl md:text-2xl font-bold text-blue-300">Begin the vibe</h3>
                   </div>
-                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Type &apos;Get this project running on localhost&apos; in the chat (⌘/Ctrl+L), then follow the installation steps</p>
                   <p className="ml-6 text-gray-300 text-lg md:text-xl italic">By default, Cursor will write code in agent mode, which is great for getting started</p>
                 </li>
               </ol>
@@ -452,8 +535,9 @@ export default function Slides() {
         {/* Slide 8 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
           <div className="flex flex-col items-center justify-center min-h-[70vh] p-4 md:p-8">
-          <h2 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse mb-8 md:mb-12">            Break
-          </h2>
+            <h2 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse mb-8 md:mb-12">
+              Break
+            </h2>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-xl"></div>
               <div className="relative bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
@@ -848,6 +932,14 @@ export default function Slides() {
           </div>
         </section>
       </div>
+
+      <QRCodeOverlay
+        isOpen={isQRCodeOpen}
+        onClose={() => setIsQRCodeOpen(false)}
+        url={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
+        bgColor={qrColors.bg}
+        fgColor={qrColors.fg}
+      />
     </div>
   );
 } 
