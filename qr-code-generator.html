@@ -3,189 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylish QR Code Generator</title>
+    <title>Zero to Coder - QR Code Generator</title>
     <style>
         :root {
             --primary-color: #0070f3;
-            --secondary-color: #f81ce5;
-            --background-color: #f5f5f5;
+            --secondary-color: #00d4ff;
+            --accent-amber: #ffa726;
+            --background-color: #1a1a2e;
+            --card-background: #2d3748;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
             --border-radius: 12px;
         }
+        
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            background-color: var(--background-color);
+            background: linear-gradient(135deg, var(--background-color) 0%, #16213e 50%, #0f3460 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            padding: 1rem;
         }
+        
         .container {
             text-align: center;
-            background-color: white;
+            background: var(--card-background);
             padding: 2.5rem;
             border-radius: var(--border-radius);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 550px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
         }
         
         .container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.15);
+        }
+        
+        .logo-section {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-amber));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--background-color);
+            font-size: 1.2rem;
+            box-shadow: 0 8px 16px rgba(0, 212, 255, 0.3);
         }
         
         h1 {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-amber));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 1.5rem;
+            margin: 0;
             font-size: 2.2rem;
+            font-weight: 600;
         }
         
         #qrcode-wrapper {
             position: relative;
-            margin: 1.5rem auto;
-            padding: 20px;
+            margin: 2rem auto;
+            padding: 25px;
             border-radius: var(--border-radius);
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            background: var(--text-primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             overflow: hidden;
+            max-width: 280px;
         }
         
         #qrcode-wrapper::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-amber));
             z-index: -1;
-            filter: blur(10px);
-            opacity: 0.5;
+            border-radius: var(--border-radius);
         }
         
         #qrcode {
             position: relative;
             z-index: 1;
-        }
-        
-        #qrcode img {
             border-radius: 8px;
-            transition: transform 0.3s ease;
+            overflow: hidden;
         }
         
-        #qrcode img:hover {
+        #qrcode svg {
+            transition: transform 0.3s ease;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        #qrcode:hover svg {
             transform: scale(1.02);
         }
         
         .url-display {
-            margin-top: 1rem;
-            padding: 0.8rem;
-            background-color: #f0f0f0;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: var(--border-radius);
             word-break: break-all;
-            font-size: 0.9rem;
-            border-left: 4px solid var(--primary-color);
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            font-family: 'JetBrains Mono', monospace;
         }
         
         .input-group {
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             width: 100%;
         }
         
         .input-group input {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: var(--border-radius);
             font-size: 1rem;
-            transition: border-color 0.2s ease;
+            background: var(--background-color);
+            color: var(--text-primary);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
         }
         
         .input-group input:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+        
+        .input-group input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
         }
         
         .controls {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin-top: 1.5rem;
+            gap: 15px;
+            margin-top: 2rem;
         }
         
         .btn {
-            padding: 0.8rem 1.2rem;
-            color: white;
+            padding: 1rem 1.5rem;
+            color: var(--background-color);
             border: none;
             border-radius: var(--border-radius);
             cursor: pointer;
             font-size: 1rem;
-            transition: all 0.2s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 150px;
+            min-width: 160px;
         }
         
         .download-btn {
-            background: linear-gradient(45deg, var(--primary-color), #0051a8);
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-amber));
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
         }
         
         .download-btn:hover {
-            background: linear-gradient(45deg, #0051a8, var(--primary-color));
+            background: linear-gradient(135deg, var(--accent-amber), var(--secondary-color));
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, var(--accent-amber), #ff9800);
+            box-shadow: 0 4px 15px rgba(255, 167, 38, 0.3);
+        }
+        
+        .copy-btn:hover {
+            background: linear-gradient(135deg, #ff9800, var(--accent-amber));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 167, 38, 0.4);
         }
         
         .color-picker {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .color-picker-label {
+            width: 100%;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
         
         .color-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
         .color-option:hover {
             transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         
         .color-option.active {
-            border-color: #333;
+            border-color: var(--text-primary);
+            transform: scale(1.15);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
         }
         
-        .logo-section {
-            margin-top: 1rem;
+        .size-controls {
+            margin: 1.5rem 0;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
         
-        .logo-placeholder {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            margin-right: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .size-controls label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .size-controls input {
+            background: var(--background-color);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 6px;
+            color: var(--text-primary);
+            padding: 0.5rem;
+            width: 80px;
+            text-align: center;
+        }
+        
+        @media (max-width: 640px) {
+            .container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .color-picker {
+                gap: 10px;
+            }
+            
+            .color-option {
+                width: 30px;
+                height: 30px;
+            }
         }
     </style>
 </head>
@@ -197,146 +300,187 @@
         </div>
         
         <div class="input-group">
-            <input type="text" id="qr-input" placeholder="Enter URL or text to encode" value="https://zero-to-coder.vercel.app/feedback">
+            <input type="text" id="qr-input" placeholder="Enter URL or text to encode" value="lu.ma/zerotocoder">
         </div>
         
         <div class="color-picker">
+            <div class="color-picker-label">Choose QR Code Color:</div>
             <div class="color-option active" style="background-color: #0070f3;" data-color="#0070f3" data-background="#ffffff"></div>
+            <div class="color-option" style="background-color: #00d4ff;" data-color="#00d4ff" data-background="#ffffff"></div>
+            <div class="color-option" style="background-color: #ffa726;" data-color="#ffa726" data-background="#ffffff"></div>
             <div class="color-option" style="background-color: #f81ce5;" data-color="#f81ce5" data-background="#ffffff"></div>
             <div class="color-option" style="background-color: #7928ca;" data-color="#7928ca" data-background="#ffffff"></div>
             <div class="color-option" style="background-color: #ff0080;" data-color="#ff0080" data-background="#ffffff"></div>
             <div class="color-option" style="background-color: #000000;" data-color="#000000" data-background="#ffffff"></div>
+            <div class="color-option" style="background-color: #ffffff; border: 2px solid #666;" data-color="#ffffff" data-background="#000000"></div>
+        </div>
+        
+        <div class="size-controls">
+            <label for="qr-size">Size:</label>
+            <input type="number" id="qr-size" min="200" max="800" value="240" step="20">
+            <span style="color: var(--text-secondary);">pixels</span>
         </div>
         
         <div id="qrcode-wrapper">
             <div id="qrcode"></div>
         </div>
         
-        <div class="url-display">
-            <strong>URL:</strong> https://zero-to-coder.vercel.app/feedback
+        <div class="url-display" id="url-display">
+            <strong>URL:</strong> lu.ma/zerotocoder
         </div>
         
         <div class="controls">
-            <button class="btn download-btn" id="download-btn">Download QR Code</button>
+            <button class="btn download-btn" id="download-btn">📥 Download PNG</button>
+            <button class="btn copy-btn" id="copy-svg-btn">📋 Copy SVG</button>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get input element
+            // Get elements
             const qrInput = document.getElementById('qr-input');
+            const qrSizeInput = document.getElementById('qr-size');
+            const urlDisplay = document.getElementById('url-display');
             
-            // Current color settings
+            // Current settings
             let currentColor = '#0070f3';
             let currentBackground = '#ffffff';
+            let currentSize = 240;
             
-            // Generate QR code with current colors
+            // Generate QR code with current settings
             function generateQR() {
-                const url = qrInput.value || 'https://zero-to-coder.vercel.app/feedback';
+                const url = qrInput.value || 'lu.ma/zerotocoder';
                 const qr = qrcode(0, 'M');
                 qr.addData(url);
                 qr.make();
                 
-                // Get the HTML string
+                // Update URL display
+                urlDisplay.innerHTML = `<strong>URL:</strong> ${url}`;
+                
+                // Calculate cell size based on desired output size
+                const cellSize = Math.floor(currentSize / 30); // Roughly 30x30 modules
+                
+                // Get the SVG string
                 const qrHtml = qr.createSvgTag({
-                    cellSize: 8,
+                    cellSize: cellSize,
                     margin: 4,
                     scalable: true
                 });
                 
-                // Parse the SVG string to DOM
+                // Parse and style the SVG
                 const parser = new DOMParser();
                 const svgDoc = parser.parseFromString(qrHtml, 'image/svg+xml');
                 const svgElement = svgDoc.documentElement;
                 
-                // Style the SVG
-                svgElement.setAttribute('width', '100%');
-                svgElement.setAttribute('height', '100%');
+                // Keep the original viewBox from the library, just set display size
+                svgElement.setAttribute('width', currentSize);
+                svgElement.setAttribute('height', currentSize);
                 
-                // Find all paths in the SVG (the QR code cells)
+                // Style the paths
                 const paths = svgElement.querySelectorAll('path');
                 paths.forEach(path => {
-                    // The first path is the background, rest are the QR code cells
-                    if (path.getAttribute('fill') === '#ffffff') {
+                    if (path.getAttribute('fill') === '#ffffff' || path.getAttribute('fill') === 'transparent') {
                         path.setAttribute('fill', currentBackground);
                     } else {
                         path.setAttribute('fill', currentColor);
-                        // Add some rounded corners to the cells
                         path.setAttribute('rx', '1.5');
                         path.setAttribute('ry', '1.5');
                     }
+                    path.setAttribute('stroke', 'transparent');
                 });
                 
-                // Set the new SVG content
-                document.getElementById('qrcode').innerHTML = '';
-                document.getElementById('qrcode').appendChild(svgElement);
+                // Update the display
+                const qrCodeDiv = document.getElementById('qrcode');
+                qrCodeDiv.innerHTML = '';
+                qrCodeDiv.appendChild(svgElement);
             }
             
-            // Initialize QR code
+            // Initialize
             generateQR();
             
-            // Update QR code when input changes
+            // Event listeners
             qrInput.addEventListener('input', generateQR);
+            qrSizeInput.addEventListener('input', function() {
+                currentSize = parseInt(this.value);
+                generateQR();
+            });
             
-            // Set up color option selection
+            // Color selection
             document.querySelectorAll('.color-option').forEach(option => {
                 option.addEventListener('click', function() {
-                    // Remove active class from all options
                     document.querySelectorAll('.color-option').forEach(opt => {
                         opt.classList.remove('active');
                     });
                     
-                    // Add active class to clicked option
                     this.classList.add('active');
-                    
-                    // Update colors
                     currentColor = this.getAttribute('data-color');
                     currentBackground = this.getAttribute('data-background');
-                    
-                    // Update QR code
                     generateQR();
                 });
             });
             
-            // Set up download functionality
+            // Download functionality
             document.getElementById('download-btn').addEventListener('click', function() {
                 const svgElement = document.querySelector('#qrcode svg');
-                
-                // Create a canvas
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 
-                // Set canvas size
-                const svgSize = svgElement.getBoundingClientRect();
-                canvas.width = svgSize.width * 2; // Higher resolution
-                canvas.height = svgSize.height * 2;
+                // High resolution canvas
+                const scale = 2;
+                canvas.width = currentSize * scale;
+                canvas.height = currentSize * scale;
                 
-                // Create an image from SVG
                 const img = new Image();
                 const svgData = new XMLSerializer().serializeToString(svgElement);
                 const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
                 const url = URL.createObjectURL(svgBlob);
                 
                 img.onload = function() {
-                    // Fill with background color
                     ctx.fillStyle = currentBackground;
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    
-                    // Draw the image
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                     
-                    // Create download link
                     const link = document.createElement('a');
                     link.href = canvas.toDataURL('image/png');
-                    link.download = 'stylish-feedback-qrcode.png';
+                    link.download = `qr-code-${currentSize}px.png`;
                     link.click();
                     
-                    // Clean up
                     URL.revokeObjectURL(url);
                 };
                 
                 img.src = url;
+            });
+            
+            // Copy SVG functionality
+            document.getElementById('copy-svg-btn').addEventListener('click', function() {
+                const svgElement = document.querySelector('#qrcode svg');
+                const svgData = new XMLSerializer().serializeToString(svgElement);
+                
+                navigator.clipboard.writeText(svgData).then(function() {
+                    const btn = document.getElementById('copy-svg-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '✅ Copied!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Could not copy SVG: ', err);
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = svgData;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    const btn = document.getElementById('copy-svg-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '✅ Copied!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                });
             });
         });
     </script>
