@@ -92,6 +92,25 @@
             border-left: 4px solid var(--primary-color);
         }
         
+        .input-group {
+            margin: 1rem 0;
+            width: 100%;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
         .controls {
             display: flex;
             flex-wrap: wrap;
@@ -174,7 +193,11 @@
     <div class="container">
         <div class="logo-section">
             <div class="logo-placeholder">Z2C</div>
-            <h1>QR Code for Feedback</h1>
+            <h1>QR Code Generator</h1>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" id="qr-input" placeholder="Enter URL or text to encode" value="https://zero-to-coder.vercel.app/feedback">
         </div>
         
         <div class="color-picker">
@@ -201,8 +224,8 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // URL to encode
-            const url = 'https://zero-to-coder.vercel.app/feedback';
+            // Get input element
+            const qrInput = document.getElementById('qr-input');
             
             // Current color settings
             let currentColor = '#0070f3';
@@ -210,6 +233,7 @@
             
             // Generate QR code with current colors
             function generateQR() {
+                const url = qrInput.value || 'https://zero-to-coder.vercel.app/feedback';
                 const qr = qrcode(0, 'M');
                 qr.addData(url);
                 qr.make();
@@ -251,6 +275,9 @@
             
             // Initialize QR code
             generateQR();
+            
+            // Update QR code when input changes
+            qrInput.addEventListener('input', generateQR);
             
             // Set up color option selection
             document.querySelectorAll('.color-option').forEach(option => {

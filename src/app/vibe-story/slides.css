@@ -1,0 +1,995 @@
+/* Tech Noir RevealJS Theme - AI Signals Slides */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Root variables */
+:root {
+  --primary-bg: #1a1a2e;
+  --secondary-bg: #2d3748;
+  --accent-blue: #00d4ff;
+  --accent-amber: #ffa726;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #a0aec0;
+  --gradient-start: #1a1a2e;
+  --gradient-middle: #16213e;
+  --gradient-end: #0f3460;
+}
+
+/* Base reveal.js overrides */
+.reveal {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+  background-attachment: fixed;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  padding: 2rem 3rem;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1.5rem;
+}
+
+/* Typography */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: none;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.reveal h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-amber) 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 8px rgba(0, 212, 255, 0.3);
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+.reveal h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-amber));
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+.reveal h2 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 3px 6px rgba(0, 212, 255, 0.25);
+  letter-spacing: -0.025em;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.reveal h2::before {
+  content: '▶';
+  position: absolute;
+  left: -2rem;
+  color: var(--accent-blue);
+  font-size: 0.7em;
+  opacity: 0.7;
+  animation: pulse 2s infinite;
+}
+
+.reveal h3 {
+  font-size: 1.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.6rem;
+}
+
+.reveal p {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.reveal em {
+  color: var(--accent-blue);
+  font-style: italic;
+}
+
+.reveal strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Lists */
+.reveal ul,
+.reveal ol {
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.reveal ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.reveal ul li::before {
+  content: "→";
+  position: static;
+  margin-right: 0.8rem;
+  color: var(--accent-blue);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Code styling */
+.reveal pre {
+  background: rgba(13, 17, 23, 0.8);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.reveal code {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(13, 17, 23, 0.6);
+  color: var(--accent-amber);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  border: 1px solid rgba(255, 167, 38, 0.3);
+}
+
+.reveal pre code {
+  color: var(--accent-amber);
+  background: transparent;
+  border: none;
+  padding: 1.5rem;
+  display: block;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Smaller code blocks for practice slide */
+.practice-slide pre code {
+  font-size: 1.1rem; /* Smaller than default 1.3rem */
+  line-height: 1.3;
+  padding: 1.2rem; /* Slightly reduced padding */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Controls and UI */
+.reveal .controls {
+  color: var(--accent-blue);
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.reveal .progress {
+  height: 4px;
+  color: var(--accent-blue);
+  background: rgba(0, 212, 255, 0.2);
+}
+
+.reveal .slide-number {
+  background: rgba(26, 26, 46, 0.8);
+  color: var(--accent-blue);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Animation classes */
+.fragment {
+  transition: all 0.6s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+.fragment.fade-in {
+  opacity: 0;
+}
+
+.fragment.fade-in.visible {
+  opacity: 1;
+}
+
+/* Slide-specific styles */
+
+/* Title slide */
+.title-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 4.5rem;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  font-size: 2.5rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 3rem;
+}
+
+.event-info {
+  color: var(--accent-amber);
+  font-size: 1.6rem;
+}
+
+/* Hook slide */
+.hook-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hook-title {
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.hook-result {
+  color: var(--accent-blue);
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.hook-question {
+  font-size: 2rem;
+  color: var(--accent-amber);
+}
+
+/* Timeline slide */
+.timeline {
+  margin: 2rem 0;
+  flex-grow: 1;
+}
+
+.timeline-item {
+  background: rgba(0, 212, 255, 0.1);
+  border-left: 4px solid var(--accent-blue);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+  background: rgba(0, 212, 255, 0.15);
+  transform: translateX(10px);
+}
+
+.traditional-path {
+  text-align: center;
+  color: var(--accent-amber);
+  font-size: 1.8rem;
+  margin-top: auto;
+}
+
+/* Secret slide */
+.secret-reveal,
+.secret-truth {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.secret-reveal {
+  color: var(--text-secondary);
+}
+
+.secret-truth {
+  color: var(--accent-blue);
+}
+
+.secret-list {
+  margin: 2rem 0;
+}
+
+.secret-insight {
+  background: rgba(255, 167, 38, 0.1);
+  border: 1px solid rgba(255, 167, 38, 0.3);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: auto;
+}
+
+.secret-insight p {
+  color: var(--accent-amber);
+  margin-bottom: 1rem;
+}
+
+/* Before/After slide */
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+  flex-grow: 1;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+.before,
+.after {
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.before {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.after {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.before h3 {
+  color: #ef4444;
+}
+
+.after h3 {
+  color: #22c55e;
+}
+
+.footnote {
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: auto;
+}
+
+/* Paradox slide */
+.paradox-list li {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Question slide */
+.question-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.interactive-question {
+  color: var(--accent-blue);
+  margin-bottom: 3rem;
+}
+
+.question-text {
+  font-size: 2.2rem;
+  color: var(--accent-amber);
+}
+
+/* Everyone else slide */
+.example-link {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 2rem 0;
+  max-height: 60vh;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.example-link:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+}
+
+.example-link video {
+  max-width: 70%;
+  max-height: 35vh;
+  object-fit: contain;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.example-link:hover video {
+  transform: scale(1.02);
+}
+
+.example-link::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--accent-blue);
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2px solid var(--accent-blue);
+  pointer-events: none;
+  opacity: 0.95;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.example-link:hover::after {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+}
+
+/* Video Popover Modal */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.video-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-modal-content {
+  position: relative;
+  background: var(--primary-bg);
+  border-radius: 12px;
+  border: 2px solid var(--accent-blue);
+  box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-modal.active .video-modal-content {
+  transform: scale(1);
+}
+
+.video-modal video {
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: block;
+  object-fit: contain;
+}
+
+.video-modal-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: var(--text-primary);
+  padding: 2rem 1.5rem 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.key-point {
+  margin-top: auto;
+}
+
+.key-point p {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Comparison slide */
+.comparison-slide {
+  font-size: 0.85em;
+}
+
+.comparison-slide h2 {
+  font-size: 2.4rem;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-grow: 1;
+  max-height: 75vh;
+  overflow: visible;
+}
+
+.old-way {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.new-way {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.old-way h3 {
+  color: #ef4444;
+  font-size: 1.4rem;
+}
+
+.new-way h3 {
+  color: #22c55e;
+  font-size: 1.4rem;
+}
+
+.comparison-slide ul {
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.comparison-slide p {
+  font-size: 1.3rem;
+}
+
+/* Examples slide */
+.examples-list li {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.barrier-change {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: auto;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.barrier-change h3 {
+  color: var(--accent-blue);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.barrier-change p {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.new-skill {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.new-skill p {
+  color: var(--accent-amber);
+}
+
+/* Works for slide */
+.works-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+  flex-grow: 1;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+.works {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.doesnt-work {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.works h3 {
+  color: #22c55e;
+}
+
+.doesnt-work h3 {
+  color: #ef4444;
+}
+
+/* Impact slide */
+.impact-statement,
+.impact-truth {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.impact-statement {
+  color: var(--text-secondary);
+}
+
+.impact-truth {
+  color: var(--accent-blue);
+}
+
+.impact-examples {
+  background: rgba(255, 167, 38, 0.1);
+  border: 1px solid rgba(255, 167, 38, 0.3);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.impact-examples p {
+  color: var(--accent-amber);
+  margin-bottom: 1rem;
+}
+
+.impact-result {
+  text-align: center;
+  color: var(--accent-blue);
+  font-size: 2.5rem;
+  margin-top: auto;
+}
+
+/* Next slide */
+.next-question,
+.next-choice {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.next-question {
+  color: var(--text-secondary);
+}
+
+.next-choice {
+  color: var(--accent-blue);
+}
+
+.workshop-info {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.workshop-info p {
+  color: var(--accent-amber);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.contact-info {
+  font-size: 1.4rem !important;
+  color: var(--text-muted) !important;
+}
+
+/* Thank you slide */
+.thank-you-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.thank-you {
+  font-size: 5rem;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-amber) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-code {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.qr-url {
+  font-size: 1.5rem;
+  color: #0070f3;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* QR Code color transition animation */
+.qr-container svg path {
+  animation: qrColorTransition 10s ease-in-out infinite;
+  transition: fill 3s ease;
+}
+
+@keyframes qrColorTransition {
+  0% {
+    fill: #0070f3;
+  }
+  25% {
+    fill: var(--accent-blue);
+  }
+  50% {
+    fill: var(--accent-amber);
+  }
+  75% {
+    fill: #ff6b6b;
+  }
+  100% {
+    fill: #0070f3;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .reveal {
+    font-size: 1.8rem;
+  }
+  
+  .reveal .slides section {
+    padding: 1.5rem 2rem;
+  }
+  
+  .reveal h1 {
+    font-size: 3rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .reveal h1::after {
+    height: 2px;
+    bottom: -6px;
+  }
+  
+  .reveal h2 {
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .reveal h2::before {
+    left: -1.5rem;
+    font-size: 0.6em;
+  }
+  
+  .reveal h3 {
+    font-size: 1.4rem; /* Smaller on mobile */
+  }
+  
+  .before-after,
+  .comparison,
+  .works-comparison {
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* Further reduced for mobile */
+    max-height: 80vh; /* More height on mobile since we stack vertically */
+  }
+  
+  .main-title {
+    font-size: 3.5rem;
+  }
+  
+  .subtitle {
+    font-size: 2rem;
+  }
+  
+  /* Mobile video constraints */
+  .example-link {
+    max-height: 70vh;
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  /* Mobile video constraints - slide 7 specific */
+  .everyone-else-slide .example-link {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .example-link video {
+    max-height: 45vh;
+    max-width: 85%;
+  }
+  
+  .example-link::after {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  /* Mobile barrier change constraints */
+  .barrier-change {
+    max-height: 60vh;
+    padding: 0.8rem; /* Further reduced for mobile */
+  }
+  
+  .barrier-change h3 {
+    margin-bottom: 0.8rem;
+  }
+  
+  .barrier-change p {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Mobile list adjustments */
+  .reveal ul li {
+    margin-bottom: 0.4rem;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .reveal ul li::before {
+    margin-right: 0.6rem;
+  }
+
+  /* Mobile video modal adjustments */
+  .video-modal {
+    padding: 1rem;
+  }
+
+  .video-modal-content {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+  }
+
+  .video-modal video {
+    max-width: 95vw;
+    max-height: 75vh;
+  }
+  
+  .video-modal-title {
+    font-size: 1rem;
+    padding: 1.5rem 1rem 0.8rem;
+  }
+}
+
+/* Smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal .slides section > * {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Hover effects */
+.timeline-item,
+.secret-insight,
+.barrier-change,
+.workshop-info,
+.example-link {
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover,
+.secret-insight:hover,
+.barrier-change:hover,
+.workshop-info:hover,
+.example-link:hover {
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.15);
+}
+
+/* Animation for h2 arrows */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Specific styling for video on slide 7 only */
+.everyone-else-slide .example-link {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.everyone-else-slide .example-link:hover {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+} 
