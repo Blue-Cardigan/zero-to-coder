@@ -122,7 +122,11 @@ export default function AISignalsSlides() {
             <li>Models getting smarter at a blistering pace</li>
           </ul>
           <div className="secret-insight fragment fade-left">
-            <p><em>But the same is true as always has been: <br/>- Projects, projects, projects<br/> - Mentors are motivators</em></p>
+            <p><em>But the same is true as always has been: <br/>
+            - Projects, projects, projects<br/>
+            - Mentors are motivators<br/>
+            - You make your own luck
+            </em></p>
           </div>
         </section>
         
@@ -210,6 +214,24 @@ export default function AISignalsSlides() {
           <h2>What Happens Next?</h2>
           <h3 className="next-question"><span className="text-red-500">The question isn't</span> whether AI will change how we work with software</h3>
           <h3 className="next-choice"><span className="text-green-500">The question is</span> Will you be someone who uses these tools, or someone who wishes they had?</h3>
+          
+          <div className="workshop-images fragment fade-in">
+            <img 
+              src="/images/first-workshop-1.jpg" 
+              alt="First workshop attendees learning" 
+              className="workshop-photo"
+            />
+            <img 
+              src="/images/workshop-attendees-ramen.jpg" 
+              alt="Workshop attendees enjoying ramen together" 
+              className="workshop-photo"
+            />
+            <img 
+              src="/images/first-workshop-2.jpg" 
+              alt="Workshop coding session" 
+              className="workshop-photo"
+            />
+          </div>
         </section>
 
 
@@ -280,7 +302,7 @@ export default function AISignalsSlides() {
             <p className="qr-url">lu.ma/zerotocoder</p>
           </div>
           <div className="workshop-info">
-            <p><em>I run small group workshops every other weekend</em></p>
+            <p><em>Small group workshops every other weekend</em></p>
             <p><em>Perfect for those who spend their days thinking "there should be a simple tool for this"</em></p>
             <p className="contact-info">(Want me to train your team? Let's talk after)</p>
           </div>
@@ -299,9 +321,6 @@ export default function AISignalsSlides() {
             >
               <p>Your browser doesn't support embedded videos.</p>
             </video>
-            <div className="video-modal-title">
-              LinkedIn Extension Demo - Operations Manager Build
-            </div>
           </div>
         </div>
       )}
