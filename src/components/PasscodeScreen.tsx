@@ -8,11 +8,20 @@ interface PasscodeScreenProps {
 export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProps) {
   const [passcode, setPasscode] = useState('');
   const [error, setError] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const correctPasscode = 'premiumanddelightful'; // You can change this to any passcode you want
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (passcode === correctPasscode) {
+      if (rememberMe) {
+        // Store authentication with timestamp
+        const authData = {
+          authenticated: true,
+          timestamp: Date.now()
+        };
+        localStorage.setItem('slides-auth', JSON.stringify(authData));
+      }
       onPasscodeCorrect();
     } else {
       setError(true);
@@ -44,6 +53,19 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
               className="w-full px-4 py-2 bg-indigo-800/50 border border-blue-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               placeholder="Enter Code"
             />
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              className="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <label htmlFor="rememberMe" className="text-sm text-blue-200">
+              Remember me on this device
+            </label>
           </div>
           
           {error && (

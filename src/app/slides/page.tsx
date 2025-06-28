@@ -28,6 +28,40 @@ export default function Slides() {
   const [isQRCodeOpen, setIsQRCodeOpen] = useState(false);
   const [copiedText, setCopiedText] = useState<string | null>(null);
 
+  // Check localStorage for existing authentication on mount
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') return;
+    
+    const checkStoredAuth = () => {
+      try {
+        const storedAuth = localStorage.getItem('slides-auth');
+        if (storedAuth) {
+          const authData = JSON.parse(storedAuth);
+          const oneDayInMs = 24 * 60 * 60 * 1000; // 24 hours
+          
+          // Check if authentication is still valid (within 24 hours)
+          if (authData.authenticated && authData.timestamp && 
+              (Date.now() - authData.timestamp) < oneDayInMs) {
+            setIsAuthenticated(true);
+          } else {
+            // Clear expired authentication
+            localStorage.removeItem('slides-auth');
+          }
+        }
+      } catch (error) {
+        console.error('Error checking stored authentication:', error);
+        localStorage.removeItem('slides-auth');
+      }
+    };
+
+    checkStoredAuth();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('slides-auth');
+    setIsAuthenticated(false);
+  };
+
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopiedText(text);
@@ -78,6 +112,15 @@ export default function Slides() {
   }
   return (
     <div className="reveal">
+      {/* Logout button - positioned absolute so it doesn't interfere with slides */}
+      <button
+        onClick={handleLogout}
+        className="fixed top-4 right-4 z-50 px-3 py-1 text-xs bg-red-600/80 hover:bg-red-700/80 text-white rounded-lg backdrop-blur-sm border border-red-500/50 transition-all duration-200"
+        title="Logout and clear stored authentication"
+      >
+        Logout
+      </button>
+      
       <div className="slides">
         {/* Slide 1 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
@@ -578,11 +621,11 @@ export default function Slides() {
 
         {/* Slide 8 */}
         <section data-background-gradient="radial-gradient(circle at center, #3730a3 0%, #1e1b4b 100%)">
-          <div className="flex flex-col items-center justify-center min-h-[70vh] p-4 md:p-8">
-            <h2 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse mb-8 md:mb-12">
-              Break
-            </h2>
-            <div className="relative">
+                      <div className="flex flex-col items-center justify-center min-h-[70vh] p-4 md:p-8">
+              <h2 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse mb-8 md:mb-12">
+                Break
+              </h2>
+              <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-xl"></div>
               <div className="relative bg-indigo-900/60 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-indigo-700/50 shadow-xl">
                 <p className="text-2xl md:text-4xl text-gray-200 text-center">&nbsp;Take 10 minutes to grab coffee, go outside, or just take a break&nbsp;</p>
