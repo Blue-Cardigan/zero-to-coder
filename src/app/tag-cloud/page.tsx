@@ -445,13 +445,14 @@ export default function TagCloudPage() {
   }
 
   return (
-    <div className="min-h-screen h-screen w-screen flex items-center justify-center overflow-hidden relative">
-      {/* Enhanced animated background */}
-      <div className="absolute opacity-60 pointer-events-none overflow-hidden w-full h-full top-0 left-0">
-        <div className="animate-blob animation-delay-2000 absolute top-20 -left-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-        <div className="animate-blob animation-delay-4000 absolute top-40 -right-20 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-        <div className="animate-blob absolute -bottom-40 left-40 w-96 h-96 bg-indigo-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-      </div>
+    <div 
+      className="min-h-screen h-screen w-screen flex items-center justify-center overflow-hidden relative"
+      style={{
+        backgroundImage: 'radial-gradient(circle at center, #4338ca 0%, #1e1b4b 100%)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }}
+    >
       
       <div className="relative z-10 w-full h-full flex items-center justify-center p-8">
         <svg ref={svgRef} className="w-full h-full" />
