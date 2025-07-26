@@ -7,14 +7,6 @@ import 'reveal.js/dist/theme/black.css';
 import './slides.css';
 import PasscodeScreen from '@/components/PasscodeScreen';
 
-const ColorPresets = [
-  { bg: '#ffffff', fg: '#000000', name: 'Classic' },
-  { bg: '#0f172a', fg: '#60a5fa', name: 'Night Blue' },
-  { bg: '#064e3b', fg: '#6ee7b7', name: 'Forest' },
-  { bg: '#7c2d12', fg: '#fb923c', name: 'Autumn' },
-  { bg: '#581c87', fg: '#e879f9', name: 'Royal' },
-];
-
 export default function VibeStorySlides() {
   const [isAuthenticated, setIsAuthenticated] = useState(process.env.NODE_ENV === 'development');
   const [, setPulseSize] = useState(250);
