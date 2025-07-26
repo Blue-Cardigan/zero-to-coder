@@ -29,6 +29,8 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
     }
   };
 
+  const slidesUrl = 'https://zero-to-coder.vercel.app/slides-2';
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-blue-900 to-purple-900 text-white flex items-center justify-center">
       <motion.div
@@ -46,6 +48,31 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
             <br />
             <span className="text-xs text-yellow-300">Hint: Check the source code or browser dev tools!</span>
           </p>
+        </div>
+
+        {/* QR Code and Link Section */}
+        <div className="mb-6 p-4 bg-blue-900/30 border border-blue-500/50 rounded-lg">
+          <h3 className="text-lg font-semibold text-blue-200 mb-3 text-center">📱 Quick Access</h3>
+          <div className="flex flex-col items-center space-y-3">
+            <div className="bg-white p-2 rounded-lg">
+              <img 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(slidesUrl)}`}
+                alt="QR Code for slides"
+                className="w-32 h-32"
+              />
+            </div>
+            <div className="text-center">
+              <p className="text-blue-200 text-sm mb-2">Scan QR code or click link:</p>
+              <a 
+                href={slidesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-300 hover:text-blue-200 text-sm underline break-all"
+              >
+                {slidesUrl}
+              </a>
+            </div>
+          </div>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-4">
