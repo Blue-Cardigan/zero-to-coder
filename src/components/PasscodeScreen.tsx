@@ -62,7 +62,6 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
               />
             </div>
             <div className="text-center">
-              <p className="text-blue-200 text-sm mb-2">Scan QR code or click link:</p>
               <a 
                 href={slidesUrl}
                 target="_blank"
