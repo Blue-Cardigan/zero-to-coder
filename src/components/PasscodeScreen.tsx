@@ -9,7 +9,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
   const [passcode, setPasscode] = useState('');
   const [error, setError] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
-  const correctPasscode = 'premiumanddelightful'; // You can change this to any passcode you want
+  const correctPasscode = 'ramentest'; // You can change this to any passcode you want
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
           authenticated: true,
           timestamp: Date.now()
         };
-        localStorage.setItem('slides-auth', JSON.stringify(authData));
+        localStorage.setItem('vibe-slides-auth', JSON.stringify(authData));
       }
       onPasscodeCorrect();
     } else {
@@ -39,6 +39,14 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
         <h1 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
           Zero to Coder Slides
         </h1>
+        
+        <div className="mb-6 p-4 bg-yellow-900/30 border border-yellow-500/50 rounded-lg">
+          <p className="text-yellow-200 text-sm text-center">
+            🔓 <strong>Challenge:</strong> Can you break in to find the password? 
+            <br />
+            <span className="text-xs text-yellow-300">Hint: Check the source code or browser dev tools!</span>
+          </p>
+        </div>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

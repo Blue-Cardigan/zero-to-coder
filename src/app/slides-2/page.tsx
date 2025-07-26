@@ -41,6 +41,7 @@ export default function VibeStorySlides() {
 
   const handleLogout = () => {
     localStorage.removeItem('vibe-slides-auth');
+    sessionStorage.removeItem('vibe-slides-auth');
     setIsAuthenticated(false);
   };
 
