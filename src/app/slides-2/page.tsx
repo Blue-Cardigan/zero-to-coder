@@ -5,8 +5,6 @@ import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/black.css';
 import './slides.css';
-import { QRCodeSVG } from 'qrcode.react';
-import Image from 'next/image';
 import PasscodeScreen from '@/components/PasscodeScreen';
 
 const ColorPresets = [
@@ -19,8 +17,7 @@ const ColorPresets = [
 
 export default function VibeStorySlides() {
   const [isAuthenticated, setIsAuthenticated] = useState(process.env.NODE_ENV === 'development');
-  const [qrColors] = useState(ColorPresets[0]);
-  const [pulseSize, setPulseSize] = useState(250);
+  const [, setPulseSize] = useState(250);
   const [copiedText, setCopiedText] = useState<string | null>(null);
 
   // Check localStorage for existing authentication on mount
