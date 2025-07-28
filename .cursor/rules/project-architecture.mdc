@@ -1,0 +1,119 @@
+---
+alwaysApply: true
+description: Comprehensive project architecture guide for the zero-to-coder Next.js application
+---
+
+# Zero to Coder - Project Architecture Guide
+
+## Project Overview
+This is a Next.js 13+ application using the app router, built for teaching coding workshops and presentations. The project uses TypeScript, Tailwind CSS, and Supabase for backend functionality.
+
+## Core Architecture
+
+### Entry Points
+- [src/app/page.tsx](mdc:src/app/page.tsx) - Main homepage with redirect to slides
+- [src/app/layout.tsx](mdc:src/app/layout.tsx) - Root layout component
+- [src/app/globals.css](mdc:src/app/globals.css) - Global styles and Tailwind imports
+
+### Key Directories
+
+#### App Router Pages (`src/app/`)
+- `slides/` - Main presentation slides
+- `slides-2/` - Alternative slide versions
+- `slides2/` - Additional slide content
+- `ai-signals-slides/` - AI-focused presentations
+- `vibe-story/` - Story-based presentations
+- `feedback/` - User feedback system
+- `tag-cloud/` - Interactive tag cloud feature
+
+#### Components (`src/components/`)
+- [QRCode.tsx](mdc:src/components/QRCode.tsx) - QR code generation
+- [QRCodeOverlay.tsx](mdc:src/components/QRCodeOverlay.tsx) - QR overlay functionality
+- [LinkShareForm.tsx](mdc:src/components/LinkShareForm.tsx) - Link sharing interface
+- [SharedLinksList.tsx](mdc:src/components/SharedLinksList.tsx) - Display shared links
+- [PasscodeScreen.tsx](mdc:src/components/PasscodeScreen.tsx) - Password protection
+- [GitFlowDiagram.tsx](mdc:src/components/GitFlowDiagram.tsx) - Git workflow visualization
+
+#### Configuration (`src/config/`)
+- [testimonials.ts](mdc:src/config/testimonials.ts) - Testimonial data
+
+#### Utilities (`src/lib/`)
+- [supabase.ts](mdc:src/lib/supabase.ts) - Supabase client configuration
+- [validation.ts](mdc:src/lib/validation.ts) - Form validation utilities
+
+#### Data (`src/data/`)
+- [events.json](mdc:src/data/events.json) - Event data
+
+### Backend & Database
+- [supabase/](mdc:supabase/) - Database migrations and configuration
+- [src/middleware.ts](mdc:src/middleware.ts) - Next.js middleware
+
+### Static Assets (`public/`)
+- `images/` - Workshop photos, screenshots, and UI elements
+- `videos/` - Demo videos and presentations
+- Various favicon and icon files
+
+## Development Conventions
+
+### File Organization
+- Use kebab-case for file names
+- Use PascalCase for component names
+- Use camelCase for functions and variables
+- Keep components small and focused
+- Store reusable components in `src/components/`
+
+### Code Quality Standards
+- Use TypeScript for type safety
+- Follow Next.js 13+ app router conventions
+- Use 'use client' directive for client components
+- Use Tailwind CSS for styling
+- Keep files small and componentized
+- Avoid verbose implementations - prefer concise solutions
+- Avoid try/catch blocks unless absolutely necessary
+- Pursue implementations with the fewest changed lines of code
+
+### Git Workflow
+- Always check git status before making changes
+- Use meaningful commit messages
+- Stage changes with `git add` before committing
+- Review changes with `git diff` before committing
+- Experiment safely using detached HEAD state
+
+### Component Architecture
+- Keep components focused and single-purpose
+- Use TypeScript interfaces for props
+- Implement proper error boundaries where needed
+- Use Next.js Image component for optimized images
+- Follow React hooks best practices
+
+### Styling Approach
+- Use Tailwind CSS utility classes
+- Maintain consistent spacing and typography
+- Design for mobile-first responsive layouts
+- Use CSS modules sparingly, prefer Tailwind utilities
+
+### API Integration
+- Use Supabase for database operations
+- Implement proper error handling for API calls
+- Use environment variables for sensitive configuration
+- Follow RESTful conventions for API endpoints
+
+## Key Features
+
+### Presentation System
+- Multiple slide decks for different audiences
+- Password-protected content areas
+- QR code generation for easy sharing
+- Interactive elements and animations
+
+### Feedback System
+- User feedback collection
+- Tag cloud visualization
+- Success/error state handling
+
+### Link Sharing
+- Database-backed link storage
+- QR code generation for links
+- Form validation and error handling
+
+This architecture supports a workshop-focused application with multiple presentation modes, interactive features, and robust user engagement tools.

@@ -1,0 +1,11 @@
+---
+alwaysApply: false
+---
+Slide content should take up space effectively.
+Your slides should be designed with different devices in mind.
+
+#####
+IMPORTANT: This is a large and compelx codebase. When I request a new feature there may well already be an implementation for this. 
+
+Make sure to read the existing functions and implementations to avoid duplication. Your solutins shoudl merge well with the existing codebase.
+#####

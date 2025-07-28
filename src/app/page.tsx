@@ -36,7 +36,7 @@ const RotatingWord = () => {
   }, [words.length]);
 
   return (
-    <span className="inline-block relative h-[1.12em] w-[200px]">
+    <span className="inline-block relative h-[1.2em] w-[200px]">
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
@@ -44,7 +44,9 @@ const RotatingWord = () => {
           animate={{ 
             y: 0, 
             opacity: 1, 
-            scale: 1,
+            scale: words[currentIndex] === 'innovative' ? 0.85 :
+                   words[currentIndex] === 'vibey' ? 1.15 : 
+                   1,
             rotate: isWobbling ? [0, -2, 2, -1, 1, 0] : 0
           }}
           exit={{ y: -20, opacity: 0, scale: 1.2 }}
@@ -57,7 +59,7 @@ const RotatingWord = () => {
               times: [0, 0.2, 0.4, 0.6, 0.8, 1]
             }
           }}
-          className="absolute left-0 right-0 text-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold"
+          className="absolute left-0 right-0 top-1 text-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold text-3xl"
         >
           {words[currentIndex]}
         </motion.span>
@@ -69,7 +71,7 @@ const RotatingWord = () => {
 export default function HomePage() {
   const [displayTestimonials, setDisplayTestimonials] = useState<DisplayTestimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
@@ -181,7 +183,7 @@ export default function HomePage() {
   const getFirstName = (fullName: string) => {
     return fullName.split(' ')[0];
   };
-
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-blue-900 to-purple-900 text-white overflow-hidden relative">
       {/* Animated background */}
@@ -368,102 +370,98 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          {/* Testimonials */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="min-h-screen flex items-center"
-          >
-            <div className="w-full">
-              <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-                What People Say
-              </h2>
-              
-              <div className="bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl overflow-hidden">
-                {isLoading ? (
-                  <div className="flex justify-center items-center h-64">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-400"></div>
-                  </div>
-                ) : (
-                  <div className="relative">
-                    <div 
-                      className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-500/50 scrollbar-track-blue-900/30 pb-4"
-                    >
-                      <div className="flex animate-scroll-x">
-                        {/* First set of testimonials */}
-                        {displayTestimonials.map((testimonial, index) => (
-                          <div
-                            key={`${testimonial.id}-${index}-1`}
-                            className="flex-none mx-4 w-[400px] first:ml-0"
-                          >
-                            <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
-                              <div className="flex items-center mb-4">
-                                <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
-                                <h3 className="text-lg font-semibold text-blue-300">
-                                  {getFirstName(testimonial.name)}
-                                </h3>
-                              </div>
-                              <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
-                                {testimonial.content}
-                              </p>
-                              {testimonial.project_url && (
-                                <a
-                                  href={testimonial.project_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-4"
-                                >
-                                  View their project <FiArrowRight className="ml-1" />
-                                </a>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                        {/* Duplicate set for seamless scrolling */}
-                        {displayTestimonials.map((testimonial, index) => (
-                          <div
-                            key={`${testimonial.id}-${index}-2`}
-                            className="flex-none mx-4 w-[400px]"
-                          >
-                            <div className="bg-blue-900/30 rounded-lg p-6 border border-blue-700/30 h-full flex flex-col">
-                              <div className="flex items-center mb-4">
-                                <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
-                                <h3 className="text-lg font-semibold text-blue-300">
-                                  {getFirstName(testimonial.name)}
-                                </h3>
-                              </div>
-                              <p className="text-blue-200 italic mb-4 whitespace-normal break-words">
-                                {testimonial.content}
-                              </p>
-                              {testimonial.project_url && (
-                                <a
-                                  href={testimonial.project_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-4"
-                                >
-                                  View their project <FiArrowRight className="ml-1" />
-                                </a>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Gradient overlays */}
-                    <div className="absolute left-0 top-0 bottom-4 w-32 bg-gradient-to-r from-indigo-900/60 to-transparent pointer-events-none"></div>
-                    <div className="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-indigo-900/60 to-transparent pointer-events-none"></div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
+                    </motion.div>
 
         </div>
       </div>
+
+      {/* Testimonials - Full width */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="min-h-screen flex flex-col justify-center relative"
+      >
+        <div className="w-full container mx-auto px-4 relative z-10 mb-8">
+          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+            What People Say
+          </h2>
+        </div>
+        
+        <div className="w-full overflow-hidden">
+          {isLoading ? (
+            <div className="flex justify-center items-center h-64">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-400"></div>
+            </div>
+          ) : (
+            <div className="relative">
+              <div 
+                className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-500/50 scrollbar-track-blue-900/30 pb-4"
+              >
+                <div className="flex animate-scroll-x px-8">
+                  {/* First set of testimonials */}
+                  {displayTestimonials.map((testimonial, index) => (
+                    <div
+                      key={`${testimonial.id}-${index}-1`}
+                      className="flex-none mx-4 w-[500px] first:ml-0"
+                    >
+                      <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/30 flex flex-col">
+                        <div className="flex items-center mb-3">
+                          <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
+                          <h3 className="text-lg font-semibold text-blue-300">
+                            {getFirstName(testimonial.name)}
+                          </h3>
+                        </div>
+                        <p className="text-blue-200 italic mb-3 whitespace-normal break-words line-clamp-4">
+                          {testimonial.content}
+                        </p>
+                        {testimonial.project_url && (
+                          <a
+                            href={testimonial.project_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-auto"
+                          >
+                            View their project <FiArrowRight className="ml-1" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                  {/* Duplicate set for seamless scrolling */}
+                  {displayTestimonials.map((testimonial, index) => (
+                    <div
+                      key={`${testimonial.id}-${index}-2`}
+                      className="flex-none mx-4 w-[500px]"
+                    >
+                      <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/30 flex flex-col">
+                        <div className="flex items-center mb-3">
+                          <FiStar className="text-yellow-400 mr-2 flex-shrink-0" />
+                          <h3 className="text-lg font-semibold text-blue-300">
+                            {getFirstName(testimonial.name)}
+                          </h3>
+                        </div>
+                        <p className="text-blue-200 italic mb-3 whitespace-normal break-words line-clamp-4">
+                          {testimonial.content}
+                        </p>
+                        {testimonial.project_url && (
+                          <a
+                            href={testimonial.project_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-400 hover:text-blue-300 transition-colors text-sm inline-flex items-center mt-auto"
+                          >
+                            View their project <FiArrowRight className="ml-1" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </motion.div>
           
       {/* Footer */}
       <footer className="relative z-10 border-t border-blue-500/30 bg-indigo-900/60 backdrop-blur-lg">
