@@ -20,7 +20,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
           authenticated: true,
           timestamp: Date.now()
         };
-        localStorage.setItem('vibe-slides-auth', JSON.stringify(authData));
+        localStorage.setItem('slides-auth', JSON.stringify(authData));
       }
       onPasscodeCorrect();
     } else {
