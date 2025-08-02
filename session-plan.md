@@ -85,7 +85,7 @@ Prompt Cursor with something like:
 
 # Slide 13
 # Feedback
-QR code to zero-to-coder.vercel.app/feedback
+QR code to zerotocoder.uk/feedback
 
 # Slide 14
 # Feedback Responses

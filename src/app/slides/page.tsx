@@ -138,7 +138,7 @@ export default function Slides() {
                   className="cursor-pointer transition-all duration-300 hover:shadow-lg"
                 >
                   <QRCodeSVG 
-                    value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
+                    value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zerotocoder.uk'}/slides`}
                     size={200}
                     bgColor={qrColors.bg}
                     fgColor={qrColors.fg}
@@ -147,7 +147,7 @@ export default function Slides() {
                   />
                 </div>
               </div>
-              <p className="text-sm md:text-xl text-blue-300 text-center"><a href="https://zero-to-coder.vercel.app/slides" target="_blank" rel="noopener noreferrer">zero-to-coder.vercel.app/slides</a></p>
+              <p className="text-sm md:text-xl text-blue-300 text-center"><a href="https://zerotocoder.uk/slides" target="_blank" rel="noopener noreferrer">zerotocoder.uk/slides</a></p>
             </div>
           </div>
         </section>
@@ -1014,9 +1014,9 @@ export default function Slides() {
                       className="relative transition-transform duration-700 ease-in-out"
                       style={{ transform: `scale(${pulseSize/220})` }}
                     >
-                      <a href={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/feedback`}>
+                      <a href={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zerotocoder.uk'}/feedback`}>
                         <QRCodeSVG 
-                          value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/feedback`}
+                          value={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zerotocoder.uk'}/feedback`}
                           size={220}
                         level="L"
                         className={`bg-white p-2 rounded-lg transition-all duration-300 hover:shadow-2xl`}
@@ -1038,7 +1038,7 @@ export default function Slides() {
       <QRCodeOverlay
         isOpen={isQRCodeOpen}
         onClose={() => setIsQRCodeOpen(false)}
-        url={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zero-to-coder.vercel.app'}/slides`}
+        url={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zerotocoder.uk'}/slides`}
         bgColor={qrColors.bg}
         fgColor={qrColors.fg}
       />

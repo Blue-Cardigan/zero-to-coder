@@ -9,7 +9,7 @@ const fs = require('fs');
 const qrcode = require('qrcode');
 
 // The URL to encode
-const url = 'https://zero-to-coder.vercel.app/feedback';
+const url = 'https://zerotocoder.uk/feedback';
 const outputPath = 'feedback-qrcode.png';
 
 // Generate QR code and save to file

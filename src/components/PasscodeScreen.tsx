@@ -29,7 +29,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
     }
   };
 
-  const slidesUrl = 'https://zero-to-coder.vercel.app/slides2';
+  const slidesUrl = 'https://zerotocoder.uk/slides2';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-blue-900 to-purple-900 text-white flex items-center justify-center">
