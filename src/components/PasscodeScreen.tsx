@@ -9,7 +9,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
   const [passcode, setPasscode] = useState('');
   const [error, setError] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
-  const correctPasscode = 'ramentest'; // You can change this to any passcode you want
+  const correctPasscode = 'premiumanddelightful'; // You can change this to any passcode you want
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
     }
   };
 
-  const slidesUrl = 'https://zerotocoder.uk/slides2';
+  const slidesUrl = 'https://zerotocoder.uk/slides';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-blue-900 to-purple-900 text-white flex items-center justify-center">
@@ -42,17 +42,16 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
           Zero to Coder Slides
         </h1>
         
-        <div className="mb-6 p-4 bg-yellow-900/30 border border-yellow-500/50 rounded-lg">
+        {/* <div className="mb-6 p-4 bg-yellow-900/30 border border-yellow-500/50 rounded-lg">
           <p className="text-yellow-200 text-sm text-center">
             🔓 <strong>Challenge:</strong> Can you break in to find the password? 
             <br />
             <span className="text-xs text-yellow-300">Hint: Check the source code or browser dev tools!</span>
           </p>
-        </div>
+        </div> */}
 
         {/* QR Code and Link Section */}
         <div className="mb-6 p-4 bg-blue-900/30 border border-blue-500/50 rounded-lg">
-          <h3 className="text-lg font-semibold text-blue-200 mb-3 text-center">📱 Quick Access</h3>
           <div className="flex flex-col items-center space-y-3">
             <div className="bg-white p-2 rounded-lg">
               <img 
@@ -76,9 +75,6 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="passcode" className="block text-sm font-medium text-blue-200 mb-2">
-              Enter Code
-            </label>
             <input
               type="password"
               id="passcode"
