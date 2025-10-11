@@ -9,6 +9,7 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
   const [passcode, setPasscode] = useState('');
   const [error, setError] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const correctPasscode = 'premiumanddelightful'; // You can change this to any passcode you want
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -74,15 +75,23 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
+          <div className="relative">
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="passcode"
               value={passcode}
               onChange={(e) => setPasscode(e.target.value)}
-              className="w-full px-4 py-2 bg-indigo-800/50 border border-blue-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+              className="w-full pr-12 px-4 py-2 bg-indigo-800/50 border border-blue-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               placeholder="Enter Code"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              aria-label={`${showPassword ? 'Hide' : 'Show'} passcode`}
+              className="absolute inset-y-0 right-3 flex items-center text-blue-300 hover:text-blue-200"
+            >
+              <span aria-hidden="true">{showPassword ? '🙈' : '👁️'}</span>
+            </button>
           </div>
           
           <div className="flex items-center">
