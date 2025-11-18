@@ -43,6 +43,35 @@ const tsRules = `# Typescript Rules
 - Add exhaustive checks with never - In switch statements on discriminated unions, add default: const _exhaustive: never = value to catch unhandled cases at compile time
 - Generic component event handlers lose type inference - In polymorphic components with as prop, event handler parameters become any; manually type them or restructure`;
 
+const pythonRules = `# Python Backend Rules
+- Avoid mutable default arguments - Never write def func(items=[]); use def func(items=None): items = items or [].
+- Closures capture by reference - Loop variables bind late; use functools.partial, default args (e.g., lambda x, i=i: ...), or comprehensions to capture current values.
+- Type hints and modern syntax - Prefer built-in generics: dict[str, int], list[str] over Dict, List. Use typing.Literal, TypedDict, and discriminated unions where helpful.
+- Async correctness - Don’t mix async def with yield unless you intend an async generator; annotate as AsyncIterator[T].
+- Resource safety - Use context managers for files, locks, DB connections, and temporary resources. Ensure timeouts/retries for I/O.
+- Datetime and money - Use timezone-aware datetimes (datetime.now(timezone.utc)); never naive. Use decimal.Decimal for currency; avoid float.
+- Error handling - Catch specific exceptions, never bare except:. Don’t swallow exceptions; log with context and re-raise when appropriate.
+- Immutability and data modeling - Prefer @dataclass(frozen=True) or pydantic models for validated data boundaries. Keep functions pure where possible.
+- Configuration and secrets - Load config via environment variables; never hardcode secrets. Validate config at startup.
+- Logging and observability - Use structured logs (JSON) with correlation IDs; no print. Emit metrics for critical paths.
+- Performance basics - Avoid repeated work; memoize pure helpers with functools.lru_cache (bounded). Prefer vectorized/batch operations.
+- Code quality - Enforce formatting (black), imports (isort), linting (ruff/flake8), and tests in CI. Prefer f-strings; avoid eval/exec.
+- Packaging and structure - Organize by feature/domain; keep modules focused and small. Keep functions under ~50 lines.`;
+
+const djangoRules = `# Django Rules
+- Eager loading and N+1 protection - Use select_related() for ForeignKey/OneToOne; prefetch_related() for M2M/reverse relations. Validate with timings and EXPLAIN.
+- Field/row selection and evaluation - Limit columns with .only()/.defer() for heavy models. Use .values()/.values_list() for read-mostly paths.
+- Bulk and set-based operations - Prefer queryset .update()/.delete(), bulk_create, bulk_update over per-row loops. Use F() expressions for atomic updates.
+- Annotations and aggregations - Use annotate(Count('rel')), Sum, etc., instead of per-object related manager calls to avoid N+1.
+- Indexing and query plans - Add composite/functional/partial indexes in Meta.indexes for hot filters/sorts. Review slow queries periodically.
+- Transactions and concurrency - Use transaction.atomic() to group writes; keep blocks small. Prefer select_for_update() for contested rows.
+- Signals and side effects - Signals run within the triggering transaction; use transaction.on_commit() for post-commit work. Keep signal handlers fast.
+- Admin-specific performance - Set list_select_related for expensive FKs. Replace list_display callables that hit the DB with annotations or eager-loaded fields.
+- Views, serializers, and templates - In views/DRF get_queryset, apply select_related/prefetch_related and annotations. Never loop related fields in templates without eager loading.
+- Caching and pagination - Always paginate list views. Cache primitives/DTOs rather than ORM instances.
+- Security and best practices - Apply CSRF, XSS, and SQL injection protections. Use the built-in auth/user model.
+- Anti-patterns to avoid - Filtering after prefetch_related on a relation (triggers new queries). Repeated .all()/evaluation of the same queryset. Per-row .save() loops.`;
+
 const CopyBlock = ({ title, content }: { title: string; content: string }) => {
   const [copied, setCopied] = useState(false);
 
@@ -275,6 +304,8 @@ const slides: Slide[] = [
       <section className="grid gap-6 md:grid-cols-2">
         <CopyBlock title="React Rules" content={reactRules} />
         <CopyBlock title="TypeScript Rules" content={tsRules} />
+        <CopyBlock title="Python Rules" content={pythonRules} />
+        <CopyBlock title="Django Rules" content={djangoRules} />
       </section>
     ),
   },
