@@ -238,8 +238,7 @@ const slides: Slide[] = [
     content: (
       <section className="space-y-6">
         <p className="max-w-3xl text-lg text-slate-300 sm:text-xl">
-          Tonight we co-build, swap stacks and workflows, and push past what Vercel + Supabase already
-          make simple.
+          Tonight we co-build, swap stacks and workflows, and push our skills
         </p>
       </section>
     ),
