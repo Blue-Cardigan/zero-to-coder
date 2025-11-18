@@ -25,7 +25,8 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-responsive-carousel": "^3.2.23",
-    "reveal.js": "^5.2.0"
+    "reveal.js": "^5.2.0",
+    "update": "^0.7.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
