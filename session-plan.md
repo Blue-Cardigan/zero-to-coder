@@ -1,4 +1,4 @@
-# Welcome to Zero-to-coder
+# Welcome to Zero to coder
 
 
 # Slide 1
