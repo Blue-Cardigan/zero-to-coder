@@ -69,6 +69,11 @@
   background: linear-gradient(to bottom, transparent, rgba(125, 136, 255, 0.4), transparent);
 }
 
+/* Use on slides where the center divider should begin lower */
+.split-divider-lower::after {
+  top: 28%;
+}
+
 .bg-spotlight {
   background:
     radial-gradient(circle at 75% 20%, rgba(255, 127, 110, 0.16), transparent 40%),
@@ -96,6 +101,100 @@
       transparent 0 18px,
       rgba(255, 255, 255, 0.03) 18px 19px
     );
+}
+
+/* Non-tile editorial layout primitives */
+.editorial-column {
+  background: linear-gradient(90deg, rgba(86, 184, 255, 0.08), transparent 30%);
+  border-left: 2px solid rgba(86, 184, 255, 0.45);
+  border-top: 1px solid rgba(86, 184, 255, 0.2);
+  border-radius: 0;
+}
+
+.rail-item {
+  background: transparent;
+  border-left: 2px solid rgba(255, 127, 110, 0.45);
+}
+
+.process-flow {
+  position: relative;
+  padding-left: 0.25rem;
+}
+
+.flow-step {
+  position: relative;
+  padding-left: 0.25rem;
+}
+
+.flow-step::before {
+  content: none;
+}
+
+.flow-step-title {
+  font-size: clamp(1.15rem, 2vw, 1.8rem);
+  font-weight: 700;
+  color: #8ac8ff;
+  margin-bottom: 0.35rem;
+}
+
+.flow-step-body {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--ztc-muted);
+}
+
+.flow-step-note {
+  margin-top: 0.35rem;
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  color: rgba(255, 127, 110, 0.92);
+}
+
+.image-stage {
+  border: 1px solid rgba(86, 184, 255, 0.28);
+  box-shadow: 0 18px 36px rgba(6, 10, 22, 0.44);
+  background: linear-gradient(150deg, rgba(13, 22, 42, 0.8), rgba(18, 31, 56, 0.7));
+}
+
+.workflow-lane {
+  border-left: 3px solid rgba(86, 184, 255, 0.55);
+  padding-left: 1rem;
+  background: linear-gradient(90deg, rgba(86, 184, 255, 0.08), transparent 45%);
+}
+
+.lane-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.lane-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0b1426;
+  background: linear-gradient(135deg, var(--ztc-accent-a), var(--ztc-accent-b));
+  border-radius: 9999px;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.editorial-callout {
+  background: linear-gradient(120deg, rgba(255, 127, 110, 0.16), rgba(86, 184, 255, 0.1));
+  border-top: 2px solid rgba(255, 127, 110, 0.5);
+  border-bottom: 1px solid rgba(86, 184, 255, 0.45);
+  border-radius: 0;
+}
+
+.prompt-strip {
+  border-left: 3px solid rgba(86, 184, 255, 0.55);
+  padding-left: 0.75rem;
+}
+
+.prompt-strip-alt {
+  border-left-color: rgba(255, 127, 110, 0.65);
 }
 
 /* Geometry tiers */

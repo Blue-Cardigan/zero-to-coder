@@ -6,15 +6,39 @@ import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/black.css';
 import './slides.css';
 import Image from 'next/image';
+import {
+  Apple,
+  ArrowLeft,
+  ArrowRight,
+  Bot,
+  Brain,
+  Circle,
+  Code,
+  Compass,
+  CopyIcon,
+  GitBranch,
+  Github,
+  Keyboard,
+  Laptop,
+  MessageSquare,
+  Monitor,
+  PartyPopper,
+  RefreshCw,
+  Rocket,
+  Search,
+  Sparkles,
+  Triangle,
+  Users,
+  Zap,
+} from 'lucide-react';
 import PasscodeScreen from '@/components/PasscodeScreen';
 import GitFlowDiagram from '@/components/GitFlowDiagram';
 import LinkShareForm from '@/components/LinkShareForm';
 import SharedLinksList from '@/components/SharedLinksList';
 
 const headingLg = 'text-4xl md:text-6xl font-bold ztc-heading';
-const sectionCard = 'ztc-surface panel-cut info-panel p-4 md:p-6';
-const sectionCardStrong = 'ztc-surface-strong panel-sharp hero-panel p-6 md:p-8';
-const codeCard = 'code-panel panel-sharp p-4 md:p-6';
+const sectionCard = 'editorial-column p-4 md:p-6';
+const sectionCardStrong = 'editorial-callout p-6 md:p-8';
 
 export default function Slides() {
   const [isAuthenticated, setIsAuthenticated] = useState(process.env.NODE_ENV === 'development');
@@ -130,7 +154,7 @@ export default function Slides() {
         </section>
 
         {/* New Installation Steps Slide */}
-        <section className="ztc-slide bg-split-tone">
+        <section className="ztc-slide bg-hero-grid">
           <h2 className="text-3xl md:text-5xl font-bold mb-6 ztc-heading">
             Setup in 10 Minutes
           </h2>
@@ -139,16 +163,16 @@ export default function Slides() {
             {/* Create Accounts */}
             <div className={sectionCard}>
               <h3 className="text-lg md:text-2xl font-bold text-blue-300 mb-3 flex items-center gap-2">
-                <span className="text-2xl">👥</span>
+                <Users className="h-6 w-6" />
                 Create Free Accounts
               </h3>
               <div className="space-y-2">
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base md:text-lg hover:text-blue-300 transition-all duration-200 p-1 rounded-lg hover:bg-slate-700/40">
-                  <span className="text-lg">🐙</span>
+                  <Github className="h-5 w-5" />
                   <span className="font-medium">github.com</span>
                 </a>
                 <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base md:text-lg hover:text-blue-300 transition-all duration-200 p-1 rounded-lg hover:bg-slate-700/40">
-                  <span className="text-lg">▲</span>
+                  <Triangle className="h-4 w-4 fill-current" />
                   <span className="font-medium">vercel.com</span>
                   <span className="text-sm text-blue-400 font-semibold">(Use GitHub login!)</span>
                 </a>
@@ -158,21 +182,21 @@ export default function Slides() {
             {/* Install Software */}
             <div className={sectionCard}>
               <h3 className="text-lg md:text-2xl font-bold text-blue-300 mb-3 flex items-center gap-2">
-                <span className="text-2xl">💻</span>
+                <Laptop className="h-6 w-6" />
                 Install Software
               </h3>
               <div className="space-y-2">
                 <a href="https://cursor.sh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base md:text-lg hover:text-blue-300 transition-all duration-200 p-1 rounded-lg hover:bg-slate-700/40">
-                  <span className="text-lg">⌨️</span>
+                  <Keyboard className="h-5 w-5" />
                   <span className="font-medium">cursor.sh</span>
                 </a>
                 <div className="flex items-center gap-2 text-base md:text-lg p-1">
-                  <span className="text-lg">🟢</span>
+                  <Circle className="h-4 w-4 fill-current text-green-300" />
                   <span className="font-medium"><a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">Node.js</a></span>
                   <span className="text-sm text-orange-400 font-semibold">(Windows only)</span>
                 </div>
                 <div className="flex items-center gap-2 text-base md:text-lg p-1">
-                  <span className="text-lg">📦</span>
+                  <GitBranch className="h-5 w-5" />
                   <span className="font-medium"><a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">git</a></span>
                   <span className="text-sm text-orange-400 font-semibold">(Windows only)</span>
                 </div>
@@ -182,15 +206,20 @@ export default function Slides() {
             {/* Cursor Instructions */}
             <div className={`md:col-span-2 ${sectionCard}`}>
               <h3 className="text-lg md:text-xl font-bold text-blue-300 mb-4 text-center flex items-center justify-center gap-2">
-                <span className="text-2xl">🤖</span>
+                <Bot className="h-6 w-6" />
                 Ask Cursor to do the setup:
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {/* Mac Section */}
                 <div className="space-y-2">
-                  <h4 className="text-base md:text-lg font-bold text-green-300 text-center">🍎 MacOS</h4>
+                  <h4 className="text-base md:text-lg font-bold text-green-300 text-center">
+                    <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap">
+                      <Apple className="h-5 w-5" />
+                      <span>MacOS</span>
+                    </span>
+                  </h4>
                   <div className="bg-slate-900/80 p-2 rounded-xl border-2 border-green-500/40 shadow-inner">
-                    <button 
+                    <button
                       onClick={() => handleCopy("Install Homebrew, Node.js and git on my system, then authenticate my GitHub account through CLI web browser login")}
                       className="text-green-300 font-mono text-sm md:text-base hover:text-green-200 transition-colors w-full text-left group relative p-2 rounded-lg"
                     >
@@ -205,7 +234,7 @@ export default function Slides() {
 
                 {/* Windows Section */}
                 <div className="space-y-2">
-                  <h4 className="text-base md:text-lg font-bold text-blue-300 text-center">🪟 Windows</h4>
+                  <h4 className="text-base md:text-lg font-bold text-blue-300 text-center flex items-center justify-center gap-2"><Monitor className="h-5 w-5" />Windows</h4>
                   <div className="bg-slate-900/80 p-2 rounded-xl border-2 border-blue-500/40 shadow-inner">
                     <button 
                       onClick={() => handleCopy("Authenticate my GitHub account through CLI web browser login")}
@@ -251,18 +280,14 @@ export default function Slides() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
             <div className="flex justify-center">
-              <div className="w-full max-w-[350px] info-panel panel-cut p-2 hover:scale-[1.02] transition-transform duration-300">
-                <a href="https://recipe-routine-saver.vercel.app/" target="_blank" rel="noopener noreferrer">
-                  <Image src="/images/website_image_1.png" alt="Website example 1" width={350} height={197} className="w-full rounded-lg shadow-lg border border-cyan-400/25" />
-                </a>
-              </div>
+              <a href="https://recipe-routine-saver.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full max-w-[350px]">
+                <Image src="/images/website_image_1.png" alt="Website example 1" width={350} height={197} className="w-full shadow-lg border border-cyan-400/25" />
+              </a>
             </div>
             <div className="flex justify-center">
-              <div className="w-full max-w-[350px] info-panel panel-cut p-2 hover:scale-[1.02] transition-transform duration-300">
-                <a href="https://greater-manchester-assembly-helper.vercel.app/#" target="_blank" rel="noopener noreferrer">
-                  <Image src="/images/website_image_2.png" alt="Website example 2" width={350} height={197} className="w-full rounded-lg shadow-lg border border-cyan-400/25" />
-                </a>
-              </div>
+              <a href="https://greater-manchester-assembly-helper.vercel.app/#" target="_blank" rel="noopener noreferrer" className="w-full max-w-[350px]">
+                <Image src="/images/website_image_2.png" alt="Website example 2" width={350} height={197} className="w-full shadow-lg border border-cyan-400/25" />
+              </a>
             </div>
           </div>
         </section>
@@ -273,28 +298,22 @@ export default function Slides() {
             Idea to Live URL
           </h2>
           <div className="flex flex-col md:flex-row gap-8 md:gap-10 max-w-7xl mx-auto">
-            <div className="flex-1 ztc-surface-strong hero-panel panel-cut p-8 md:p-10 flex flex-col items-center">
+            <div className="flex-1 editorial-column p-8 md:p-10 flex flex-col items-center">
               <div className="text-5xl md:text-6xl text-blue-300 mb-6 bg-blue-500/20 w-20 h-20 flex items-center justify-center rounded-xl font-bold">1</div>
               <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 text-white">Prompt <a href="https://bolt.new" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 transition-colors">Bolt.new</a></h3>
-              <div className="w-full aspect-video bg-slate-900/70 rounded-xl flex items-center justify-center overflow-hidden border border-cyan-400/25">
-                <Image src="/images/bolt-screenshot.png" alt="Bolt.new screenshot" width={400} height={225} className="w-full h-full object-contain" />
-              </div>
+              <Image src="/images/bolt-screenshot.png" alt="Bolt.new screenshot" width={400} height={225} className="w-full aspect-video object-contain" />
             </div>
             
-            <div className="flex-1 ztc-surface-strong hero-panel panel-soft p-8 md:p-10 flex flex-col items-center">
+            <div className="flex-1 editorial-column p-8 md:p-10 flex flex-col items-center">
               <div className="text-5xl md:text-6xl text-blue-300 mb-6 bg-blue-500/20 w-20 h-20 flex items-center justify-center rounded-xl font-bold">2</div>
               <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 text-white">Develop in Cursor</h3>
-              <div className="w-full aspect-video bg-slate-900/70 rounded-xl flex items-center justify-center overflow-hidden border border-cyan-400/25">
-                <Image src="/images/cursor_homepage_screenshot.png" alt="Cursor screenshot" width={400} height={225} className="w-full h-full object-contain" />
-              </div>
+              <Image src="/images/cursor_homepage_screenshot.png" alt="Cursor screenshot" width={400} height={225} className="w-full aspect-video object-contain" />
             </div>
             
-            <div className="flex-1 ztc-surface-strong hero-panel panel-sharp p-8 md:p-10 flex flex-col items-center">
+            <div className="flex-1 editorial-column p-8 md:p-10 flex flex-col items-center">
               <div className="text-5xl md:text-6xl text-blue-300 mb-6 bg-blue-500/20 w-20 h-20 flex items-center justify-center rounded-xl font-bold">3</div>
               <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 text-white">Host on Vercel</h3>
-              <div className="w-full aspect-video bg-slate-900/70 rounded-xl flex items-center justify-center overflow-hidden border border-cyan-400/25">
-                <Image src="/images/vercel_homepage_screenshot.png" alt="Vercel screenshot" width={400} height={225} className="w-full h-full object-contain" />
-              </div>
+              <Image src="/images/vercel_homepage_screenshot.png" alt="Vercel screenshot" width={400} height={225} className="w-full aspect-video object-contain" />
             </div>
           </div>
         </section>
@@ -306,30 +325,32 @@ export default function Slides() {
           </h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-8 max-w-7xl">
-            <div className="ztc-surface-strong hero-panel panel-cut p-6 md:p-8">
+            <div className="editorial-column p-6 md:p-8">
               <ul className="space-y-4">
-                <li className="info-panel panel-soft p-4 border border-blue-400/30 shadow-lg">
+                <li className="p-4 border-l-2 border-blue-400/50">
                   <span className="text-xl md:text-2xl text-white font-medium leading-snug">Name the audience, goal, and style in one sentence.</span>
                 </li>
-                <li className="info-panel panel-soft p-4 border border-blue-400/30 shadow-lg">
-                  <span className="text-xl md:text-2xl text-white font-medium leading-snug">Open the code view early and map what each section does.</span>
+                <li className="p-4 border-l-2 border-blue-400/50">
+                  <span className="text-xl md:text-2xl text-white font-medium leading-snug">
+                    Open the <span className="text-blue-300">&lt;&gt;</span> code view early and find the key file(s). Start with index.html.
+                  </span>
                 </li>
               </ul>
             </div>
             
-            <div className="ztc-surface-strong hero-panel panel-soft p-6 md:p-8 flex flex-col justify-center">
+            <div className="editorial-column p-6 md:p-8 flex flex-col justify-center">
               <h3 className="text-2xl md:text-3xl font-bold text-blue-300 mb-5 text-center flex items-center justify-center gap-3">
-                <span className="text-3xl">💬</span>
+                <MessageSquare className="h-7 w-7" />
                 Example Prompts
               </h3>
               <div className="space-y-4">
-                <div className={codeCard}>
+                <div className="p-4 border-l-2 border-cyan-400/60 bg-slate-950/55">
                   <p className="text-lg md:text-xl text-blue-200 italic leading-snug">"Build a landing page for TimeFlow. Audience: busy professionals. Tone: modern, calm, trustworthy."</p>
                 </div>
-                <div className={codeCard}>
+                <div className="p-4 border-l-2 border-cyan-400/60 bg-slate-950/55">
                   <p className="text-lg md:text-xl text-blue-200 italic leading-snug">"Create a business site for The Assembly with home, blog, shop, and booking calendar."</p>
                 </div>
-                <div className={codeCard}>
+                <div className="p-4 border-l-2 border-cyan-400/60 bg-slate-950/55">
                   <p className="text-lg md:text-xl text-blue-200 italic leading-snug">"Build a portfolio with social links, blog, contact form, and subtle motion."</p>
                 </div>
               </div>
@@ -343,33 +364,27 @@ export default function Slides() {
           <h2 className={`${headingLg} mb-6 md:mb-8`}>
             <span className="text-blue-300">2. </span>Connect GitHub and work locally
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
-            <div className="text-xl md:text-3xl space-y-4 md:space-y-6 ztc-surface info-panel panel-soft p-6 md:p-8 order-1 md:order-1">
-              <ol className="list-none space-y-4">
-                <li className="">
-                  <div className="flex items-center mb-2">
-                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Connect GitHub before leaving Bolt/Lovable</h3>
-                  </div>
-                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Make sure your project exists as a real repository with history from the start.</p>
+          <div className="grid grid-cols-1 md:grid-cols-[1.25fr_0.9fr] gap-6 md:gap-10 items-center">
+            <div className="text-xl md:text-3xl process-flow order-1 md:order-1">
+              <ol className="list-none space-y-6">
+                <li className="flow-step">
+                  <p className="flow-step-title">Connect GitHub before leaving Bolt/Lovable</p>
+                  <p className="flow-step-body">Make sure your project exists as a real repository with history from the start.</p>
                 </li>
-                <li className="">
-                  <div className="flex items-center mb-2">
-                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Clone it into your coding workspace</h3>
-                  </div>
-                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Open that folder in Cursor so every edit maps to your repo.</p>
+                <li className="flow-step">
+                  <p className="flow-step-title">Clone it into your coding workspace</p>
+                  <p className="flow-step-body">Open that folder in Cursor so every edit maps to your repo.</p>
                 </li>
-                <li className="">
-                  <div className="flex items-center mb-2">
-                    <h3 className="text-xl md:text-2xl font-bold text-blue-300">Run locally, then iterate in short loops</h3>
-                  </div>
-                  <p className="ml-6 text-gray-300 text-lg md:text-xl">Type &apos;Get this project running on localhost&apos; in the chat (⌘/Ctrl+L), then follow the installation steps</p>
-                  <p className="ml-6 text-gray-300 text-lg md:text-xl italic">Short prompts + fast tests beat one giant prompt every time.</p>
+                <li className="flow-step">
+                  <p className="flow-step-title">Run locally, then iterate in short loops</p>
+                  <p className="flow-step-body">Type &apos;Get this project running on localhost&apos; in the chat.</p>
+                  <p className="flow-step-note">Short prompts and fast tests beat one giant prompt every time.</p>
                 </li>
               </ol>
             </div>
             <div className="flex justify-center order-2 md:order-2">
-              <div className="w-full max-w-[400px] relative">
-                <div className="bg-slate-900/70 p-4 rounded-lg shadow-lg flex items-center justify-center relative border border-cyan-400/25">
+              <div className="w-full max-w-[400px] relative p-4">
+                <div className="flex items-center justify-center relative">
                   <Image 
                     src="/images/cursor_accept.png" 
                     alt="Cursor screenshot" 
@@ -378,11 +393,8 @@ export default function Slides() {
                     className="w-full h-full object-contain rounded-lg"
                   />
                   {/* Floating overlays */}
-                  <div className="absolute top-[15%] right-[75%] bg-blue-500/80 text-white p-2 rounded-lg text-sm max-w-[160px] shadow-lg transform translate-x-1/2 translate-y-1/2">
+                  <div className="absolute top-[15%] right-[75%] bg-blue-500/80 text-white p-2 rounded-md text-sm max-w-[160px] shadow-lg transform translate-x-1/2 translate-y-1/2">
                     Run terminal commands directly from Cursor
-                  </div>
-                  <div className="absolute bottom-[10%] right-[70%] bg-green-500/80 text-white p-2 rounded-lg text-sm max-w-[140px] shadow-lg transform translate-x-1/2 translate-y-1/2">
-                    Review then accept edits file-by-file
                   </div>
                 </div>
               </div>
@@ -396,29 +408,24 @@ export default function Slides() {
           <h2 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 ztc-heading">
           Build Rhythm, Not Chaos
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start max-w-7xl mx-auto">
             {/* Left column - Instructions */}
-            <div className="ztc-surface info-panel panel-cut p-4 md:p-6">
+            <div className="editorial-column p-4 md:p-6">
               <ol className="list-none space-y-3">
-                <li className="bg-slate-900/70 rounded-xl p-3 border border-cyan-400/30">
-                  <p className="text-base md:text-lg text-white font-medium leading-tight">
-                    <span className="text-red-300 font-bold">Read every change</span> — do not click accept on autopilot.
-                  </p>
-                </li>
-                <li className="bg-slate-900/70 rounded-xl p-3 border border-cyan-400/30">
+                <li className="rail-item p-3">
                   <div className="flex flex-col space-y-1">
                     <p className="text-base md:text-lg text-white font-medium">Turn on autosave:</p>
                     <code className="bg-slate-900/80 px-2 py-1 rounded-lg border border-cyan-400/25 text-blue-300 font-mono text-sm md:text-base">⌘/Ctrl + Shift + P</code>
                   </div>
                 </li>
-                <li className="bg-slate-900/70 rounded-xl p-3 border border-cyan-400/30">
-                  <p className="text-base md:text-lg text-white font-medium leading-tight">
-                    Start a <span className="text-green-300 font-semibold">new chat</span> when context gets muddy
-                  </p>
-                </li>
-                <li className="bg-slate-900/70 rounded-xl p-3 border border-orange-400/30">
+                <li className="rail-item p-3">
                   <p className="text-base md:text-lg text-white font-medium leading-tight">
                     Run <code className="text-green-300 bg-slate-800 px-2 py-1 rounded font-mono text-xs">npm run dev</code> in a dedicated terminal to stay organized
+                  </p>
+                </li>
+                <li className="rail-item p-3">
+                  <p className="text-base md:text-lg text-white font-medium leading-tight">
+                    Use <code className="text-green-300 bg-slate-800 px-2 py-1 rounded font-mono text-xs">⌘/Ctrl + Shift + F</code> to find the component you want to edit, then send the lines directly to Cursor with <code className="text-green-300 bg-slate-800 px-2 py-1 rounded font-mono text-xs">⌘/Ctrl + I</code>
                   </p>
                 </li>
               </ol>
@@ -426,7 +433,7 @@ export default function Slides() {
             
             {/* Right column - Screenshots */}
             <div className="space-y-4">
-              <div className="ztc-surface info-panel panel-sharp p-3">
+              <div className="editorial-column p-3">
                 <div className="relative">
                   <Image 
                     src="/images/new_chat_prompt.png" 
@@ -441,12 +448,12 @@ export default function Slides() {
                 </div>
                 <div className="mt-2 p-2 bg-slate-900/70 rounded-lg">
                   <p className="text-sm md:text-base text-white font-medium text-center">
-                    <span className="text-blue-300 font-semibold">Attach files with @</span> · <span className="text-orange-300 font-semibold">reset long chats early</span>
+                    <span className="text-blue-300 font-semibold">Attach files with @</span>
                   </p>
                 </div>
               </div>
               
-              <div className="ztc-surface info-panel panel-soft p-3">
+              <div className="editorial-column p-3">
                 <Image 
                   src="/images/open_terminal.png" 
                   alt="Terminal interface in Cursor" 
@@ -468,37 +475,37 @@ export default function Slides() {
             <div className="space-y-6">
               <div className="ztc-surface-strong hero-panel panel-soft p-6">
                 <h3 className="text-xl md:text-2xl font-bold text-center mb-4 flex items-center justify-center gap-3">
-                  <span className="text-2xl">🧠</span>
-                  <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">Mindset</span>
+                  <Brain className="h-6 w-6" />
+                  <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">Errors are normal</span>
                 </h3>
                 <p className="text-lg md:text-xl text-center text-white font-medium leading-relaxed">
-                  When it breaks, skip panic and switch to <span className="text-green-300 font-bold">diagnosis mode</span>.
+                   When it breaks, <span className="text-green-300 font-bold">read the message</span>, then paste it back into Cursor
                 </p>
               </div>
               
               <div className="ztc-surface-strong hero-panel panel-sharp p-6">
                 <h3 className="text-xl md:text-2xl font-bold text-center mb-4 flex items-center justify-center gap-3">
-                  <span className="text-2xl">🔍</span>
-                  <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">Learning Loop</span>
+                  <Search className="h-6 w-6" />
+                  <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">Remember to read</span>
                 </h3>
                 <p className="text-lg md:text-xl text-center text-white font-medium leading-relaxed">
-                  Read docs and errors in parallel so your prompts get smarter each round.
+                  The more the LLM thinks you sound like a developer, the better the results.
                 </p>
               </div>
 
               <div className="bg-gradient-to-r from-slate-900/80 to-blue-950/80 p-6 rounded-xl border border-cyan-400/30 shadow-2xl">
                 <h3 className="text-xl md:text-2xl font-bold text-center mb-4 flex items-center justify-center gap-3">
-                  <span className="text-2xl">🚀</span>
+                  <Rocket className="h-6 w-6" />
                   <span className="text-white">Reality Check</span>
                 </h3>
                 <p className="text-lg md:text-xl text-center font-bold text-white leading-relaxed">
-                  Great developers never stop learning, they just learn faster each sprint.
+                  Great developers never stop learning, they just learn faster each time.
                 </p>
               </div>
             </div>
             
             <div className="flex items-center justify-center">
-              <div className="ztc-surface p-4">
+              <div className="p-4">
                 <Image 
                   src="/images/spanner.png" 
                   alt="Spanner tool representing continuous learning" 
@@ -516,55 +523,48 @@ export default function Slides() {
           <h2 className={`${headingLg} mb-6 md:mb-8`}>
             <span className="text-blue-300">3. </span>Push small. Deploy often.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 h-fit">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 h-fit">
             {/* Left column - Git steps */}
             <div className="space-y-4 md:space-y-6">
-              <div className={sectionCard}>
-                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">Push to GitHub</h3>
-                <ol className="space-y-3 md:space-y-4 text-lg md:text-xl">
-                  <li className="flex items-start">
-                    <span className="text-blue-300 mr-2">1.</span>
-                    <span>Edit locally in clear, testable steps</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-300 mr-2">2.</span>
-                    <span>Commit meaningful chunks with clear messages</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-300 mr-2">3.</span>
-                    <span>Push frequently so deploys stay easy</span>
-                  </li>
-                </ol>
-              </div>
+              <ol className="space-y-4 text-lg md:text-xl workflow-lane">
+                <li className="lane-step">
+                  <span className="lane-step-num">1</span>
+                  <span>Edit locally in clear, testable steps</span>
+                </li>
+                <li className="lane-step">
+                  <span className="lane-step-num">2</span>
+                  <span>Commit meaningful chunks with clear messages</span>
+                </li>
+                <li className="lane-step">
+                  <span className="lane-step-num">3</span>
+                  <span>Push frequently so deploys stay easy</span>
+                </li>
+              </ol>
 
               {/* Git flow diagram */}
-              <div className={sectionCard}>
-                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">How Git Works</h3>
-                <div className="relative">
-                  <GitFlowDiagram />
-                </div>
+              <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4 mt-6">How Git Works</h3>
+              <div className="relative workflow-lane">
+                <GitFlowDiagram />
               </div>
             </div>
 
             {/* Right column - Vercel deployment */}
             <div className="space-y-4 md:space-y-6">
-              <div className={sectionCard}>
-                <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">Deploy on Vercel</h3>
-                <ol className="space-y-3 md:space-y-4 text-lg md:text-xl">
-                  <li className="flex items-start">
-                    <span className="text-blue-300 mr-2">1.</span>
-                    <span>Import the GitHub repository once</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-300 mr-2">2.</span>
-                    <span>Check framework and build command</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-300 mr-2">3.</span>
-                    <span>Deploy, then let each push publish updates</span>
-                  </li>
-                </ol>
-              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-4">Deploy on Vercel</h3>
+              <ol className="space-y-4 text-lg md:text-xl workflow-lane">
+                <li className="lane-step">
+                  <span className="lane-step-num">1</span>
+                  <span>Import the GitHub repository once</span>
+                </li>
+                <li className="lane-step">
+                  <span className="lane-step-num">2</span>
+                  <span>Check framework and build command</span>
+                </li>
+                <li className="lane-step">
+                  <span className="lane-step-num">3</span>
+                  <span>Deploy, then let each push publish updates</span>
+                </li>
+              </ol>
 
               {/* Vercel screenshot */}
               <div className="w-full">
@@ -599,7 +599,7 @@ export default function Slides() {
             </div>
             
             <div className="mt-4 md:mt-6">
-              <span className="text-6xl md:text-7xl">🎉</span>
+              <PartyPopper className="h-14 w-14 md:h-16 md:w-16 text-orange-300" />
             </div>
           </div>
         </section>
@@ -612,7 +612,7 @@ export default function Slides() {
               </h2>
               <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-orange-400/20 rounded-lg blur-xl"></div>
-              <div className={sectionCardStrong}>
+              <div className="editorial-callout">
                 <p className="text-2xl md:text-4xl text-gray-200 text-center">&nbsp;Take 10 minutes. Move, hydrate, and come back fresh.&nbsp;</p>
               </div>
             </div>
@@ -625,22 +625,18 @@ export default function Slides() {
             Part 2: Build Your Own
           </h2>
           <div className="text-xl md:text-3xl">
-            <div className="ztc-surface info-panel panel-sharp p-4 md:p-6 mb-6 md:mb-8">
+            <div className="editorial-column p-4 md:p-6 mb-6 md:mb-8">
               <div className="flex items-center mb-2">
-                <div className="bg-blue-600/40 p-4 md:p-5 rounded-full mr-4 md:mr-6">
-                  <span className="text-4xl md:text-5xl">&nbsp;🚀&nbsp;</span>
-                </div>
+                <Rocket className="h-10 w-10 md:h-12 md:w-12 mr-4 md:mr-6 text-blue-300" />
                 <h3 className="text-2xl md:text-4xl font-bold text-blue-300">New project from scratch in Cursor</h3>
               </div>
            </div>
-            <p className="text-xl md:text-3xl text-gray-200 mb-6 md:mb-8">Choose the track you want to ship today</p>
+            <p className="text-xl md:text-3xl text-gray-200 mb-6 md:mb-8">Choose a track</p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-              <div className="ztc-surface info-panel panel-cut p-6 md:p-8 flex flex-col">
+              <div className="editorial-column p-6 md:p-8 flex flex-col">
                 <div className="flex items-center mb-4 md:mb-6">
-                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg mr-4 md:mr-6">
-                    <span className="text-4xl md:text-5xl">&nbsp;💬&nbsp;</span>
-                  </div>
+                  <MessageSquare className="h-10 w-10 md:h-12 md:w-12 mr-4 md:mr-6 text-blue-300" />
                   <h3 className="text-2xl md:text-4xl font-bold text-blue-300">Web App Track</h3>
                 </div>
                 <ul className="space-y-3 mb-6">
@@ -655,11 +651,9 @@ export default function Slides() {
                   </li>
                 </ul>
               </div>
-              <div className="ztc-surface info-panel panel-soft p-6 md:p-8 flex flex-col">
+              <div className="editorial-column p-6 md:p-8 flex flex-col">
                 <div className="flex items-center mb-4 md:mb-6">
-                  <div className="bg-orange-500/35 p-4 md:p-5 rounded-lg mr-4 md:mr-6">
-                    <span className="text-4xl md:text-5xl">&nbsp;📊&nbsp;</span>
-                  </div>
+                  <Compass className="h-10 w-10 md:h-12 md:w-12 mr-4 md:mr-6 text-orange-300" />
                   <h3 className="text-2xl md:text-4xl font-bold text-blue-300">Data Analysis Track</h3>
                 </div>
                 <ul className="space-y-3 mb-6">
@@ -670,7 +664,7 @@ export default function Slides() {
                     <span>Analyze it</span>
                   </li>
                   <li className="flex items-center text-lg md:text-xl">
-                    <span>Visualize it</span>
+                    <span>Visualise it</span>
                   </li>
                 </ul>
               </div>
@@ -684,37 +678,37 @@ export default function Slides() {
             Start Project Two in Cursor
           </h2>
           <p className="text-xl md:text-3xl text-gray-200 mb-6 md:mb-8">New Window -&gt; Open Project -&gt; New Folder</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="text-xl md:text-3xl space-y-4 md:space-y-6 ztc-surface info-panel panel-cut p-6 md:p-8 h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+            <div className="text-xl md:text-3xl space-y-4 md:space-y-6 editorial-column p-6 md:p-8 h-full">
               <div className="space-y-4 md:space-y-6">
-                <div className="bg-slate-900/70 rounded-lg p-4 border-l-4 border-blue-400 shadow-md">
+                <div className="prompt-strip">
                   <code className="block bg-slate-950 p-4 md:p-5 rounded-lg text-left border border-cyan-400/25 shadow-inner text-lg md:text-xl">
-                    &quot;Build a Next.js app for [...]. First connect GitHub, then keep work in this local directory.&quot;
+                    &quot;Build a Next.js app for [...]. use Supabase for database and email sign in&quot;
                   </code>
                   <div className="w-full h-1 bg-gradient-to-r from-blue-500/50 to-transparent rounded-full mt-3"></div>
                 </div>
-                <div className="bg-slate-900/70 rounded-lg p-4 border-l-4 border-orange-400 shadow-md">
+                <div className="prompt-strip prompt-strip-alt">
                   <code className="block bg-slate-950 p-4 md:p-5 rounded-lg text-left border border-cyan-400/25 shadow-inner text-lg md:text-xl">
-                    &quot;After each milestone, help me commit, push, and verify before we continue.&quot;
+                    &quot;Commit and push after each edit.&quot;
                   </code>
                   <div className="w-full h-1 bg-gradient-to-r from-orange-400/50 to-transparent rounded-full mt-3"></div>
                 </div>
               </div>
             </div>
             <div className="flex flex-col gap-4 md:gap-6">
-              <div className="ztc-surface info-panel panel-soft p-6 md:p-8 h-full flex flex-col justify-center">
+              <div className="editorial-column p-6 md:p-8 h-full flex flex-col justify-center">
                 <div className="flex items-center mb-3">
-                  <span className="text-4xl md:text-5xl mr-4">&nbsp;✨&nbsp;</span>
+                  <Sparkles className="h-10 w-10 md:h-12 md:w-12 mr-4 text-blue-300" />
                   <h3 className="text-2xl md:text-3xl font-bold text-blue-300">Pro Tips</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="ztc-surface p-4">
+                  <div className="rail-item p-4">
                     <p className="text-lg md:text-xl">
-                      Use one chat for planning, a new chat for implementation.
+                      Switch to plan mode with <span className="text-cyan-300 font-bold">⇧ + ⇥</span>
                     </p>
                   </div>
-                  <div className="ztc-surface p-4">
-                    <p className="text-lg md:text-xl">Short prompts beat giant requirement dumps every time.</p>
+                  <div className="rail-item p-4">
+                    <p className="text-lg md:text-xl">Spend 80% of your time planning. Make it find out what you want.</p>
                   </div>
                 </div>
               </div>
@@ -734,14 +728,14 @@ export default function Slides() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1">
               {/* Left column - Text boxes */}
               <div className="space-y-6 md:space-y-8 flex flex-col justify-center">
-                <div className="ztc-surface info-panel panel-sharp p-4 md:p-6">
+                <div className="editorial-column p-4 md:p-6">
                   <p className="text-2xl md:text-3xl text-blue-300 text-center">
                     Stop random rabbit holes early.
                   </p>
                 </div>
                 
-                <div className="ztc-surface info-panel panel-cut p-4 md:p-6">
-                <span className="text-2xl mr-4 font-bold text-blue-300">&nbsp;✨&nbsp;Pro Tip</span>
+                <div className="editorial-column p-4 md:p-6">
+                <span className="text-2xl mr-4 font-bold text-blue-300 inline-flex items-center gap-2"><Sparkles className="h-6 w-6" />Pro Tip</span>
                   <p className="text-xl md:text-3xl text-blue-300 text-center italic">
                     Ask for ranked likely causes and a step-by-step debug plan.
                   </p>
@@ -750,7 +744,7 @@ export default function Slides() {
 
               {/* Right column - Meme image */}
               <div className=" flex items-center justify-center">
-                <div className="ztc-surface info-panel panel-soft p-2">
+                <div className="image-stage p-2">
                   <Image 
                     src="/images/cursor_debug_meme.png" 
                     alt="Debugging meme showing the journey between bug fixes" 
@@ -773,27 +767,27 @@ export default function Slides() {
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto">
             {/* Left Column - Troubleshooting */}
-            <div className="ztc-surface-strong hero-panel panel-cut p-6">
+            <div className="editorial-column p-6">
               <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-6 flex items-center gap-3">
-                <span className="text-2xl">🔄</span>
+                <RefreshCw className="h-6 w-6" />
                 When the agent gets stuck
               </h3>
               <ul className="space-y-4">
-                <li className="bg-slate-900/70 p-4 rounded-xl border border-red-400/30 shadow-lg">
+                <li className="p-4 border-l-2 border-red-400/45">
                   <div className="flex items-center gap-3">
-                    <span className="text-lg">🔍</span>
+                    <Search className="h-5 w-5" />
                     <span className="text-base md:text-lg text-white font-medium">Restate the goal and current failure clearly</span>
                   </div>
                 </li>
-                <li className="bg-slate-900/70 p-4 rounded-xl border border-orange-400/30 shadow-lg">
+                <li className="p-4 border-l-2 border-orange-400/45">
                   <div className="flex items-center gap-3">
-                    <span className="text-lg">📋</span>
+                    <CopyIcon className="h-5 w-5" />
                     <span className="text-base md:text-lg text-white font-medium">Share exact errors and terminal output</span>
                   </div>
                 </li>
-                <li className="bg-slate-900/70 p-4 rounded-xl border border-cyan-400/30 shadow-lg">
+                <li className="p-4 border-l-2 border-cyan-400/45">
                   <div className="flex items-center gap-3">
-                    <span className="text-lg">🔄</span>
+                    <RefreshCw className="h-5 w-5" />
                     <span className="text-base md:text-lg text-white font-medium">Switch models if progress stalls</span>
                   </div>
                 </li>
@@ -801,27 +795,27 @@ export default function Slides() {
             </div>
 
             {/* Right Column - Shortcuts */}
-            <div className="ztc-surface-strong hero-panel panel-soft p-6">
+            <div className="editorial-column p-6">
               <h3 className="text-xl md:text-2xl font-bold text-blue-300 mb-6 flex items-center gap-3">
-                <span className="text-2xl">⚡</span>
+                <Zap className="h-6 w-6" />
                 Keyboard Shortcuts
               </h3>
               <div className="space-y-4">
-                <div className="bg-slate-900/70 p-4 rounded-xl border border-cyan-400/30 shadow-lg">
+                <div className="p-4 border-l-2 border-cyan-400/45">
                   <h4 className="text-base md:text-lg font-bold text-green-300 mb-3">File Management</h4>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-white font-medium text-sm md:text-base">Add file to chat</span>
-                      <code className="bg-slate-900/80 px-2 py-1 rounded-lg border border-cyan-400/25 text-green-300 font-mono text-xs">⌘/Ctrl + A</code>
+                      <span className="text-white font-medium text-sm md:text-base">Select all</span>
+                      <code className="bg-slate-900/80 px-2 py-1 rounded-lg border border-cyan-400/25 text-green-300 font-mono text-xs">⌘/Ctrl + A</code> 
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-white font-medium text-sm md:text-base">Inline edit</span>
-                      <code className="bg-slate-900/80 px-2 py-1 rounded-lg border border-cyan-400/25 text-green-300 font-mono text-xs">⌘/Ctrl + I</code>
+                      <span className="text-white font-medium text-sm md:text-base">Add selection to chat</span>
+                      <code className="bg-slate-900/80 px-2 py-1 rounded-lg border border-cyan-400/25 text-green-300 font-mono text-xs">⌘/Ctrl + L</code>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-slate-900/70 p-4 rounded-xl border border-orange-400/30 shadow-lg">
+                <div className="p-4 border-l-2 border-orange-400/45">
                   <h4 className="text-base md:text-lg font-bold text-orange-300 mb-3">Navigation</h4>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -911,34 +905,22 @@ export default function Slides() {
             Keep Momentum After Today
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-            {/* Left column - desktop friendly actions */}
+            {/* Left column - Community QR */}
             <div className="flex flex-col items-center justify-center">
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-orange-400/20 rounded-lg blur-md transition-all duration-300"></div>
-                <div className="relative ztc-surface cta-panel panel-cut p-6 md:p-8 flex flex-col items-center gap-4">
-                  <p className="text-lg md:text-2xl font-semibold text-center">Join the community from desktop</p>
-                  <a
-                    href="https://zerotocoder.uk/slides"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-6 py-3 text-base md:text-lg font-semibold bg-orange-400/20 border border-orange-300/45 rounded-md hover:bg-orange-400/30 transition-colors"
-                  >
-                    Open Community Link Page
-                  </a>
-                  <p className="text-sm md:text-base ztc-muted text-center">
-                    No QR needed on desktop.
-                  </p>
-                </div>
-              </div>
+              <Image 
+                src="/images/whatsapp_qr.jpg" 
+                alt="WhatsApp community QR code"
+                width={520}
+                height={520}
+                className="border border-cyan-400/30"
+              />
             </div>
 
             {/* Right column - Keep in touch */}
             <div className="text-xl md:text-3xl flex flex-col gap-6 md:gap-8">
-              <div className="ztc-surface cta-panel panel-soft p-6 md:p-10 flex-grow">
+              <div className="editorial-column p-6 md:p-10 flex-grow">
                 <div className="flex mb-4 md:mb-6">
-                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg mr-4 md:mr-8 flex items-center justify-center">
-                    <span className="text-4xl md:text-5xl">👈</span>
-                  </div>
+                  <ArrowLeft className="h-10 w-10 md:h-12 md:w-12 mr-4 md:mr-8 text-blue-300" />
                   <div className="flex-1">
                     <h3 className="text-xl md:text-3xl font-bold text-blue-300 mb-4">Join the community</h3>
                     <p>Share wins, links, and useful prompts.</p>
@@ -946,11 +928,9 @@ export default function Slides() {
                   </div>
                 </div>
               </div>
-              <div className="ztc-surface cta-panel panel-sharp p-6 md:p-10 flex-grow">
+              <div className="editorial-column p-6 md:p-10 flex-grow">
                 <div className="flex mb-4 md:mb-6">
-                  <div className="bg-blue-600/40 p-4 md:p-5 rounded-lg mr-4 md:mr-8 flex items-center justify-center">
-                    <span className="text-4xl md:text-5xl">🤿</span>
-                  </div>
+                  <Compass className="h-10 w-10 md:h-12 md:w-12 mr-4 md:mr-8 text-blue-300" />
                   <div className="flex-1">
                     <h3 className="text-xl md:text-3xl font-bold text-blue-300 mb-4">Pick your next build</h3>
                     <p>Learning compounds when you keep shipping.</p>
@@ -965,38 +945,35 @@ export default function Slides() {
         <section className="ztc-slide bg-hero-grid">
           <div className="relative z-20 flex min-h-[70vh] items-center justify-center p-6">
             <div className="max-w-sm">
-              <div className="text-base md:text-lg ztc-surface cta-panel panel-cut p-4 md:p-6">
+              <div className="text-base md:text-lg editorial-column p-4 md:p-6">
                 <h3 className="text-lg md:text-2xl font-bold text-blue-300 mb-3">Help Improve This Workshop</h3>
                 <p className="text-base md:text-xl mb-4">Your feedback directly shapes the next session.</p>
                 
                 <ul className="space-y-3 mb-6 md:mb-8">
                   <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-slate-700/40 p-2 rounded-lg">
-                    <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
+                    <ArrowRight className="h-4 w-4 text-blue-300 mr-2 opacity-0 group-hover:opacity-100" />
                     <span>What clicked for you?</span>
                   </li>
                   <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-slate-700/40 p-2 rounded-lg">
-                    <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
+                    <ArrowRight className="h-4 w-4 text-blue-300 mr-2 opacity-0 group-hover:opacity-100" />
                     <span>Where did things feel confusing?</span>
                   </li>
                   <li className="flex items-center group cursor-pointer transition-all duration-300 hover:bg-slate-700/40 p-2 rounded-lg">
-                    <span className="text-blue-300 mr-2 opacity-0 group-hover:opacity-100">👉</span>
+                    <ArrowRight className="h-4 w-4 text-blue-300 mr-2 opacity-0 group-hover:opacity-100" />
                     <span>What should we build next?</span>
                   </li>
                 </ul>
 
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-orange-400/20 rounded-lg blur-md transition-all duration-300"></div>
-                  <div className="relative ztc-surface cta-panel panel-soft p-6 md:p-8 flex flex-col items-center gap-4">
-                    <a
-                      href={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zerotocoder.uk'}/feedback`}
-                      className="inline-flex items-center justify-center px-6 py-3 text-base md:text-lg font-semibold bg-blue-500/25 border border-blue-400/45 rounded-md hover:bg-blue-500/35 transition-colors"
-                    >
-                      Open Feedback Form
-                    </a>
-                    <p className="text-sm text-blue-300">
-                      It takes about 3 minutes.
-                    </p>
-                  </div>
+                <div className="p-6 md:p-8 flex flex-col items-center gap-4 border-l-2 border-blue-400/45">
+                  <a
+                    href={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://zerotocoder.uk'}/feedback`}
+                    className="inline-flex items-center justify-center px-6 py-3 text-base md:text-lg font-semibold bg-blue-500/25 border border-blue-400/45 rounded-md hover:bg-blue-500/35 transition-colors"
+                  >
+                    Open Feedback Form
+                  </a>
+                  <p className="text-sm text-blue-300">
+                    It takes about 3 minutes.
+                  </p>
                 </div>
               </div>
             </div>
