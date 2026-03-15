@@ -7,6 +7,7 @@ import { FiSend, FiUser, FiMail, FiCheckCircle, FiStar, FiArrowRight, FiAward, F
 import { supabase } from '../../lib/supabase';
 import { validateFeedbackForm, type FeedbackFormData, type ValidationErrors } from '../../lib/validation';
 import '../globals.css';
+import '../slides/slides.css';
 
 export default function FeedbackPage() {
   const router = useRouter();
@@ -157,24 +158,26 @@ export default function FeedbackPage() {
   
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-indigo-900 to-blue-900 text-white flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#0b1222] text-[#f3f6ff] flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(120deg,rgba(86,184,255,0.12),rgba(255,127,110,0.08)),radial-gradient(circle_at_20%_10%,rgba(86,184,255,0.2),transparent_60%),#0b1222]"></div>
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(135,145,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(135,145,255,0.08)_1px,transparent_1px)] bg-[size:36px_36px] opacity-35"></div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-lg w-full bg-indigo-900/60 rounded-xl p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl"
+          className="max-w-lg w-full ztc-surface hero-panel panel-cut p-8 relative z-10"
         >
           <div className="text-center">
             <motion.div 
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
-              className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6"
+              className="w-20 h-20 bg-[#56b8ff]/20 rounded-full border border-[#56b8ff]/30 flex items-center justify-center mx-auto mb-6"
             >
-              <FiCheckCircle className="text-green-400 text-4xl drop-shadow-glow" />
+              <FiCheckCircle className="text-[#56b8ff] text-4xl" />
             </motion.div>
-            <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Thank You!</h1>
-            <p className="text-blue-200 mb-4">Your feedback has been submitted successfully. I appreciate your time!</p>
-            <p className="text-sm text-blue-300">Redirecting you to thank you page...</p>
+            <h1 className="text-3xl font-bold mb-4 ztc-heading">Thank You!</h1>
+            <p className="ztc-muted mb-4">Your feedback has been submitted successfully. I appreciate your time!</p>
+            <p className="text-sm text-[#8ac8ff]">Redirecting you to thank you page...</p>
           </div>
         </motion.div>
       </div>
@@ -187,18 +190,13 @@ export default function FeedbackPage() {
   const progress = Math.round((completedRequired / requiredFields.length) * 100);
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-blue-900 to-purple-900 text-white overflow-hidden relative">
-      {/* Enhanced animated background */}
-      <div className="absolute opacity-60 pointer-events-none overflow-hidden w-full h-full top-0 left-0">
-        <div className="animate-blob animation-delay-2000 absolute top-20 -left-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-        <div className="animate-blob animation-delay-4000 absolute top-40 -right-20 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-        <div className="animate-blob absolute -bottom-40 left-40 w-96 h-96 bg-indigo-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-        <div className="animate-blob animation-delay-2000 absolute top-1/2 right-1/4 w-64 h-64 bg-cyan-600 rounded-full mix-blend-screen filter blur-3xl"></div>
+    <div className="min-h-screen bg-[#0b1222] text-[#f3f6ff] overflow-hidden relative">
+      <div className="absolute pointer-events-none overflow-hidden w-full h-full top-0 left-0">
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(86,184,255,0.14),rgba(255,127,110,0.1)),radial-gradient(circle_at_20%_10%,rgba(86,184,255,0.22),transparent_60%),#0b1222]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(135,145,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(135,145,255,0.08)_1px,transparent_1px)] bg-[size:36px_36px] opacity-40"></div>
+        <div className="absolute -top-24 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-[#56b8ff]/20 blur-3xl"></div>
       </div>
-      
-      {/* Subtle grid overlay for texture */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-      
+
       <div className="container mx-auto px-4 py-12 relative z-10 flex flex-col items-center">
         {/* Header with logo placeholder */}
         <motion.div 
@@ -206,12 +204,13 @@ export default function FeedbackPage() {
           animate={{ opacity: 1, y: 0 }}
           className="w-full text-center mb-8"
         >
-          <div className="inline-block p-2 bg-white/10 rounded-xl backdrop-blur-sm mb-4">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <p className="type-kicker mb-3">Workshop retrospectives</p>
+          <div className="inline-block p-2 mb-4">
+            <h1 className="text-4xl font-bold ztc-heading">
               Workshop Feedback
             </h1>
           </div>
-          <p className="text-blue-200 max-w-xl mx-auto">
+          <p className="ztc-muted max-w-xl mx-auto">
             Make me better at this! Share your experience :)
           </p>
         </motion.div>
@@ -222,17 +221,17 @@ export default function FeedbackPage() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="lg:w-2/3 bg-indigo-900/60 rounded-xl p-6 md:p-8 backdrop-blur-lg border border-blue-500/50 shadow-xl"
+            className="lg:w-2/3 ztc-surface hero-panel panel-cut p-6 md:p-8"
           >
             {/* Progress bar */}
             <div className="mb-6">
-              <div className="flex justify-between text-xs text-blue-300 mb-1">
+              <div className="flex justify-between text-xs text-[#8ac8ff] mb-1">
                 <span>Form Progress</span>
                 <span>{progress}% Complete</span>
               </div>
-              <div className="w-full h-2 bg-blue-900/50 rounded-full overflow-hidden">
+              <div className="w-full h-2 bg-[#121f3a] rounded-full overflow-hidden border border-[#56b8ff]/20">
                 <motion.div 
-                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                  className="h-full bg-gradient-to-r from-[#56b8ff] to-[#ff7f6e]"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.5 }}
@@ -251,8 +250,8 @@ export default function FeedbackPage() {
                     }}
                     transition={{ duration: 0.4 }}
                   >
-                    <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                      <FiUser className={`mr-2 ${activeField === 'name' ? 'text-blue-400' : ''}`} />
+                    <label className="flex items-center text-sm font-medium text-[#8ac8ff] mb-1">
+                      <FiUser className={`mr-2 ${activeField === 'name' ? 'text-[#56b8ff]' : ''}`} />
                       Your Name
                     </label>
                     <input
@@ -263,7 +262,7 @@ export default function FeedbackPage() {
                       onChange={handleChange}
                       onFocus={() => handleFocus('name')}
                       onBlur={handleBlur}
-                      className={`w-full bg-blue-950/40 border ${errors.name ? 'border-red-500' : activeField === 'name' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                      className={`w-full bg-[#0f1830]/75 border ${errors.name ? 'border-red-500' : activeField === 'name' ? 'border-[#56b8ff]' : 'border-[#56b8ff]/30'} focus:border-[#56b8ff] rounded-sm px-4 py-3 text-[#f3f6ff] placeholder-[#8ac8ff]/60 outline-none transition duration-200`}
                       placeholder="John Doe"
                     />
                     {errors.name && (
@@ -279,8 +278,8 @@ export default function FeedbackPage() {
                     }}
                     transition={{ duration: 0.4 }}
                   >
-                    <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                      <FiMail className={`mr-2 ${activeField === 'email' ? 'text-blue-400' : ''}`} />
+                    <label className="flex items-center text-sm font-medium text-[#8ac8ff] mb-1">
+                      <FiMail className={`mr-2 ${activeField === 'email' ? 'text-[#56b8ff]' : ''}`} />
                       Email Address
                     </label>
                     <input
@@ -291,7 +290,7 @@ export default function FeedbackPage() {
                       onChange={handleChange}
                       onFocus={() => handleFocus('email')}
                       onBlur={handleBlur}
-                      className={`w-full bg-blue-950/40 border ${errors.email ? 'border-red-500' : activeField === 'email' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                      className={`w-full bg-[#0f1830]/75 border ${errors.email ? 'border-red-500' : activeField === 'email' ? 'border-[#56b8ff]' : 'border-[#56b8ff]/30'} focus:border-[#56b8ff] rounded-sm px-4 py-3 text-[#f3f6ff] placeholder-[#8ac8ff]/60 outline-none transition duration-200`}
                       placeholder="john@example.com"
                     />
                     {errors.email && (
@@ -308,8 +307,8 @@ export default function FeedbackPage() {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                    <FiStar className={`mr-2 text-yellow-400 ${activeField === 'wentWell' ? 'drop-shadow-glow' : ''}`} />
+                  <label className="flex items-center text-sm font-medium text-[#8ac8ff] mb-1">
+                    <FiStar className={`mr-2 text-[#ff7f6e] ${activeField === 'wentWell' ? 'soft-glow' : ''}`} />
                     What went well?
                   </label>
                   <textarea
@@ -320,7 +319,7 @@ export default function FeedbackPage() {
                     onFocus={() => handleFocus('wentWell')}
                     onBlur={handleBlur}
                     rows={3}
-                    className={`w-full bg-blue-950/40 border ${errors.wentWell ? 'border-red-500' : activeField === 'wentWell' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                    className={`w-full bg-[#0f1830]/75 border ${errors.wentWell ? 'border-red-500' : activeField === 'wentWell' ? 'border-[#56b8ff]' : 'border-[#56b8ff]/30'} focus:border-[#56b8ff] rounded-sm px-4 py-3 text-[#f3f6ff] placeholder-[#8ac8ff]/60 outline-none transition duration-200`}
                     placeholder="Share what you enjoyed about the workshop..."
                   />
                   {errors.wentWell && (
@@ -329,8 +328,8 @@ export default function FeedbackPage() {
                 </motion.div>
                 
                 <div className="relative">
-                  <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                    <FiStar className={`mr-2 text-blue-400 ${activeField === 'couldImprove' ? 'drop-shadow-glow' : ''}`} />
+                  <label className="flex items-center text-sm font-medium text-[#8ac8ff] mb-1">
+                    <FiStar className={`mr-2 text-[#56b8ff] ${activeField === 'couldImprove' ? 'soft-glow' : ''}`} />
                     What could have been better?
                   </label>
                   <textarea
@@ -341,7 +340,7 @@ export default function FeedbackPage() {
                     onFocus={() => handleFocus('couldImprove')}
                     onBlur={handleBlur}
                     rows={3}
-                    className={`w-full bg-blue-950/40 border ${errors.couldImprove ? 'border-red-500' : activeField === 'couldImprove' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                    className={`w-full bg-[#0f1830]/75 border ${errors.couldImprove ? 'border-red-500' : activeField === 'couldImprove' ? 'border-[#56b8ff]' : 'border-[#56b8ff]/30'} focus:border-[#56b8ff] rounded-sm px-4 py-3 text-[#f3f6ff] placeholder-[#8ac8ff]/60 outline-none transition duration-200`}
                     placeholder="Any suggestions for improvement..."
                   />
                   {errors.couldImprove && (
@@ -350,8 +349,8 @@ export default function FeedbackPage() {
                 </div>
                 
                 <div className="relative">
-                  <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                    <FiStar className={`mr-2 text-green-400 ${activeField === 'nextSessionTopics' ? 'drop-shadow-glow' : ''}`} />
+                  <label className="flex items-center text-sm font-medium text-[#8ac8ff] mb-1">
+                    <FiStar className={`mr-2 text-[#7d88ff] ${activeField === 'nextSessionTopics' ? 'soft-glow' : ''}`} />
                     What would make you excited about Zero-to-Coder&nbsp;<strong>Part 2</strong>?
                   </label>
                   <textarea
@@ -361,7 +360,7 @@ export default function FeedbackPage() {
                     onFocus={() => handleFocus('nextSessionTopics')}
                     onBlur={handleBlur}
                     rows={3}
-                    className={`w-full bg-blue-950/40 border ${errors.nextSessionTopics ? 'border-red-500' : activeField === 'nextSessionTopics' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                    className={`w-full bg-[#0f1830]/75 border ${errors.nextSessionTopics ? 'border-red-500' : activeField === 'nextSessionTopics' ? 'border-[#56b8ff]' : 'border-[#56b8ff]/30'} focus:border-[#56b8ff] rounded-sm px-4 py-3 text-[#f3f6ff] placeholder-[#8ac8ff]/60 outline-none transition duration-200`}
                     placeholder="Topics or skills you'd like to explore in a follow-up session..."
                   />
                   {errors.nextSessionTopics && (
@@ -377,8 +376,8 @@ export default function FeedbackPage() {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                    <FiStar className={`mr-2 text-purple-400 ${activeField === 'testimonial' ? 'drop-shadow-glow' : ''}`} />
+                  <label className="flex items-center text-sm font-medium text-[#8ac8ff] mb-1">
+                    <FiStar className={`mr-2 text-[#ff7f6e] ${activeField === 'testimonial' ? 'soft-glow' : ''}`} />
                     Testimonial for the website
                   </label>
                   <textarea
@@ -388,15 +387,15 @@ export default function FeedbackPage() {
                     onFocus={() => handleFocus('testimonial')}
                     onBlur={handleBlur}
                     rows={3}
-                    className={`w-full bg-blue-950/40 border ${activeField === 'testimonial' ? 'border-blue-400' : 'border-blue-700/50'} focus:border-blue-500 rounded-lg px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                    className={`w-full bg-[#0f1830]/75 border ${activeField === 'testimonial' ? 'border-[#56b8ff]' : 'border-[#56b8ff]/30'} focus:border-[#56b8ff] rounded-sm px-4 py-3 text-[#f3f6ff] placeholder-[#8ac8ff]/60 outline-none transition duration-200`}
                     placeholder="Share your experience that I can feature on my website..."
                   />
                 </motion.div>
                 
                 {/* Tag your experience section */}
                 <div className="relative">
-                  <label className="flex items-center text-sm font-medium text-blue-300 mb-1">
-                    <FiTag className={`mr-2 text-teal-400 ${activeField === 'tags' ? 'drop-shadow-glow' : ''}`} />
+                  <label className="flex items-center text-sm font-medium text-[#8ac8ff] mb-1">
+                    <FiTag className={`mr-2 text-[#56b8ff] ${activeField === 'tags' ? 'soft-glow' : ''}`} />
                     Tag your experience (Then look at the last slide!)
                   </label>
                   
@@ -406,13 +405,13 @@ export default function FeedbackPage() {
                         key={index}
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="inline-flex items-center bg-teal-900/40 text-teal-300 text-xs rounded-full px-3 py-1 border border-teal-500/30"
+                        className="inline-flex items-center bg-[#0f1830]/90 text-[#8ac8ff] text-xs rounded-full px-3 py-1 border border-[#56b8ff]/35"
                       >
                         <span>{tag}</span>
                         <button 
                           type="button"
                           onClick={() => removeTag(tag)}
-                          className="ml-2 text-teal-300 hover:text-teal-200 focus:outline-none"
+                          className="ml-2 text-[#8ac8ff] hover:text-[#f3f6ff] focus:outline-none"
                         >
                           <FiX size={14} />
                         </button>
@@ -428,7 +427,7 @@ export default function FeedbackPage() {
                       onKeyDown={handleTagInputKeyDown}
                       onFocus={() => handleFocus('tags')}
                       onBlur={handleBlur}
-                      className={`flex-grow bg-blue-950/40 border ${tagError ? 'border-red-500' : activeField === 'tags' ? 'border-teal-400' : 'border-blue-700/50'} focus:border-teal-500 rounded-lg rounded-r-none px-4 py-3 text-white placeholder-blue-400/60 outline-none transition duration-200`}
+                      className={`flex-grow bg-[#0f1830]/75 border ${tagError ? 'border-red-500' : activeField === 'tags' ? 'border-[#56b8ff]' : 'border-[#56b8ff]/30'} focus:border-[#56b8ff] rounded-sm rounded-r-none px-4 py-3 text-[#f3f6ff] placeholder-[#8ac8ff]/60 outline-none transition duration-200`}
                       placeholder="'awe-inspiring', '𝓵𝓲𝓯𝓮-𝓬𝓱𝓪𝓷𝓰𝓲𝓷𝓰', 'g̴̢͓̬͖̬͔̤̼͑̐̉͑̐̀̀̈́͆͊̃̚͝͝l̵̡̙̲̭͛̌͋̀̀ͅi̶̱̮̊̿͒̄͊͋͒̃̾̋̏̏̕͠t̴̡̢̜͔̣̫̼̮̱̮̲̥̀̿̄̿͗͘̕͘͜͝͝c̶̨̧̟̭̺͔̳̻̺̫̹̐̊̏̄͋̅̓̍̓̄̅̄͜h̵̲̎́̾̂̑̿͊͠y̵͓̦̒̚'..."
                       maxLength={MAX_TAG_LENGTH}
                     />
@@ -436,7 +435,7 @@ export default function FeedbackPage() {
                       type="button"
                       onClick={addTag}
                       disabled={tags.length >= MAX_TAGS}
-                      className={`${tags.length >= MAX_TAGS ? 'bg-gray-600/60' : 'bg-teal-600/60 hover:bg-teal-600/80'} text-white px-4 rounded-r-lg border border-teal-500/50 transition-colors duration-200 flex items-center justify-center`}
+                      className={`${tags.length >= MAX_TAGS ? 'bg-gray-600/60 border-gray-500/50' : 'bg-[#1f355f] hover:bg-[#2a487d] border-[#56b8ff]/50'} text-white px-4 rounded-r-sm border transition-colors duration-200 flex items-center justify-center`}
                     >
                       <FiPlus />
                     </button>
@@ -453,7 +452,7 @@ export default function FeedbackPage() {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-[#56b8ff]/70 to-[#1f355f] hover:from-[#56b8ff]/85 hover:to-[#2a487d] text-white font-medium py-3 px-4 rounded-sm border border-[#56b8ff]/40 flex items-center justify-center transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <div className="flex items-center">
@@ -479,63 +478,63 @@ export default function FeedbackPage() {
             className="lg:w-1/3 space-y-6"
           >
             {/* About the workshop card */}
-            <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl">
+            <div className="ztc-surface info-panel panel-sharp p-6">
               <h3 className="text-xl font-semibold mb-3 flex items-center">
-                <FiAward className="text-yellow-400 mr-2 drop-shadow-glow" /> 
-                <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">About Z2C</span>
+                <FiAward className="text-[#ff7f6e] mr-2" /> 
+                <span className="text-[#8ac8ff]">About Z2C</span>
               </h3>
-              <p className="text-blue-200 mb-4">
+              <p className="ztc-muted mb-4">
                 My workshop is designed to help beginners transform into confident coders from the top-down, starting with results and working backwards.
               </p>
               <div className="space-y-3">
                 <div className="flex items-start">
-                  <div className="bg-blue-500/20 p-2 rounded-lg mr-3">
-                    <FiCode className="text-blue-300" />
+                  <div className="bg-[#56b8ff]/15 p-2 rounded-sm mr-3 border border-[#56b8ff]/35">
+                    <FiCode className="text-[#8ac8ff]" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-blue-300">Practical Skills</h4>
-                    <p className="text-xs text-blue-200/80">Learn by building real projects</p>
+                    <h4 className="text-sm font-medium text-[#8ac8ff]">Practical Skills</h4>
+                    <p className="text-xs ztc-muted">Learn by building real projects</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-purple-500/20 p-2 rounded-lg mr-3">
-                    <FiCoffee className="text-purple-300" />
+                  <div className="bg-[#ff7f6e]/15 p-2 rounded-sm mr-3 border border-[#ff7f6e]/35">
+                    <FiCoffee className="text-[#ff7f6e]" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-blue-300">Supportive Community</h4>
-                    <p className="text-xs text-blue-200/80">Connect with like-minded learners</p>
+                    <h4 className="text-sm font-medium text-[#8ac8ff]">Supportive Community</h4>
+                    <p className="text-xs ztc-muted">Connect with like-minded learners</p>
                   </div>
                 </div>
               </div>
             </div>
             
             {/* Testimonials preview */}
-            <div className="bg-indigo-900/60 rounded-xl p-6 backdrop-blur-lg border border-blue-500/50 shadow-xl">
+            <div className="ztc-surface info-panel panel-soft p-6">
               <h3 className="text-xl font-semibold mb-3 flex items-center">
-                <FiStar className="text-yellow-400 mr-2 drop-shadow-glow" /> 
-                <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">What Others Say</span>
+                <FiStar className="text-[#ff7f6e] mr-2" /> 
+                <span className="text-[#8ac8ff]">What Others Say</span>
               </h3>
               
               <div className="space-y-4">
-                <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/30">
-                  <p className="text-sm text-blue-200 italic mb-2">&quot;Jethro&apos;s workshop and introduction to tools really helped me reduce the friction and frustration I&apos;ve always had with building anything technical with code. The use of AI tools for generating leads for problem solving makes the process much more… solvable.&quot;</p>
-                  <p className="text-xs text-blue-300 font-medium">- Sarah K.</p>
+                <div className="bg-[#0f1830]/75 rounded-sm p-4 border border-[#56b8ff]/25">
+                  <p className="text-sm ztc-muted italic mb-2">&quot;Jethro&apos;s workshop and introduction to tools really helped me reduce the friction and frustration I&apos;ve always had with building anything technical with code. The use of AI tools for generating leads for problem solving makes the process much more… solvable.&quot;</p>
+                  <p className="text-xs text-[#8ac8ff] font-medium">- Sarah K.</p>
                 </div>
                 
-                <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-700/30">
-                  <p className="text-sm text-blue-200 italic mb-2">&quot;Really accessible session, felt very well supported to learn how to code using AI. Very impressed.&quot;</p>
-                  <p className="text-xs text-blue-300 font-medium">- Alastair, who made <a href="https://greater-manchester-assembly-helper.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">Greater Manchester Assembly Helper</a></p>
+                <div className="bg-[#0f1830]/75 rounded-sm p-4 border border-[#ff7f6e]/25">
+                  <p className="text-sm ztc-muted italic mb-2">&quot;Really accessible session, felt very well supported to learn how to code using AI. Very impressed.&quot;</p>
+                  <p className="text-xs text-[#8ac8ff] font-medium">- Alastair, who made <a href="https://greater-manchester-assembly-helper.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#56b8ff] hover:text-[#f3f6ff] transition-colors">Greater Manchester Assembly Helper</a></p>
                 </div>
               </div>
             </div>
             
             {/* Reminder note */}
-            <div className="bg-gradient-to-br from-blue-900/70 to-purple-900/70 rounded-xl p-5 backdrop-blur-lg border border-blue-400/30 shadow-xl">
+            <div className="ztc-surface-strong cta-panel panel-cut p-5">
               <div className="flex items-start">
                 <div className="shrink-0">
-                  <FiArrowRight className="text-yellow-400 text-xl mr-3 drop-shadow-glow" />
+                  <FiArrowRight className="text-[#ff7f6e] text-xl mr-3" />
                 </div>
-                <p className="text-sm text-blue-100">
+                <p className="text-sm ztc-muted">
                   Your feedback helps me improve my workshops for future coders. Thank you for taking the time to share your thoughts!
                 </p>
               </div>
@@ -548,9 +547,9 @@ export default function FeedbackPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="w-full max-w-6xl mt-8 pt-4 border-t border-blue-800/30 text-center"
+          className="w-full max-w-6xl mt-8 pt-4 border-t border-[#56b8ff]/25 text-center"
         >
-          <p className="text-xs text-blue-300/70">
+          <p className="text-xs ztc-muted">
             © {new Date().getFullYear()} Zero to Coder Workshop • All Rights Reserved
           </p>
         </motion.div>
