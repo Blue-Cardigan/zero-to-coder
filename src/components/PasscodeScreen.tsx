@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Eye, EyeOff, Lock, ArrowRight } from 'lucide-react';
+import '@/app/slides/slides.css';
 
 interface PasscodeScreenProps {
   onPasscodeCorrect: () => void;
@@ -10,16 +12,15 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
   const [error, setError] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const correctPasscode = 'premiumanddelightful'; // You can change this to any passcode you want
+  const correctPasscode = 'premiumanddelightful';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (passcode === correctPasscode) {
       if (rememberMe) {
-        // Store authentication with timestamp
         const authData = {
           authenticated: true,
-          timestamp: Date.now()
+          timestamp: Date.now(),
         };
         localStorage.setItem('slides-auth', JSON.stringify(authData));
       }
@@ -33,56 +34,63 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
   const slidesUrl = 'https://zerotocoder.uk/slides';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-blue-900 to-purple-900 text-white flex items-center justify-center">
+    <div
+      className="ztc-slide bg-hero-grid min-h-screen w-full flex items-center justify-center px-4 py-10"
+      style={{ color: 'var(--ztc-text)' }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-indigo-900/60 p-8 rounded-xl backdrop-blur-lg border border-blue-500/50 shadow-xl max-w-md w-full mx-4"
+        transition={{ duration: 0.45, ease: 'easeOut' }}
+        className="hero-panel panel-cut p-8 md:p-10 max-w-md w-full"
       >
-        <h1 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-          Zero to Coder Slides
+        <p className="type-kicker mb-3">Workshop access</p>
+        <h1 className="text-4xl md:text-5xl font-bold ztc-heading mb-2">
+          Zero to Coder
         </h1>
-        
-        {/* <div className="mb-6 p-4 bg-yellow-900/30 border border-yellow-500/50 rounded-lg">
-          <p className="text-yellow-200 text-sm text-center">
-            🔓 <strong>Challenge:</strong> Can you break in to find the password? 
-            <br />
-            <span className="text-xs text-yellow-300">Hint: Check the source code or browser dev tools!</span>
-          </p>
-        </div> */}
+        <p className="text-base md:text-lg ztc-muted mb-8">
+          Enter the passcode to open the slides.
+        </p>
 
-        {/* QR Code and Link Section */}
-        <div className="mb-6 p-4 bg-blue-900/30 border border-blue-500/50 rounded-lg">
-          <div className="flex flex-col items-center space-y-3">
-            <div className="bg-white p-2 rounded-lg">
-              <img 
+        <div className="editorial-column p-4 md:p-5 mb-6">
+          <div className="flex items-center gap-4">
+            <div className="bg-white p-2 rounded-sm shrink-0">
+              <img
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(slidesUrl)}`}
-                alt="QR Code for slides"
-                className="w-32 h-32"
+                alt="QR code linking to the slides"
+                className="w-24 h-24 block"
               />
             </div>
-            <div className="text-center">
-              <a 
+            <div className="min-w-0">
+              <p className="type-kicker mb-1">Or open on your device</p>
+              <a
                 href={slidesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-300 hover:text-blue-200 text-sm underline break-all"
+                className="text-base md:text-lg font-medium break-all hover:underline"
+                style={{ color: 'var(--ztc-accent-a)' }}
               >
-                {slidesUrl}
+                zerotocoder.uk/slides
               </a>
             </div>
           </div>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="relative">
+            <Lock
+              className="absolute inset-y-0 left-3 my-auto h-4 w-4"
+              style={{ color: 'var(--ztc-accent-a)' }}
+              aria-hidden="true"
+            />
             <input
               type={showPassword ? 'text' : 'password'}
               id="passcode"
               value={passcode}
               onChange={(e) => setPasscode(e.target.value)}
-              className="w-full pr-12 px-4 py-2 bg-indigo-800/50 border border-blue-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              placeholder="Enter Code"
+              autoFocus
+              className="w-full pl-10 pr-12 py-3 bg-slate-950/60 border border-cyan-400/25 rounded-sm focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/40 text-white placeholder:text-slate-500"
+              placeholder="Enter passcode"
             />
             <button
               type="button"
@@ -90,41 +98,40 @@ export default function PasscodeScreen({ onPasscodeCorrect }: PasscodeScreenProp
               aria-label={`${showPassword ? 'Hide' : 'Show'} passcode`}
               className="absolute inset-y-0 right-3 flex items-center text-blue-300 hover:text-blue-200"
             >
-              <span aria-hidden="true">{showPassword ? '🙈' : '👁️'}</span>
+              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
           </div>
-          
-          <div className="flex items-center">
+
+          <label className="flex items-center gap-2 text-sm ztc-muted cursor-pointer select-none">
             <input
               type="checkbox"
-              id="rememberMe"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 accent-cyan-400"
             />
-            <label htmlFor="rememberMe" className="text-sm text-blue-200">
-              Remember me on this device
-            </label>
-          </div>
-          
+            Remember me on this device
+          </label>
+
           {error && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-red-400 text-sm text-center"
+              className="text-sm"
+              style={{ color: 'var(--ztc-accent-b)' }}
             >
               Incorrect passcode. Please try again.
             </motion.p>
           )}
-          
+
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200"
+            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-base md:text-lg font-semibold bg-blue-500/25 border border-blue-400/45 rounded-sm hover:bg-blue-500/35 transition-colors"
           >
             Access Slides
+            <ArrowRight className="h-4 w-4" />
           </button>
         </form>
       </motion.div>
     </div>
   );
-} 
+}

@@ -149,6 +149,12 @@ export default function Slides() {
                 </a>
               </div>
               <p className="text-sm md:text-xl ztc-muted text-center"><a href="https://zerotocoder.uk/slides" target="_blank" rel="noopener noreferrer">Join at zerotocoder.uk/slides</a></p>
+              <div className="mt-4 pt-4 border-t border-cyan-400/20 flex flex-col items-center gap-1">
+                <p className="type-kicker">Passcode</p>
+                <code className="text-base md:text-xl font-mono tracking-wide" style={{ color: 'var(--ztc-accent-a)' }}>
+                  premiumanddelightful
+                </code>
+              </div>
             </div>
           </div>
         </section>
